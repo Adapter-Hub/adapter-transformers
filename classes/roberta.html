@@ -1,0 +1,1078 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>RoBERTa &mdash; adapter-transformers  documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="XLM-RoBERTa" href="xlmroberta.html" />
+    <link rel="prev" title="BERT" href="bert.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> adapter-transformers
+          
+
+          
+            
+            <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">adapter-transformers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../adapters.html">Introduction to Adapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training.html">Adapter Training</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prediction_heads.html">Prediction Heads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extending.html">Extending the Library</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Adapter-Hub</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../loading.html">Loading Pre-Trained Adapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to Adapter Hub</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Adapter-Related Classes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="adapter_config.html">Adapter Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_adapters_config.html">Model Adapters Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adapter_modules.html">Adapter Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_mixins.html">Model Mixins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bert_mixins.html">BERT Mixins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adapter_utils.html">Adapter Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="weights_loaders.html">Weights Loaders</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Supported Models</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="bert.html">BERT</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">RoBERTa</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#robertaconfig">RobertaConfig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#robertatokenizer">RobertaTokenizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#robertamodel">RobertaModel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#robertamodelwithheads">RobertaModelWithHeads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#robertaformaskedlm">RobertaForMaskedLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#robertaforsequenceclassification">RobertaForSequenceClassification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#robertafortokenclassification">RobertaForTokenClassification</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="xlmroberta.html">XLM-RoBERTa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="distilbert.html">DistilBERT</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">adapter-transformers</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>RoBERTa</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/classes/roberta.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="roberta">
+<h1>RoBERTa<a class="headerlink" href="#roberta" title="Permalink to this headline">¶</a></h1>
+<p>The RoBERTa model was proposed in <a class="reference external" href="https://arxiv.org/abs/1907.11692">RoBERTa: A Robustly Optimized BERT Pretraining Approach</a>
+by Yinhan Liu, Myle Ott, Naman Goyal, Jingfei Du, Mandar Joshi, Danqi Chen, Omer Levy, Mike Lewis, Luke Zettlemoyer,
+Veselin Stoyanov. It is based on Google’s BERT model released in 2018.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This class is nearly identical to the PyTorch implementation of RoBERTa in Huggingface Transformers.
+For more information, visit <a class="reference external" href="https://huggingface.co/transformers/model_doc/roberta.html">the corresponding section in their documentation</a>.</p>
+</div>
+<div class="section" id="robertaconfig">
+<h2>RobertaConfig<a class="headerlink" href="#robertaconfig" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="transformers.RobertaConfig">
+<em class="property">class </em><code class="sig-prename descclassname">transformers.</code><code class="sig-name descname">RobertaConfig</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pad_token_id</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">bos_token_id</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">eos_token_id</span><span class="o">=</span><span class="default_value">2</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.RobertaConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the configuration class to store the configuration of a <a class="reference internal" href="#transformers.RobertaModel" title="transformers.RobertaModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">RobertaModel</span></code></a> or a
+<code class="xref py py-class docutils literal notranslate"><span class="pre">TFRobertaModel</span></code>. It is used to instantiate a RoBERTa model according to the specified
+arguments, defining the model architecture.</p>
+<p>Configuration objects inherit from <code class="xref py py-class docutils literal notranslate"><span class="pre">PretrainedConfig</span></code> and can be used to control the model
+outputs. Read the documentation from <code class="xref py py-class docutils literal notranslate"><span class="pre">PretrainedConfig</span></code> for more information.</p>
+<p>The <a class="reference internal" href="#transformers.RobertaConfig" title="transformers.RobertaConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">RobertaConfig</span></code></a> class directly inherits <a class="reference internal" href="bert.html#transformers.BertConfig" title="transformers.BertConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">BertConfig</span></code></a>. It reuses the
+same defaults. Please check the parent class for more information.</p>
+<p>Examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">RobertaConfig</span><span class="p">,</span> <span class="n">RobertaModel</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Initializing a RoBERTa configuration</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">configuration</span> <span class="o">=</span> <span class="n">RobertaConfig</span><span class="p">()</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Initializing a model from the configuration</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">RobertaModel</span><span class="p">(</span><span class="n">configuration</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Accessing the model configuration</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">configuration</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">config</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="robertatokenizer">
+<h2>RobertaTokenizer<a class="headerlink" href="#robertatokenizer" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="transformers.RobertaTokenizer">
+<em class="property">class </em><code class="sig-prename descclassname">transformers.</code><code class="sig-name descname">RobertaTokenizer</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">vocab_file</span></em>, <em class="sig-param"><span class="n">merges_file</span></em>, <em class="sig-param"><span class="n">errors</span><span class="o">=</span><span class="default_value">'replace'</span></em>, <em class="sig-param"><span class="n">bos_token</span><span class="o">=</span><span class="default_value">'&lt;s&gt;'</span></em>, <em class="sig-param"><span class="n">eos_token</span><span class="o">=</span><span class="default_value">'&lt;/s&gt;'</span></em>, <em class="sig-param"><span class="n">sep_token</span><span class="o">=</span><span class="default_value">'&lt;/s&gt;'</span></em>, <em class="sig-param"><span class="n">cls_token</span><span class="o">=</span><span class="default_value">'&lt;s&gt;'</span></em>, <em class="sig-param"><span class="n">unk_token</span><span class="o">=</span><span class="default_value">'&lt;unk&gt;'</span></em>, <em class="sig-param"><span class="n">pad_token</span><span class="o">=</span><span class="default_value">'&lt;pad&gt;'</span></em>, <em class="sig-param"><span class="n">mask_token</span><span class="o">=</span><span class="default_value">'&lt;mask&gt;'</span></em>, <em class="sig-param"><span class="n">add_prefix_space</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.RobertaTokenizer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructs a RoBERTa tokenizer, derived from the GPT-2 tokenizer, using byte-level Byte-Pair-Encoding.</p>
+<p>This tokenizer has been trained to treat spaces like parts of the tokens (a bit like sentencepiece) so a word will
+be encoded differently whether it is at the beginning of the sentence (without space) or not:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">RobertaTokenizer</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">RobertaTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;roberta-base&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tokenizer</span><span class="p">(</span><span class="s2">&quot;Hello world&quot;</span><span class="p">)[</span><span class="s1">&#39;input_ids&#39;</span><span class="p">]</span>
+<span class="go">[0, 31414, 232, 328, 2]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tokenizer</span><span class="p">(</span><span class="s2">&quot; Hello world&quot;</span><span class="p">)[</span><span class="s1">&#39;input_ids&#39;</span><span class="p">]</span>
+<span class="go">[0, 20920, 232, 2]</span>
+</pre></div>
+</div>
+<p>You can get around that behavior by passing <code class="docutils literal notranslate"><span class="pre">add_prefix_space=True</span></code> when instantiating this tokenizer or when you
+call it on some text, but since the model was not pretrained this way, it might yield a decrease in performance.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When used with <code class="docutils literal notranslate"><span class="pre">is_split_into_words=True</span></code>, this tokenizer will add a space before each word (even the first
+one).</p>
+</div>
+<p>This tokenizer inherits from <code class="xref py py-class docutils literal notranslate"><span class="pre">PreTrainedTokenizerFast</span></code> which contains most of the main
+methods. Users should refer to this superclass for more information regarding those methods.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vocab_file</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – Path to the vocabulary file.</p></li>
+<li><p><strong>merges_file</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – Path to the merges file.</p></li>
+<li><p><strong>errors</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>, <cite>optional</cite>, defaults to <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;replace&quot;</span></code>) – Paradigm to follow when decoding bytes to UTF-8. See <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes.decode">bytes.decode</a> for more information.</p></li>
+<li><p><strong>bos_token</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>, <cite>optional</cite>, defaults to <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;&lt;s&gt;&quot;</span></code>) – <p>The beginning of sequence token that was used during pretraining. Can be used a sequence classifier token.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When building a sequence using special tokens, this is not the token that is used for the beginning of
+sequence. The token used is the <code class="xref py py-obj docutils literal notranslate"><span class="pre">cls_token</span></code>.</p>
+</div>
+</p></li>
+<li><p><strong>eos_token</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>, <cite>optional</cite>, defaults to <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;&lt;/s&gt;&quot;</span></code>) – <p>The end of sequence token.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When building a sequence using special tokens, this is not the token that is used for the end of
+sequence. The token used is the <code class="xref py py-obj docutils literal notranslate"><span class="pre">sep_token</span></code>.</p>
+</div>
+</p></li>
+<li><p><strong>sep_token</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>, <cite>optional</cite>, defaults to <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;&lt;/s&gt;&quot;</span></code>) – The separator token, which is used when building a sequence from multiple sequences, e.g. two sequences for
+sequence classification or for a text and a question for question answering. It is also used as the last
+token of a sequence built with special tokens.</p></li>
+<li><p><strong>cls_token</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>, <cite>optional</cite>, defaults to <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;&lt;s&gt;&quot;</span></code>) – The classifier token which is used when doing sequence classification (classification of the whole sequence
+instead of per-token classification). It is the first token of the sequence when built with special tokens.</p></li>
+<li><p><strong>unk_token</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>, <cite>optional</cite>, defaults to <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;&lt;unk&gt;&quot;</span></code>) – The unknown token. A token that is not in the vocabulary cannot be converted to an ID and is set to be this
+token instead.</p></li>
+<li><p><strong>pad_token</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>, <cite>optional</cite>, defaults to <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;&lt;pad&gt;&quot;</span></code>) – The token used for padding, for example when batching sequences of different lengths.</p></li>
+<li><p><strong>mask_token</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>, <cite>optional</cite>, defaults to <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;&lt;mask&gt;&quot;</span></code>) – The token used for masking values. This is the token used when training this model with masked language
+modeling. This is the token which the model will try to predict.</p></li>
+<li><p><strong>add_prefix_space</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code>, <cite>optional</cite>, defaults to <code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code>) – Whether or not to add an initial space to the input. This allows to treat the leading word just as any
+other word. (RoBERTa tokenizer detect beginning of words by the preceding space).</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="transformers.RobertaTokenizer.build_inputs_with_special_tokens">
+<code class="sig-name descname">build_inputs_with_special_tokens</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">token_ids_0</span><span class="p">:</span> <span class="n">List<span class="p">[</span>int<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">token_ids_1</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>List<span class="p">[</span>int<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; List<span class="p">[</span>int<span class="p">]</span><a class="headerlink" href="#transformers.RobertaTokenizer.build_inputs_with_special_tokens" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build model inputs from a sequence or a pair of sequence for sequence classification tasks by concatenating and
+adding special tokens. A RoBERTa sequence has the following format:</p>
+<ul class="simple">
+<li><p>single sequence: <code class="docutils literal notranslate"><span class="pre">&lt;s&gt;</span> <span class="pre">X</span> <span class="pre">&lt;/s&gt;</span></code></p></li>
+<li><p>pair of sequences: <code class="docutils literal notranslate"><span class="pre">&lt;s&gt;</span> <span class="pre">A</span> <span class="pre">&lt;/s&gt;&lt;/s&gt;</span> <span class="pre">B</span> <span class="pre">&lt;/s&gt;</span></code></p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>token_ids_0</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">List[int]</span></code>) – List of IDs to which the special tokens will be added.</p></li>
+<li><p><strong>token_ids_1</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">List[int]</span></code>, <cite>optional</cite>) – Optional second list of IDs for sequence pairs.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>List of <a class="reference external" href="../glossary.html#input-ids">input IDs</a> with the appropriate special tokens.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">List[int]</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.RobertaTokenizer.create_token_type_ids_from_sequences">
+<code class="sig-name descname">create_token_type_ids_from_sequences</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">token_ids_0</span><span class="p">:</span> <span class="n">List<span class="p">[</span>int<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">token_ids_1</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>List<span class="p">[</span>int<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; List<span class="p">[</span>int<span class="p">]</span><a class="headerlink" href="#transformers.RobertaTokenizer.create_token_type_ids_from_sequences" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a mask from the two sequences passed to be used in a sequence-pair classification task. RoBERTa does not
+make use of token type ids, therefore a list of zeros is returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>token_ids_0</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">List[int]</span></code>) – List of IDs.</p></li>
+<li><p><strong>token_ids_1</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">List[int]</span></code>, <cite>optional</cite>) – Optional second list of IDs for sequence pairs.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>List of zeros.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">List[int]</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.RobertaTokenizer.get_special_tokens_mask">
+<code class="sig-name descname">get_special_tokens_mask</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">token_ids_0</span><span class="p">:</span> <span class="n">List<span class="p">[</span>int<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">token_ids_1</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>List<span class="p">[</span>int<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">already_has_special_tokens</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; List<span class="p">[</span>int<span class="p">]</span><a class="headerlink" href="#transformers.RobertaTokenizer.get_special_tokens_mask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve sequence ids from a token list that has no special tokens added. This method is called when adding
+special tokens using the tokenizer <code class="docutils literal notranslate"><span class="pre">prepare_for_model</span></code> method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>token_ids_0</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">List[int]</span></code>) – List of IDs.</p></li>
+<li><p><strong>token_ids_1</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">List[int]</span></code>, <cite>optional</cite>) – Optional second list of IDs for sequence pairs.</p></li>
+<li><p><strong>already_has_special_tokens</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code>, <cite>optional</cite>, defaults to <code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code>) – Whether or not the token list is already formatted with special tokens for the model.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of integers in the range [0, 1]: 1 for a special token, 0 for a sequence token.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">List[int]</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.RobertaTokenizer.save_vocabulary">
+<code class="sig-name descname">save_vocabulary</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">save_directory</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">filename_prefix</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; Tuple<span class="p">[</span>str<span class="p">]</span><a class="headerlink" href="#transformers.RobertaTokenizer.save_vocabulary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save only the vocabulary of the tokenizer (vocabulary + added tokens).</p>
+<p>This method won’t save the configuration and special token mappings of the tokenizer. Use
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">_save_pretrained()</span></code> to save the whole state of the tokenizer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>save_directory</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – The directory in which to save the vocabulary.</p></li>
+<li><p><strong>filename_prefix</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>, <cite>optional</cite>) – An optional prefix to add to the named of the saved files.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Paths to the files saved.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Tuple(str)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="robertamodel">
+<h2>RobertaModel<a class="headerlink" href="#robertamodel" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="transformers.RobertaModel">
+<em class="property">class </em><code class="sig-prename descclassname">transformers.</code><code class="sig-name descname">RobertaModel</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config</span></em>, <em class="sig-param"><span class="n">add_pooling_layer</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.RobertaModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>The bare RoBERTa Model transformer outputting raw hidden-states without any specific head on top.</p>
+<p>This model inherits from <code class="xref py py-class docutils literal notranslate"><span class="pre">PreTrainedModel</span></code>. Check the superclass documentation for the generic
+methods the library implements for all its model (such as downloading or saving, resizing the input embeddings,
+pruning heads etc.)</p>
+<p>This model is also a PyTorch <a class="reference external" href="https://pytorch.org/docs/stable/nn.html#torch.nn.Module">torch.nn.Module</a>
+subclass. Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to
+general usage and behavior.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>config</strong> (<a class="reference internal" href="#transformers.RobertaConfig" title="transformers.RobertaConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">RobertaConfig</span></code></a>) – Model configuration class with all the parameters of the
+model. Initializing with a config file does not load the weights associated with the model, only the
+configuration. Check out the <code class="xref py py-meth docutils literal notranslate"><span class="pre">from_pretrained()</span></code> method to load the model
+weights.</p>
+</dd>
+</dl>
+<p>The model can behave as an encoder (with only self-attention) as well as a decoder, in which case a layer of
+cross-attention is added between the self-attention layers, following the architecture described in <a class="reference external" href="https://arxiv.org/abs/1706.03762">Attention is
+all you need</a> by Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Lukasz
+Kaiser and Illia Polosukhin.</p>
+<p>To behave as an decoder the model needs to be initialized with the <code class="xref py py-obj docutils literal notranslate"><span class="pre">is_decoder</span></code> argument of the configuration
+set to <code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code>. To be used in a Seq2Seq model, the model needs to initialized with both <code class="xref py py-obj docutils literal notranslate"><span class="pre">is_decoder</span></code>
+argument and <code class="xref py py-obj docutils literal notranslate"><span class="pre">add_cross_attention</span></code> set to <code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code>; an <code class="xref py py-obj docutils literal notranslate"><span class="pre">encoder_hidden_states</span></code> is then expected as an
+input to the forward pass.</p>
+<dl class="py method">
+<dt id="transformers.RobertaModel.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">input_ids</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">attention_mask</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">token_type_ids</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">position_ids</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">head_mask</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">inputs_embeds</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">encoder_hidden_states</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">encoder_attention_mask</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">output_attentions</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">output_hidden_states</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">adapter_names</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">return_dict</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.RobertaModel.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <a class="reference internal" href="#transformers.RobertaModel" title="transformers.RobertaModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">RobertaModel</span></code></a> forward method, overrides the <code class="xref py py-func docutils literal notranslate"><span class="pre">__call__()</span></code> special method.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within this function, one should call the
+<code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards instead of this since the former takes care of running the pre and post
+processing steps while the latter silently ignores them.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_ids</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.LongTensor</span></code> of shape <code class="xref py py-obj docutils literal notranslate"><span class="pre">((batch_size,</span> <span class="pre">sequence_length))</span></code>) – <p>Indices of input sequence tokens in the vocabulary.</p>
+<p>Indices can be obtained using <a class="reference internal" href="#transformers.RobertaTokenizer" title="transformers.RobertaTokenizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">RobertaTokenizer</span></code></a>. See
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">transformers.PreTrainedTokenizer.encode()</span></code> and <code class="xref py py-meth docutils literal notranslate"><span class="pre">transformers.PreTrainedTokenizer.__call__()</span></code> for
+details.</p>
+<p><a class="reference external" href="../glossary.html#input-ids">What are input IDs?</a></p>
+</p></li>
+<li><p><strong>attention_mask</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code> of shape <code class="xref py py-obj docutils literal notranslate"><span class="pre">((batch_size,</span> <span class="pre">sequence_length))</span></code>, <cite>optional</cite>) – <p>Mask to avoid performing attention on padding token indices. Mask values selected in <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1]</span></code>:</p>
+<ul>
+<li><p>1 for tokens that are <strong>not masked</strong>,</p></li>
+<li><p>0 for tokens that are <strong>masked</strong>.</p></li>
+</ul>
+<p><a class="reference external" href="../glossary.html#attention-mask">What are attention masks?</a></p>
+</p></li>
+<li><p><strong>token_type_ids</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.LongTensor</span></code> of shape <code class="xref py py-obj docutils literal notranslate"><span class="pre">((batch_size,</span> <span class="pre">sequence_length))</span></code>, <cite>optional</cite>) – <p>Segment token indices to indicate first and second portions of the inputs. Indices are selected in <code class="docutils literal notranslate"><span class="pre">[0,</span>
+<span class="pre">1]</span></code>:</p>
+<ul>
+<li><p>0 corresponds to a <cite>sentence A</cite> token,</p></li>
+<li><p>1 corresponds to a <cite>sentence B</cite> token.</p></li>
+</ul>
+<p><a class="reference external" href="../glossary.html#token-type-ids">What are token type IDs?</a></p>
+</p></li>
+<li><p><strong>position_ids</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.LongTensor</span></code> of shape <code class="xref py py-obj docutils literal notranslate"><span class="pre">((batch_size,</span> <span class="pre">sequence_length))</span></code>, <cite>optional</cite>) – <p>Indices of positions of each input sequence tokens in the position embeddings. Selected in the range <code class="docutils literal notranslate"><span class="pre">[0,</span>
+<span class="pre">config.max_position_embeddings</span> <span class="pre">-</span> <span class="pre">1]</span></code>.</p>
+<p><a class="reference external" href="../glossary.html#position-ids">What are position IDs?</a></p>
+</p></li>
+<li><p><strong>head_mask</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code> of shape <code class="xref py py-obj docutils literal notranslate"><span class="pre">(num_heads,)</span></code> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">(num_layers,</span> <span class="pre">num_heads)</span></code>, <cite>optional</cite>) – <p>Mask to nullify selected heads of the self-attention modules. Mask values selected in <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1]</span></code>:</p>
+<ul>
+<li><p>1 indicates the head is <strong>not masked</strong>,</p></li>
+<li><p>0 indicates the head is <strong>masked</strong>.</p></li>
+</ul>
+</p></li>
+<li><p><strong>inputs_embeds</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code> of shape <code class="xref py py-obj docutils literal notranslate"><span class="pre">((batch_size,</span> <span class="pre">sequence_length),</span> <span class="pre">hidden_size)</span></code>, <cite>optional</cite>) – Optionally, instead of passing <code class="xref py py-obj docutils literal notranslate"><span class="pre">input_ids</span></code> you can choose to directly pass an embedded representation.
+This is useful if you want more control over how to convert <code class="xref py py-obj docutils literal notranslate"><span class="pre">input_ids</span></code> indices into associated
+vectors than the model’s internal embedding lookup matrix.</p></li>
+<li><p><strong>output_attentions</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code>, <cite>optional</cite>) – Whether or not to return the attentions tensors of all attention layers. See <code class="docutils literal notranslate"><span class="pre">attentions</span></code> under returned
+tensors for more detail.</p></li>
+<li><p><strong>output_hidden_states</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code>, <cite>optional</cite>) – Whether or not to return the hidden states of all layers. See <code class="docutils literal notranslate"><span class="pre">hidden_states</span></code> under returned tensors for
+more detail.</p></li>
+<li><p><strong>return_dict</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code>, <cite>optional</cite>) – Whether or not to return a <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelOutput</span></code> instead of a plain tuple.</p></li>
+<li><p><strong>encoder_hidden_states</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code> of shape <code class="xref py py-obj docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">sequence_length,</span> <span class="pre">hidden_size)</span></code>, <cite>optional</cite>) – Sequence of hidden-states at the output of the last layer of the encoder. Used in the cross-attention if
+the model is configured as a decoder.</p></li>
+<li><p><strong>encoder_attention_mask</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code> of shape <code class="xref py py-obj docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">sequence_length)</span></code>, <cite>optional</cite>) – Mask to avoid performing attention on the padding token indices of the encoder input. This mask is used in
+the cross-attention if the model is configured as a decoder. Mask values selected in <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1]</span></code>: <code class="docutils literal notranslate"><span class="pre">1</span></code> for
+tokens that are NOT MASKED, <code class="docutils literal notranslate"><span class="pre">0</span></code> for MASKED tokens.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p>A <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModelOutputWithPoolingAndCrossAttentions</span></code> (if
+<code class="docutils literal notranslate"><span class="pre">return_dict=True</span></code> is passed or when <code class="docutils literal notranslate"><span class="pre">config.return_dict=True</span></code>) or a tuple of <code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code>
+comprising various elements depending on the configuration (<a class="reference internal" href="#transformers.RobertaConfig" title="transformers.RobertaConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">RobertaConfig</span></code></a>) and inputs.</p>
+<ul>
+<li><p><strong>last_hidden_state</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code> of shape <code class="xref py py-obj docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">sequence_length,</span> <span class="pre">hidden_size)</span></code>) – Sequence of hidden-states at the output of the last layer of the model.</p></li>
+<li><p><strong>pooler_output</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code> of shape <code class="xref py py-obj docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">hidden_size)</span></code>) – Last layer hidden-state of the first token of the sequence (classification token) further processed by a
+Linear layer and a Tanh activation function. The Linear layer weights are trained from the next sentence
+prediction (classification) objective during pretraining.</p></li>
+<li><p><strong>hidden_states</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">tuple(torch.FloatTensor)</span></code>, <cite>optional</cite>, returned when <code class="docutils literal notranslate"><span class="pre">output_hidden_states=True</span></code> is passed or when <code class="docutils literal notranslate"><span class="pre">config.output_hidden_states=True</span></code>) – Tuple of <code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code> (one for the output of the embeddings + one for the output of each layer)
+of shape <code class="xref py py-obj docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">sequence_length,</span> <span class="pre">hidden_size)</span></code>.</p>
+<p>Hidden-states of the model at the output of each layer plus the initial embedding outputs.</p>
+</li>
+<li><p><strong>attentions</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">tuple(torch.FloatTensor)</span></code>, <cite>optional</cite>, returned when <code class="docutils literal notranslate"><span class="pre">output_attentions=True</span></code> is passed or when <code class="docutils literal notranslate"><span class="pre">config.output_attentions=True</span></code>) – Tuple of <code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code> (one for each layer) of shape <code class="xref py py-obj docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">num_heads,</span>
+<span class="pre">sequence_length,</span> <span class="pre">sequence_length)</span></code>.</p>
+<p>Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
+heads.</p>
+</li>
+<li><p><strong>cross_attentions</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">tuple(torch.FloatTensor)</span></code>, <cite>optional</cite>, returned when <code class="docutils literal notranslate"><span class="pre">output_attentions=True</span></code> and <code class="docutils literal notranslate"><span class="pre">config.add_cross_attention=True</span></code> is passed or when <code class="docutils literal notranslate"><span class="pre">config.output_attentions=True</span></code>) – Tuple of <code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code> (one for each layer) of shape <code class="xref py py-obj docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">num_heads,</span>
+<span class="pre">sequence_length,</span> <span class="pre">sequence_length)</span></code>.</p>
+<p>Attentions weights of the decoder’s cross-attention layer, after the attention softmax, used to compute the
+weighted average in the cross-attention heads.</p>
+</li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModelOutputWithPoolingAndCrossAttentions</span></code> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">tuple(torch.FloatTensor)</span></code></p>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">RobertaTokenizer</span><span class="p">,</span> <span class="n">RobertaModel</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">torch</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">RobertaTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s1">&#39;roberta-base&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">RobertaModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s1">&#39;roberta-base&#39;</span><span class="p">,</span> <span class="n">return_dict</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">inputs</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="s2">&quot;Hello, my dog is cute&quot;</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&quot;pt&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="o">**</span><span class="n">inputs</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">last_hidden_states</span> <span class="o">=</span> <span class="n">outputs</span><span class="o">.</span><span class="n">last_hidden_state</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.RobertaModel.get_input_embeddings">
+<code class="sig-name descname">get_input_embeddings</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#transformers.RobertaModel.get_input_embeddings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the model’s input embeddings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A torch module mapping vocabulary to hidden states.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">nn.Module</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.RobertaModel.set_input_embeddings">
+<code class="sig-name descname">set_input_embeddings</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.RobertaModel.set_input_embeddings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set model’s input embeddings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">nn.Module</span></code>) – A module mapping vocabulary to hidden states.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="robertamodelwithheads">
+<h2>RobertaModelWithHeads<a class="headerlink" href="#robertamodelwithheads" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="transformers.RobertaModelWithHeads">
+<em class="property">class </em><code class="sig-prename descclassname">transformers.</code><code class="sig-name descname">RobertaModelWithHeads</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.RobertaModelWithHeads" title="Permalink to this definition">¶</a></dt>
+<dd><p>Roberta Model transformer with the option to add multiple flexible heads on top.</p>
+<p>This model inherits from <code class="xref py py-class docutils literal notranslate"><span class="pre">PreTrainedModel</span></code>. Check the superclass documentation for the generic
+methods the library implements for all its model (such as downloading or saving, resizing the input embeddings,
+pruning heads etc.)</p>
+<p>This model is also a PyTorch <a class="reference external" href="https://pytorch.org/docs/stable/nn.html#torch.nn.Module">torch.nn.Module</a>
+subclass. Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to
+general usage and behavior.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>config</strong> (<a class="reference internal" href="#transformers.RobertaConfig" title="transformers.RobertaConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">RobertaConfig</span></code></a>) – Model configuration class with all the parameters of the
+model. Initializing with a config file does not load the weights associated with the model, only the
+configuration. Check out the <code class="xref py py-meth docutils literal notranslate"><span class="pre">from_pretrained()</span></code> method to load the model
+weights.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="transformers.RobertaModelWithHeads.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">input_ids</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">attention_mask</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">token_type_ids</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">position_ids</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">head_mask</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">inputs_embeds</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">output_attentions</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">output_hidden_states</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">adapter_names</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">head</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">return_dict</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.RobertaModelWithHeads.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <a class="reference internal" href="#transformers.RobertaModelWithHeads" title="transformers.RobertaModelWithHeads"><code class="xref py py-class docutils literal notranslate"><span class="pre">RobertaModelWithHeads</span></code></a> forward method, overrides the <code class="xref py py-func docutils literal notranslate"><span class="pre">__call__()</span></code> special method.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within this function, one should call the
+<code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards instead of this since the former takes care of running the pre and post
+processing steps while the latter silently ignores them.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_ids</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.LongTensor</span></code> of shape <code class="xref py py-obj docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">sequence_length)</span></code>) – <p>Indices of input sequence tokens in the vocabulary.</p>
+<p>Indices can be obtained using <a class="reference internal" href="#transformers.RobertaTokenizer" title="transformers.RobertaTokenizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">RobertaTokenizer</span></code></a>. See
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">transformers.PreTrainedTokenizer.encode()</span></code> and <code class="xref py py-meth docutils literal notranslate"><span class="pre">transformers.PreTrainedTokenizer.__call__()</span></code> for
+details.</p>
+<p><a class="reference external" href="../glossary.html#input-ids">What are input IDs?</a></p>
+</p></li>
+<li><p><strong>attention_mask</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code> of shape <code class="xref py py-obj docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">sequence_length)</span></code>, <cite>optional</cite>) – <p>Mask to avoid performing attention on padding token indices. Mask values selected in <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1]</span></code>:</p>
+<ul>
+<li><p>1 for tokens that are <strong>not masked</strong>,</p></li>
+<li><p>0 for tokens that are <strong>masked</strong>.</p></li>
+</ul>
+<p><a class="reference external" href="../glossary.html#attention-mask">What are attention masks?</a></p>
+</p></li>
+<li><p><strong>token_type_ids</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.LongTensor</span></code> of shape <code class="xref py py-obj docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">sequence_length)</span></code>, <cite>optional</cite>) – <p>Segment token indices to indicate first and second portions of the inputs. Indices are selected in <code class="docutils literal notranslate"><span class="pre">[0,</span>
+<span class="pre">1]</span></code>:</p>
+<ul>
+<li><p>0 corresponds to a <cite>sentence A</cite> token,</p></li>
+<li><p>1 corresponds to a <cite>sentence B</cite> token.</p></li>
+</ul>
+<p><a class="reference external" href="../glossary.html#token-type-ids">What are token type IDs?</a></p>
+</p></li>
+<li><p><strong>position_ids</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.LongTensor</span></code> of shape <code class="xref py py-obj docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">sequence_length)</span></code>, <cite>optional</cite>) – <p>Indices of positions of each input sequence tokens in the position embeddings. Selected in the range <code class="docutils literal notranslate"><span class="pre">[0,</span>
+<span class="pre">config.max_position_embeddings</span> <span class="pre">-</span> <span class="pre">1]</span></code>.</p>
+<p><a class="reference external" href="../glossary.html#position-ids">What are position IDs?</a></p>
+</p></li>
+<li><p><strong>head_mask</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code> of shape <code class="xref py py-obj docutils literal notranslate"><span class="pre">(num_heads,)</span></code> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">(num_layers,</span> <span class="pre">num_heads)</span></code>, <cite>optional</cite>) – <p>Mask to nullify selected heads of the self-attention modules. Mask values selected in <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1]</span></code>:</p>
+<ul>
+<li><p>1 indicates the head is <strong>not masked</strong>,</p></li>
+<li><p>0 indicates the head is <strong>masked</strong>.</p></li>
+</ul>
+</p></li>
+<li><p><strong>inputs_embeds</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code> of shape <code class="xref py py-obj docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">sequence_length,</span> <span class="pre">hidden_size)</span></code>, <cite>optional</cite>) – Optionally, instead of passing <code class="xref py py-obj docutils literal notranslate"><span class="pre">input_ids</span></code> you can choose to directly pass an embedded representation.
+This is useful if you want more control over how to convert <code class="xref py py-obj docutils literal notranslate"><span class="pre">input_ids</span></code> indices into associated
+vectors than the model’s internal embedding lookup matrix.</p></li>
+<li><p><strong>output_attentions</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code>, <cite>optional</cite>) – Whether or not to return the attentions tensors of all attention layers. See <code class="docutils literal notranslate"><span class="pre">attentions</span></code> under returned
+tensors for more detail.</p></li>
+<li><p><strong>output_hidden_states</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code>, <cite>optional</cite>) – Whether or not to return the hidden states of all layers. See <code class="docutils literal notranslate"><span class="pre">hidden_states</span></code> under returned tensors for
+more detail.</p></li>
+<li><p><strong>return_dict</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code>, <cite>optional</cite>) – Whether or not to return a <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelOutput</span></code> instead of a plain tuple.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelOutput</span></code> (if
+<code class="docutils literal notranslate"><span class="pre">return_dict=True</span></code> is passed or when <code class="docutils literal notranslate"><span class="pre">config.return_dict=True</span></code>) or a tuple of <code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code>
+comprising various elements depending on the configuration (<a class="reference internal" href="#transformers.RobertaConfig" title="transformers.RobertaConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">RobertaConfig</span></code></a>) and inputs.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">ModelOutput</span></code> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">tuple(torch.FloatTensor)</span></code></p>
+</dd>
+</dl>
+<p>Base class for all model outputs as dataclass. Has a <code class="docutils literal notranslate"><span class="pre">__getitem__</span></code> that allows indexing by integer or slice (like
+a tuple) or strings (like a dictionary) that will ignore the <code class="docutils literal notranslate"><span class="pre">None</span></code> attributes. Otherwise behaves like a regular
+python dictionary.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>You can’t unpack a <code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelOutput</span></code> directly. Use the <code class="xref py py-meth docutils literal notranslate"><span class="pre">to_tuple()</span></code>
+method to convert it to a tuple before.</p>
+</div>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">RobertaTokenizer</span><span class="p">,</span> <span class="n">RobertaModelWithHeads</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">torch</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">RobertaTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s1">&#39;roberta-base&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">RobertaModelWithHeads</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s1">&#39;roberta-base&#39;</span><span class="p">,</span> <span class="n">return_dict</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">inputs</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="s2">&quot;Hello, my dog is cute&quot;</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&quot;pt&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="o">**</span><span class="n">inputs</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">last_hidden_states</span> <span class="o">=</span> <span class="n">outputs</span><span class="o">.</span><span class="n">last_hidden_state</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="robertaformaskedlm">
+<h2>RobertaForMaskedLM<a class="headerlink" href="#robertaformaskedlm" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="transformers.RobertaForMaskedLM">
+<em class="property">class </em><code class="sig-prename descclassname">transformers.</code><code class="sig-name descname">RobertaForMaskedLM</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.RobertaForMaskedLM" title="Permalink to this definition">¶</a></dt>
+<dd><p>RoBERTa Model with a <cite>language modeling</cite> head on top.</p>
+<p>This model inherits from <code class="xref py py-class docutils literal notranslate"><span class="pre">PreTrainedModel</span></code>. Check the superclass documentation for the generic
+methods the library implements for all its model (such as downloading or saving, resizing the input embeddings,
+pruning heads etc.)</p>
+<p>This model is also a PyTorch <a class="reference external" href="https://pytorch.org/docs/stable/nn.html#torch.nn.Module">torch.nn.Module</a>
+subclass. Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to
+general usage and behavior.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>config</strong> (<a class="reference internal" href="#transformers.RobertaConfig" title="transformers.RobertaConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">RobertaConfig</span></code></a>) – Model configuration class with all the parameters of the
+model. Initializing with a config file does not load the weights associated with the model, only the
+configuration. Check out the <code class="xref py py-meth docutils literal notranslate"><span class="pre">from_pretrained()</span></code> method to load the model
+weights.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="transformers.RobertaForMaskedLM.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">input_ids</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">attention_mask</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">token_type_ids</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">position_ids</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">head_mask</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">inputs_embeds</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">encoder_hidden_states</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">encoder_attention_mask</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">labels</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">output_attentions</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">output_hidden_states</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">adapter_names</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">return_dict</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.RobertaForMaskedLM.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <a class="reference internal" href="#transformers.RobertaForMaskedLM" title="transformers.RobertaForMaskedLM"><code class="xref py py-class docutils literal notranslate"><span class="pre">RobertaForMaskedLM</span></code></a> forward method, overrides the <code class="xref py py-func docutils literal notranslate"><span class="pre">__call__()</span></code> special method.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within this function, one should call the
+<code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards instead of this since the former takes care of running the pre and post
+processing steps while the latter silently ignores them.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_ids</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.LongTensor</span></code> of shape <code class="xref py py-obj docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">sequence_length)</span></code>) – <p>Indices of input sequence tokens in the vocabulary.</p>
+<p>Indices can be obtained using <a class="reference internal" href="#transformers.RobertaTokenizer" title="transformers.RobertaTokenizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">RobertaTokenizer</span></code></a>. See
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">transformers.PreTrainedTokenizer.encode()</span></code> and <code class="xref py py-meth docutils literal notranslate"><span class="pre">transformers.PreTrainedTokenizer.__call__()</span></code> for
+details.</p>
+<p><a class="reference external" href="../glossary.html#input-ids">What are input IDs?</a></p>
+</p></li>
+<li><p><strong>attention_mask</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code> of shape <code class="xref py py-obj docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">sequence_length)</span></code>, <cite>optional</cite>) – <p>Mask to avoid performing attention on padding token indices. Mask values selected in <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1]</span></code>:</p>
+<ul>
+<li><p>1 for tokens that are <strong>not masked</strong>,</p></li>
+<li><p>0 for tokens that are <strong>masked</strong>.</p></li>
+</ul>
+<p><a class="reference external" href="../glossary.html#attention-mask">What are attention masks?</a></p>
+</p></li>
+<li><p><strong>token_type_ids</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.LongTensor</span></code> of shape <code class="xref py py-obj docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">sequence_length)</span></code>, <cite>optional</cite>) – <p>Segment token indices to indicate first and second portions of the inputs. Indices are selected in <code class="docutils literal notranslate"><span class="pre">[0,</span>
+<span class="pre">1]</span></code>:</p>
+<ul>
+<li><p>0 corresponds to a <cite>sentence A</cite> token,</p></li>
+<li><p>1 corresponds to a <cite>sentence B</cite> token.</p></li>
+</ul>
+<p><a class="reference external" href="../glossary.html#token-type-ids">What are token type IDs?</a></p>
+</p></li>
+<li><p><strong>position_ids</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.LongTensor</span></code> of shape <code class="xref py py-obj docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">sequence_length)</span></code>, <cite>optional</cite>) – <p>Indices of positions of each input sequence tokens in the position embeddings. Selected in the range <code class="docutils literal notranslate"><span class="pre">[0,</span>
+<span class="pre">config.max_position_embeddings</span> <span class="pre">-</span> <span class="pre">1]</span></code>.</p>
+<p><a class="reference external" href="../glossary.html#position-ids">What are position IDs?</a></p>
+</p></li>
+<li><p><strong>head_mask</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code> of shape <code class="xref py py-obj docutils literal notranslate"><span class="pre">(num_heads,)</span></code> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">(num_layers,</span> <span class="pre">num_heads)</span></code>, <cite>optional</cite>) – <p>Mask to nullify selected heads of the self-attention modules. Mask values selected in <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1]</span></code>:</p>
+<ul>
+<li><p>1 indicates the head is <strong>not masked</strong>,</p></li>
+<li><p>0 indicates the head is <strong>masked</strong>.</p></li>
+</ul>
+</p></li>
+<li><p><strong>inputs_embeds</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code> of shape <code class="xref py py-obj docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">sequence_length,</span> <span class="pre">hidden_size)</span></code>, <cite>optional</cite>) – Optionally, instead of passing <code class="xref py py-obj docutils literal notranslate"><span class="pre">input_ids</span></code> you can choose to directly pass an embedded representation.
+This is useful if you want more control over how to convert <code class="xref py py-obj docutils literal notranslate"><span class="pre">input_ids</span></code> indices into associated
+vectors than the model’s internal embedding lookup matrix.</p></li>
+<li><p><strong>output_attentions</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code>, <cite>optional</cite>) – Whether or not to return the attentions tensors of all attention layers. See <code class="docutils literal notranslate"><span class="pre">attentions</span></code> under returned
+tensors for more detail.</p></li>
+<li><p><strong>output_hidden_states</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code>, <cite>optional</cite>) – Whether or not to return the hidden states of all layers. See <code class="docutils literal notranslate"><span class="pre">hidden_states</span></code> under returned tensors for
+more detail.</p></li>
+<li><p><strong>return_dict</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code>, <cite>optional</cite>) – Whether or not to return a <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelOutput</span></code> instead of a plain tuple.</p></li>
+<li><p><strong>labels</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.LongTensor</span></code> of shape <code class="xref py py-obj docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">sequence_length)</span></code>, <cite>optional</cite>) – Labels for computing the masked language modeling loss. Indices should be in <code class="docutils literal notranslate"><span class="pre">[-100,</span> <span class="pre">0,</span> <span class="pre">...,</span>
+<span class="pre">config.vocab_size]</span></code> (see <code class="docutils literal notranslate"><span class="pre">input_ids</span></code> docstring) Tokens with indices set to <code class="docutils literal notranslate"><span class="pre">-100</span></code> are ignored
+(masked), the loss is only computed for the tokens with labels in <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">...,</span> <span class="pre">config.vocab_size]</span></code></p></li>
+<li><p><strong>kwargs</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Dict[str,</span> <span class="pre">any]</span></code>, optional, defaults to <cite>{}</cite>) – Used to hide legacy arguments that have been deprecated.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p>A <code class="xref py py-class docutils literal notranslate"><span class="pre">MaskedLMOutput</span></code> (if
+<code class="docutils literal notranslate"><span class="pre">return_dict=True</span></code> is passed or when <code class="docutils literal notranslate"><span class="pre">config.return_dict=True</span></code>) or a tuple of <code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code>
+comprising various elements depending on the configuration (<a class="reference internal" href="#transformers.RobertaConfig" title="transformers.RobertaConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">RobertaConfig</span></code></a>) and inputs.</p>
+<ul>
+<li><p><strong>loss</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code> of shape <code class="xref py py-obj docutils literal notranslate"><span class="pre">(1,)</span></code>, <cite>optional</cite>, returned when <code class="xref py py-obj docutils literal notranslate"><span class="pre">labels</span></code> is provided) – Masked language modeling (MLM) loss.</p></li>
+<li><p><strong>logits</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code> of shape <code class="xref py py-obj docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">sequence_length,</span> <span class="pre">config.vocab_size)</span></code>) – Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).</p></li>
+<li><p><strong>hidden_states</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">tuple(torch.FloatTensor)</span></code>, <cite>optional</cite>, returned when <code class="docutils literal notranslate"><span class="pre">output_hidden_states=True</span></code> is passed or when <code class="docutils literal notranslate"><span class="pre">config.output_hidden_states=True</span></code>) – Tuple of <code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code> (one for the output of the embeddings + one for the output of each layer)
+of shape <code class="xref py py-obj docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">sequence_length,</span> <span class="pre">hidden_size)</span></code>.</p>
+<p>Hidden-states of the model at the output of each layer plus the initial embedding outputs.</p>
+</li>
+<li><p><strong>attentions</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">tuple(torch.FloatTensor)</span></code>, <cite>optional</cite>, returned when <code class="docutils literal notranslate"><span class="pre">output_attentions=True</span></code> is passed or when <code class="docutils literal notranslate"><span class="pre">config.output_attentions=True</span></code>) – Tuple of <code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code> (one for each layer) of shape <code class="xref py py-obj docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">num_heads,</span>
+<span class="pre">sequence_length,</span> <span class="pre">sequence_length)</span></code>.</p>
+<p>Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
+heads.</p>
+</li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">MaskedLMOutput</span></code> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">tuple(torch.FloatTensor)</span></code></p>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">RobertaTokenizer</span><span class="p">,</span> <span class="n">RobertaForMaskedLM</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">torch</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">RobertaTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s1">&#39;roberta-base&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">RobertaForMaskedLM</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s1">&#39;roberta-base&#39;</span><span class="p">,</span> <span class="n">return_dict</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">inputs</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="s2">&quot;The capital of France is &lt;mask&gt;.&quot;</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&quot;pt&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">labels</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="s2">&quot;The capital of France is Paris.&quot;</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&quot;pt&quot;</span><span class="p">)[</span><span class="s2">&quot;input_ids&quot;</span><span class="p">]</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="o">**</span><span class="n">inputs</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">loss</span> <span class="o">=</span> <span class="n">outputs</span><span class="o">.</span><span class="n">loss</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">logits</span> <span class="o">=</span> <span class="n">outputs</span><span class="o">.</span><span class="n">logits</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.RobertaForMaskedLM.get_output_embeddings">
+<code class="sig-name descname">get_output_embeddings</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#transformers.RobertaForMaskedLM.get_output_embeddings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the model’s output embeddings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A torch module mapping hidden states to vocabulary.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">nn.Module</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="robertaforsequenceclassification">
+<h2>RobertaForSequenceClassification<a class="headerlink" href="#robertaforsequenceclassification" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="transformers.RobertaForSequenceClassification">
+<em class="property">class </em><code class="sig-prename descclassname">transformers.</code><code class="sig-name descname">RobertaForSequenceClassification</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.RobertaForSequenceClassification" title="Permalink to this definition">¶</a></dt>
+<dd><p>RoBERTa Model transformer with a sequence classification/regression head on top (a linear layer on top of the
+pooled output) e.g. for GLUE tasks.</p>
+<p>This model inherits from <code class="xref py py-class docutils literal notranslate"><span class="pre">PreTrainedModel</span></code>. Check the superclass documentation for the generic
+methods the library implements for all its model (such as downloading or saving, resizing the input embeddings,
+pruning heads etc.)</p>
+<p>This model is also a PyTorch <a class="reference external" href="https://pytorch.org/docs/stable/nn.html#torch.nn.Module">torch.nn.Module</a>
+subclass. Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to
+general usage and behavior.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>config</strong> (<a class="reference internal" href="#transformers.RobertaConfig" title="transformers.RobertaConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">RobertaConfig</span></code></a>) – Model configuration class with all the parameters of the
+model. Initializing with a config file does not load the weights associated with the model, only the
+configuration. Check out the <code class="xref py py-meth docutils literal notranslate"><span class="pre">from_pretrained()</span></code> method to load the model
+weights.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="transformers.RobertaForSequenceClassification.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">input_ids</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">attention_mask</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">token_type_ids</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">position_ids</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">head_mask</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">inputs_embeds</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">labels</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">output_attentions</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">output_hidden_states</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">adapter_names</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">return_dict</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.RobertaForSequenceClassification.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <a class="reference internal" href="#transformers.RobertaForSequenceClassification" title="transformers.RobertaForSequenceClassification"><code class="xref py py-class docutils literal notranslate"><span class="pre">RobertaForSequenceClassification</span></code></a> forward method, overrides the <code class="xref py py-func docutils literal notranslate"><span class="pre">__call__()</span></code> special method.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within this function, one should call the
+<code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards instead of this since the former takes care of running the pre and post
+processing steps while the latter silently ignores them.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_ids</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.LongTensor</span></code> of shape <code class="xref py py-obj docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">sequence_length)</span></code>) – <p>Indices of input sequence tokens in the vocabulary.</p>
+<p>Indices can be obtained using <a class="reference internal" href="#transformers.RobertaTokenizer" title="transformers.RobertaTokenizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">RobertaTokenizer</span></code></a>. See
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">transformers.PreTrainedTokenizer.encode()</span></code> and <code class="xref py py-meth docutils literal notranslate"><span class="pre">transformers.PreTrainedTokenizer.__call__()</span></code> for
+details.</p>
+<p><a class="reference external" href="../glossary.html#input-ids">What are input IDs?</a></p>
+</p></li>
+<li><p><strong>attention_mask</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code> of shape <code class="xref py py-obj docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">sequence_length)</span></code>, <cite>optional</cite>) – <p>Mask to avoid performing attention on padding token indices. Mask values selected in <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1]</span></code>:</p>
+<ul>
+<li><p>1 for tokens that are <strong>not masked</strong>,</p></li>
+<li><p>0 for tokens that are <strong>masked</strong>.</p></li>
+</ul>
+<p><a class="reference external" href="../glossary.html#attention-mask">What are attention masks?</a></p>
+</p></li>
+<li><p><strong>token_type_ids</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.LongTensor</span></code> of shape <code class="xref py py-obj docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">sequence_length)</span></code>, <cite>optional</cite>) – <p>Segment token indices to indicate first and second portions of the inputs. Indices are selected in <code class="docutils literal notranslate"><span class="pre">[0,</span>
+<span class="pre">1]</span></code>:</p>
+<ul>
+<li><p>0 corresponds to a <cite>sentence A</cite> token,</p></li>
+<li><p>1 corresponds to a <cite>sentence B</cite> token.</p></li>
+</ul>
+<p><a class="reference external" href="../glossary.html#token-type-ids">What are token type IDs?</a></p>
+</p></li>
+<li><p><strong>position_ids</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.LongTensor</span></code> of shape <code class="xref py py-obj docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">sequence_length)</span></code>, <cite>optional</cite>) – <p>Indices of positions of each input sequence tokens in the position embeddings. Selected in the range <code class="docutils literal notranslate"><span class="pre">[0,</span>
+<span class="pre">config.max_position_embeddings</span> <span class="pre">-</span> <span class="pre">1]</span></code>.</p>
+<p><a class="reference external" href="../glossary.html#position-ids">What are position IDs?</a></p>
+</p></li>
+<li><p><strong>head_mask</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code> of shape <code class="xref py py-obj docutils literal notranslate"><span class="pre">(num_heads,)</span></code> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">(num_layers,</span> <span class="pre">num_heads)</span></code>, <cite>optional</cite>) – <p>Mask to nullify selected heads of the self-attention modules. Mask values selected in <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1]</span></code>:</p>
+<ul>
+<li><p>1 indicates the head is <strong>not masked</strong>,</p></li>
+<li><p>0 indicates the head is <strong>masked</strong>.</p></li>
+</ul>
+</p></li>
+<li><p><strong>inputs_embeds</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code> of shape <code class="xref py py-obj docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">sequence_length,</span> <span class="pre">hidden_size)</span></code>, <cite>optional</cite>) – Optionally, instead of passing <code class="xref py py-obj docutils literal notranslate"><span class="pre">input_ids</span></code> you can choose to directly pass an embedded representation.
+This is useful if you want more control over how to convert <code class="xref py py-obj docutils literal notranslate"><span class="pre">input_ids</span></code> indices into associated
+vectors than the model’s internal embedding lookup matrix.</p></li>
+<li><p><strong>output_attentions</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code>, <cite>optional</cite>) – Whether or not to return the attentions tensors of all attention layers. See <code class="docutils literal notranslate"><span class="pre">attentions</span></code> under returned
+tensors for more detail.</p></li>
+<li><p><strong>output_hidden_states</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code>, <cite>optional</cite>) – Whether or not to return the hidden states of all layers. See <code class="docutils literal notranslate"><span class="pre">hidden_states</span></code> under returned tensors for
+more detail.</p></li>
+<li><p><strong>return_dict</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code>, <cite>optional</cite>) – Whether or not to return a <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelOutput</span></code> instead of a plain tuple.</p></li>
+<li><p><strong>labels</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.LongTensor</span></code> of shape <code class="xref py py-obj docutils literal notranslate"><span class="pre">(batch_size,)</span></code>, <cite>optional</cite>) – Labels for computing the sequence classification/regression loss. Indices should be in <code class="xref py py-obj docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">...,</span>
+<span class="pre">config.num_labels</span> <span class="pre">-</span> <span class="pre">1]</span></code>. If <code class="xref py py-obj docutils literal notranslate"><span class="pre">config.num_labels</span> <span class="pre">==</span> <span class="pre">1</span></code> a regression loss is computed (Mean-Square loss),
+If <code class="xref py py-obj docutils literal notranslate"><span class="pre">config.num_labels</span> <span class="pre">&gt;</span> <span class="pre">1</span></code> a classification loss is computed (Cross-Entropy).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p>A <code class="xref py py-class docutils literal notranslate"><span class="pre">SequenceClassifierOutput</span></code> (if
+<code class="docutils literal notranslate"><span class="pre">return_dict=True</span></code> is passed or when <code class="docutils literal notranslate"><span class="pre">config.return_dict=True</span></code>) or a tuple of <code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code>
+comprising various elements depending on the configuration (<a class="reference internal" href="#transformers.RobertaConfig" title="transformers.RobertaConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">RobertaConfig</span></code></a>) and inputs.</p>
+<ul>
+<li><p><strong>loss</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code> of shape <code class="xref py py-obj docutils literal notranslate"><span class="pre">(1,)</span></code>, <cite>optional</cite>, returned when <code class="xref py py-obj docutils literal notranslate"><span class="pre">labels</span></code> is provided) – Classification (or regression if config.num_labels==1) loss.</p></li>
+<li><p><strong>logits</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code> of shape <code class="xref py py-obj docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">config.num_labels)</span></code>) – Classification (or regression if config.num_labels==1) scores (before SoftMax).</p></li>
+<li><p><strong>hidden_states</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">tuple(torch.FloatTensor)</span></code>, <cite>optional</cite>, returned when <code class="docutils literal notranslate"><span class="pre">output_hidden_states=True</span></code> is passed or when <code class="docutils literal notranslate"><span class="pre">config.output_hidden_states=True</span></code>) – Tuple of <code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code> (one for the output of the embeddings + one for the output of each layer)
+of shape <code class="xref py py-obj docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">sequence_length,</span> <span class="pre">hidden_size)</span></code>.</p>
+<p>Hidden-states of the model at the output of each layer plus the initial embedding outputs.</p>
+</li>
+<li><p><strong>attentions</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">tuple(torch.FloatTensor)</span></code>, <cite>optional</cite>, returned when <code class="docutils literal notranslate"><span class="pre">output_attentions=True</span></code> is passed or when <code class="docutils literal notranslate"><span class="pre">config.output_attentions=True</span></code>) – Tuple of <code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code> (one for each layer) of shape <code class="xref py py-obj docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">num_heads,</span>
+<span class="pre">sequence_length,</span> <span class="pre">sequence_length)</span></code>.</p>
+<p>Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
+heads.</p>
+</li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">SequenceClassifierOutput</span></code> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">tuple(torch.FloatTensor)</span></code></p>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">RobertaTokenizer</span><span class="p">,</span> <span class="n">RobertaForSequenceClassification</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">torch</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">RobertaTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s1">&#39;roberta-base&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">RobertaForSequenceClassification</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s1">&#39;roberta-base&#39;</span><span class="p">,</span> <span class="n">return_dict</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">inputs</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="s2">&quot;Hello, my dog is cute&quot;</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&quot;pt&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">labels</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># Batch size 1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="o">**</span><span class="n">inputs</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">loss</span> <span class="o">=</span> <span class="n">outputs</span><span class="o">.</span><span class="n">loss</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">logits</span> <span class="o">=</span> <span class="n">outputs</span><span class="o">.</span><span class="n">logits</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="robertafortokenclassification">
+<h2>RobertaForTokenClassification<a class="headerlink" href="#robertafortokenclassification" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="transformers.RobertaForTokenClassification">
+<em class="property">class </em><code class="sig-prename descclassname">transformers.</code><code class="sig-name descname">RobertaForTokenClassification</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.RobertaForTokenClassification" title="Permalink to this definition">¶</a></dt>
+<dd><p>Roberta Model with a token classification head on top (a linear layer on top of the hidden-states output) e.g. for
+Named-Entity-Recognition (NER) tasks.</p>
+<p>This model inherits from <code class="xref py py-class docutils literal notranslate"><span class="pre">PreTrainedModel</span></code>. Check the superclass documentation for the generic
+methods the library implements for all its model (such as downloading or saving, resizing the input embeddings,
+pruning heads etc.)</p>
+<p>This model is also a PyTorch <a class="reference external" href="https://pytorch.org/docs/stable/nn.html#torch.nn.Module">torch.nn.Module</a>
+subclass. Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to
+general usage and behavior.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>config</strong> (<a class="reference internal" href="#transformers.RobertaConfig" title="transformers.RobertaConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">RobertaConfig</span></code></a>) – Model configuration class with all the parameters of the
+model. Initializing with a config file does not load the weights associated with the model, only the
+configuration. Check out the <code class="xref py py-meth docutils literal notranslate"><span class="pre">from_pretrained()</span></code> method to load the model
+weights.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="transformers.RobertaForTokenClassification.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">input_ids</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">attention_mask</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">token_type_ids</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">position_ids</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">head_mask</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">inputs_embeds</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">labels</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">output_attentions</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">output_hidden_states</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">adapter_names</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">return_dict</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.RobertaForTokenClassification.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <a class="reference internal" href="#transformers.RobertaForTokenClassification" title="transformers.RobertaForTokenClassification"><code class="xref py py-class docutils literal notranslate"><span class="pre">RobertaForTokenClassification</span></code></a> forward method, overrides the <code class="xref py py-func docutils literal notranslate"><span class="pre">__call__()</span></code> special method.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within this function, one should call the
+<code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards instead of this since the former takes care of running the pre and post
+processing steps while the latter silently ignores them.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_ids</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.LongTensor</span></code> of shape <code class="xref py py-obj docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">sequence_length)</span></code>) – <p>Indices of input sequence tokens in the vocabulary.</p>
+<p>Indices can be obtained using <a class="reference internal" href="#transformers.RobertaTokenizer" title="transformers.RobertaTokenizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">RobertaTokenizer</span></code></a>. See
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">transformers.PreTrainedTokenizer.encode()</span></code> and <code class="xref py py-meth docutils literal notranslate"><span class="pre">transformers.PreTrainedTokenizer.__call__()</span></code> for
+details.</p>
+<p><a class="reference external" href="../glossary.html#input-ids">What are input IDs?</a></p>
+</p></li>
+<li><p><strong>attention_mask</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code> of shape <code class="xref py py-obj docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">sequence_length)</span></code>, <cite>optional</cite>) – <p>Mask to avoid performing attention on padding token indices. Mask values selected in <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1]</span></code>:</p>
+<ul>
+<li><p>1 for tokens that are <strong>not masked</strong>,</p></li>
+<li><p>0 for tokens that are <strong>masked</strong>.</p></li>
+</ul>
+<p><a class="reference external" href="../glossary.html#attention-mask">What are attention masks?</a></p>
+</p></li>
+<li><p><strong>token_type_ids</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.LongTensor</span></code> of shape <code class="xref py py-obj docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">sequence_length)</span></code>, <cite>optional</cite>) – <p>Segment token indices to indicate first and second portions of the inputs. Indices are selected in <code class="docutils literal notranslate"><span class="pre">[0,</span>
+<span class="pre">1]</span></code>:</p>
+<ul>
+<li><p>0 corresponds to a <cite>sentence A</cite> token,</p></li>
+<li><p>1 corresponds to a <cite>sentence B</cite> token.</p></li>
+</ul>
+<p><a class="reference external" href="../glossary.html#token-type-ids">What are token type IDs?</a></p>
+</p></li>
+<li><p><strong>position_ids</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.LongTensor</span></code> of shape <code class="xref py py-obj docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">sequence_length)</span></code>, <cite>optional</cite>) – <p>Indices of positions of each input sequence tokens in the position embeddings. Selected in the range <code class="docutils literal notranslate"><span class="pre">[0,</span>
+<span class="pre">config.max_position_embeddings</span> <span class="pre">-</span> <span class="pre">1]</span></code>.</p>
+<p><a class="reference external" href="../glossary.html#position-ids">What are position IDs?</a></p>
+</p></li>
+<li><p><strong>head_mask</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code> of shape <code class="xref py py-obj docutils literal notranslate"><span class="pre">(num_heads,)</span></code> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">(num_layers,</span> <span class="pre">num_heads)</span></code>, <cite>optional</cite>) – <p>Mask to nullify selected heads of the self-attention modules. Mask values selected in <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1]</span></code>:</p>
+<ul>
+<li><p>1 indicates the head is <strong>not masked</strong>,</p></li>
+<li><p>0 indicates the head is <strong>masked</strong>.</p></li>
+</ul>
+</p></li>
+<li><p><strong>inputs_embeds</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code> of shape <code class="xref py py-obj docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">sequence_length,</span> <span class="pre">hidden_size)</span></code>, <cite>optional</cite>) – Optionally, instead of passing <code class="xref py py-obj docutils literal notranslate"><span class="pre">input_ids</span></code> you can choose to directly pass an embedded representation.
+This is useful if you want more control over how to convert <code class="xref py py-obj docutils literal notranslate"><span class="pre">input_ids</span></code> indices into associated
+vectors than the model’s internal embedding lookup matrix.</p></li>
+<li><p><strong>output_attentions</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code>, <cite>optional</cite>) – Whether or not to return the attentions tensors of all attention layers. See <code class="docutils literal notranslate"><span class="pre">attentions</span></code> under returned
+tensors for more detail.</p></li>
+<li><p><strong>output_hidden_states</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code>, <cite>optional</cite>) – Whether or not to return the hidden states of all layers. See <code class="docutils literal notranslate"><span class="pre">hidden_states</span></code> under returned tensors for
+more detail.</p></li>
+<li><p><strong>return_dict</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code>, <cite>optional</cite>) – Whether or not to return a <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelOutput</span></code> instead of a plain tuple.</p></li>
+<li><p><strong>labels</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.LongTensor</span></code> of shape <code class="xref py py-obj docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">sequence_length)</span></code>, <cite>optional</cite>) – Labels for computing the token classification loss. Indices should be in <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">...,</span> <span class="pre">config.num_labels</span> <span class="pre">-</span>
+<span class="pre">1]</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p>A <code class="xref py py-class docutils literal notranslate"><span class="pre">TokenClassifierOutput</span></code> (if
+<code class="docutils literal notranslate"><span class="pre">return_dict=True</span></code> is passed or when <code class="docutils literal notranslate"><span class="pre">config.return_dict=True</span></code>) or a tuple of <code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code>
+comprising various elements depending on the configuration (<a class="reference internal" href="#transformers.RobertaConfig" title="transformers.RobertaConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">RobertaConfig</span></code></a>) and inputs.</p>
+<ul>
+<li><p><strong>loss</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code> of shape <code class="xref py py-obj docutils literal notranslate"><span class="pre">(1,)</span></code>, <cite>optional</cite>, returned when <code class="docutils literal notranslate"><span class="pre">labels</span></code> is provided)  – Classification loss.</p></li>
+<li><p><strong>logits</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code> of shape <code class="xref py py-obj docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">sequence_length,</span> <span class="pre">config.num_labels)</span></code>) – Classification scores (before SoftMax).</p></li>
+<li><p><strong>hidden_states</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">tuple(torch.FloatTensor)</span></code>, <cite>optional</cite>, returned when <code class="docutils literal notranslate"><span class="pre">output_hidden_states=True</span></code> is passed or when <code class="docutils literal notranslate"><span class="pre">config.output_hidden_states=True</span></code>) – Tuple of <code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code> (one for the output of the embeddings + one for the output of each layer)
+of shape <code class="xref py py-obj docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">sequence_length,</span> <span class="pre">hidden_size)</span></code>.</p>
+<p>Hidden-states of the model at the output of each layer plus the initial embedding outputs.</p>
+</li>
+<li><p><strong>attentions</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">tuple(torch.FloatTensor)</span></code>, <cite>optional</cite>, returned when <code class="docutils literal notranslate"><span class="pre">output_attentions=True</span></code> is passed or when <code class="docutils literal notranslate"><span class="pre">config.output_attentions=True</span></code>) – Tuple of <code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code> (one for each layer) of shape <code class="xref py py-obj docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">num_heads,</span>
+<span class="pre">sequence_length,</span> <span class="pre">sequence_length)</span></code>.</p>
+<p>Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
+heads.</p>
+</li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">TokenClassifierOutput</span></code> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">tuple(torch.FloatTensor)</span></code></p>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">RobertaTokenizer</span><span class="p">,</span> <span class="n">RobertaForTokenClassification</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">torch</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">RobertaTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s1">&#39;roberta-base&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">RobertaForTokenClassification</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s1">&#39;roberta-base&#39;</span><span class="p">,</span> <span class="n">return_dict</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">inputs</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="s2">&quot;Hello, my dog is cute&quot;</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&quot;pt&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">labels</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;input_ids&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># Batch size 1</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="o">**</span><span class="n">inputs</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">loss</span> <span class="o">=</span> <span class="n">outputs</span><span class="o">.</span><span class="n">loss</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">logits</span> <span class="o">=</span> <span class="n">outputs</span><span class="o">.</span><span class="n">logits</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="xlmroberta.html" class="btn btn-neutral float-right" title="XLM-RoBERTa" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="bert.html" class="btn btn-neutral float-left" title="BERT" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Adapter-Hub Team
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

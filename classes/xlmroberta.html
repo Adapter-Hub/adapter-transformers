@@ -1,0 +1,590 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>XLM-RoBERTa &mdash; adapter-transformers  documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="DistilBERT" href="distilbert.html" />
+    <link rel="prev" title="RoBERTa" href="roberta.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> adapter-transformers
+          
+
+          
+            
+            <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">adapter-transformers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../adapters.html">Introduction to Adapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training.html">Adapter Training</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prediction_heads.html">Prediction Heads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extending.html">Extending the Library</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Adapter-Hub</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../loading.html">Loading Pre-Trained Adapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to Adapter Hub</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Adapter-Related Classes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="adapter_config.html">Adapter Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_adapters_config.html">Model Adapters Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adapter_modules.html">Adapter Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_mixins.html">Model Mixins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bert_mixins.html">BERT Mixins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adapter_utils.html">Adapter Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="weights_loaders.html">Weights Loaders</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Supported Models</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="bert.html">BERT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roberta.html">RoBERTa</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">XLM-RoBERTa</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#xlmrobertaconfig">XLMRobertaConfig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#xlmrobertatokenizer">XLMRobertaTokenizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#xlmrobertamodel">XLMRobertaModel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#xlmrobertamodelwithheads">XLMRobertaModelWithHeads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#xlmrobertaformaskedlm">XLMRobertaForMaskedLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#xlmrobertaforsequenceclassification">XLMRobertaForSequenceClassification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#xlmrobertaformultiplechoice">XLMRobertaForMultipleChoice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#xlmrobertafortokenclassification">XLMRobertaForTokenClassification</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="distilbert.html">DistilBERT</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">adapter-transformers</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>XLM-RoBERTa</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/classes/xlmroberta.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="xlm-roberta">
+<h1>XLM-RoBERTa<a class="headerlink" href="#xlm-roberta" title="Permalink to this headline">¶</a></h1>
+<p>The XLM-RoBERTa model was proposed in <a class="reference external" href="https://arxiv.org/abs/1911.02116">Unsupervised Cross-lingual Representation Learning at Scale</a>
+by Alexis Conneau, Kartikay Khandelwal, Naman Goyal, Vishrav Chaudhary, Guillaume Wenzek, Francisco Guzmán,
+Edouard Grave, Myle Ott, Luke Zettlemoyer and Veselin Stoyanov. It is based on Facebook’s RoBERTa model released in 2019.
+It is a large multi-lingual language model, trained on 2.5TB of filtered CommonCrawl data.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This class is nearly identical to the PyTorch implementation of XLM-RoBERTa in Huggingface Transformers.
+For more information, visit <a class="reference external" href="https://huggingface.co/transformers/model_doc/xlmroberta.html">the corresponding section in their documentation</a>.</p>
+</div>
+<div class="section" id="xlmrobertaconfig">
+<h2>XLMRobertaConfig<a class="headerlink" href="#xlmrobertaconfig" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="transformers.XLMRobertaConfig">
+<em class="property">class </em><code class="sig-prename descclassname">transformers.</code><code class="sig-name descname">XLMRobertaConfig</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pad_token_id</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">bos_token_id</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">eos_token_id</span><span class="o">=</span><span class="default_value">2</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.XLMRobertaConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class overrides <a class="reference internal" href="roberta.html#transformers.RobertaConfig" title="transformers.RobertaConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">RobertaConfig</span></code></a>. Please check the superclass for the appropriate
+documentation alongside usage examples.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="xlmrobertatokenizer">
+<h2>XLMRobertaTokenizer<a class="headerlink" href="#xlmrobertatokenizer" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="transformers.XLMRobertaTokenizer">
+<em class="property">class </em><code class="sig-prename descclassname">transformers.</code><code class="sig-name descname">XLMRobertaTokenizer</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">vocab_file</span></em>, <em class="sig-param"><span class="n">bos_token</span><span class="o">=</span><span class="default_value">'&lt;s&gt;'</span></em>, <em class="sig-param"><span class="n">eos_token</span><span class="o">=</span><span class="default_value">'&lt;/s&gt;'</span></em>, <em class="sig-param"><span class="n">sep_token</span><span class="o">=</span><span class="default_value">'&lt;/s&gt;'</span></em>, <em class="sig-param"><span class="n">cls_token</span><span class="o">=</span><span class="default_value">'&lt;s&gt;'</span></em>, <em class="sig-param"><span class="n">unk_token</span><span class="o">=</span><span class="default_value">'&lt;unk&gt;'</span></em>, <em class="sig-param"><span class="n">pad_token</span><span class="o">=</span><span class="default_value">'&lt;pad&gt;'</span></em>, <em class="sig-param"><span class="n">mask_token</span><span class="o">=</span><span class="default_value">'&lt;mask&gt;'</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.XLMRobertaTokenizer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adapted from <code class="xref py py-class docutils literal notranslate"><span class="pre">RobertaTokenizer</span></code> and class:<cite>~transfomers.XLNetTokenizer</cite>. Based on
+<a class="reference external" href="https://github.com/google/sentencepiece">SentencePiece</a>.</p>
+<p>This tokenizer inherits from <code class="xref py py-class docutils literal notranslate"><span class="pre">PreTrainedTokenizer</span></code> which contains most of the main methods.
+Users should refer to this superclass for more information regarding those methods.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vocab_file</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – Path to the vocabulary file.</p></li>
+<li><p><strong>bos_token</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>, <cite>optional</cite>, defaults to <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;&lt;s&gt;&quot;</span></code>) – <p>The beginning of sequence token that was used during pretraining. Can be used a sequence classifier token.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When building a sequence using special tokens, this is not the token that is used for the beginning of
+sequence. The token used is the <code class="xref py py-obj docutils literal notranslate"><span class="pre">cls_token</span></code>.</p>
+</div>
+</p></li>
+<li><p><strong>eos_token</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>, <cite>optional</cite>, defaults to <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;&lt;/s&gt;&quot;</span></code>) – <p>The end of sequence token.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When building a sequence using special tokens, this is not the token that is used for the end of
+sequence. The token used is the <code class="xref py py-obj docutils literal notranslate"><span class="pre">sep_token</span></code>.</p>
+</div>
+</p></li>
+<li><p><strong>sep_token</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>, <cite>optional</cite>, defaults to <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;&lt;/s&gt;&quot;</span></code>) – The separator token, which is used when building a sequence from multiple sequences, e.g. two sequences for
+sequence classification or for a text and a question for question answering. It is also used as the last
+token of a sequence built with special tokens.</p></li>
+<li><p><strong>cls_token</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>, <cite>optional</cite>, defaults to <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;&lt;s&gt;&quot;</span></code>) – The classifier token which is used when doing sequence classification (classification of the whole sequence
+instead of per-token classification). It is the first token of the sequence when built with special tokens.</p></li>
+<li><p><strong>unk_token</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>, <cite>optional</cite>, defaults to <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;&lt;unk&gt;&quot;</span></code>) – The unknown token. A token that is not in the vocabulary cannot be converted to an ID and is set to be this
+token instead.</p></li>
+<li><p><strong>pad_token</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>, <cite>optional</cite>, defaults to <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;&lt;pad&gt;&quot;</span></code>) – The token used for padding, for example when batching sequences of different lengths.</p></li>
+<li><p><strong>mask_token</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>, <cite>optional</cite>, defaults to <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;&lt;mask&gt;&quot;</span></code>) – The token used for masking values. This is the token used when training this model with masked language
+modeling. This is the token which the model will try to predict.</p></li>
+<li><p><strong>additional_special_tokens</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">List[str]</span></code>, <cite>optional</cite>, defaults to <code class="xref py py-obj docutils literal notranslate"><span class="pre">[&quot;&lt;s&gt;NOTUSED&quot;,</span> <span class="pre">&quot;&lt;/s&gt;NOTUSED&quot;]</span></code>) – Additional special tokens used by the tokenizer.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Attributes: sp_model (<code class="xref py py-obj docutils literal notranslate"><span class="pre">SentencePieceProcessor</span></code>): The <cite>SentencePiece</cite> processor that is used for every
+conversion (string, tokens and IDs).</p>
+<dl class="py method">
+<dt id="transformers.XLMRobertaTokenizer.build_inputs_with_special_tokens">
+<code class="sig-name descname">build_inputs_with_special_tokens</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">token_ids_0</span><span class="p">:</span> <span class="n">List<span class="p">[</span>int<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">token_ids_1</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>List<span class="p">[</span>int<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; List<span class="p">[</span>int<span class="p">]</span><a class="headerlink" href="#transformers.XLMRobertaTokenizer.build_inputs_with_special_tokens" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build model inputs from a sequence or a pair of sequence for sequence classification tasks by concatenating and
+adding special tokens. An XLM-RoBERTa sequence has the following format:</p>
+<ul class="simple">
+<li><p>single sequence: <code class="docutils literal notranslate"><span class="pre">&lt;s&gt;</span> <span class="pre">X</span> <span class="pre">&lt;/s&gt;</span></code></p></li>
+<li><p>pair of sequences: <code class="docutils literal notranslate"><span class="pre">&lt;s&gt;</span> <span class="pre">A</span> <span class="pre">&lt;/s&gt;&lt;/s&gt;</span> <span class="pre">B</span> <span class="pre">&lt;/s&gt;</span></code></p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>token_ids_0</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">List[int]</span></code>) – List of IDs to which the special tokens will be added.</p></li>
+<li><p><strong>token_ids_1</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">List[int]</span></code>, <cite>optional</cite>) – Optional second list of IDs for sequence pairs.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>List of <a class="reference external" href="../glossary.html#input-ids">input IDs</a> with the appropriate special tokens.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">List[int]</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.XLMRobertaTokenizer.create_token_type_ids_from_sequences">
+<code class="sig-name descname">create_token_type_ids_from_sequences</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">token_ids_0</span><span class="p">:</span> <span class="n">List<span class="p">[</span>int<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">token_ids_1</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>List<span class="p">[</span>int<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; List<span class="p">[</span>int<span class="p">]</span><a class="headerlink" href="#transformers.XLMRobertaTokenizer.create_token_type_ids_from_sequences" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a mask from the two sequences passed to be used in a sequence-pair classification task. XLM-RoBERTa does
+not make use of token type ids, therefore a list of zeros is returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>token_ids_0</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">List[int]</span></code>) – List of IDs.</p></li>
+<li><p><strong>token_ids_1</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">List[int]</span></code>, <cite>optional</cite>) – Optional second list of IDs for sequence pairs.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>List of zeros.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">List[int]</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.XLMRobertaTokenizer.get_special_tokens_mask">
+<code class="sig-name descname">get_special_tokens_mask</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">token_ids_0</span><span class="p">:</span> <span class="n">List<span class="p">[</span>int<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">token_ids_1</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>List<span class="p">[</span>int<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">already_has_special_tokens</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; List<span class="p">[</span>int<span class="p">]</span><a class="headerlink" href="#transformers.XLMRobertaTokenizer.get_special_tokens_mask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve sequence ids from a token list that has no special tokens added. This method is called when adding
+special tokens using the tokenizer <code class="docutils literal notranslate"><span class="pre">prepare_for_model</span></code> method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>token_ids_0</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">List[int]</span></code>) – List of IDs.</p></li>
+<li><p><strong>token_ids_1</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">List[int]</span></code>, <cite>optional</cite>) – Optional second list of IDs for sequence pairs.</p></li>
+<li><p><strong>already_has_special_tokens</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code>, <cite>optional</cite>, defaults to <code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code>) – Whether or not the token list is already formatted with special tokens for the model.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of integers in the range [0, 1]: 1 for a special token, 0 for a sequence token.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">List[int]</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.XLMRobertaTokenizer.save_vocabulary">
+<code class="sig-name descname">save_vocabulary</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">save_directory</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">filename_prefix</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; Tuple<span class="p">[</span>str<span class="p">]</span><a class="headerlink" href="#transformers.XLMRobertaTokenizer.save_vocabulary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save only the vocabulary of the tokenizer (vocabulary + added tokens).</p>
+<p>This method won’t save the configuration and special token mappings of the tokenizer. Use
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">_save_pretrained()</span></code> to save the whole state of the tokenizer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>save_directory</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – The directory in which to save the vocabulary.</p></li>
+<li><p><strong>filename_prefix</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>, <cite>optional</cite>) – An optional prefix to add to the named of the saved files.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Paths to the files saved.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Tuple(str)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="xlmrobertamodel">
+<h2>XLMRobertaModel<a class="headerlink" href="#xlmrobertamodel" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="transformers.XLMRobertaModel">
+<em class="property">class </em><code class="sig-prename descclassname">transformers.</code><code class="sig-name descname">XLMRobertaModel</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config</span></em>, <em class="sig-param"><span class="n">add_pooling_layer</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.XLMRobertaModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>The bare XLM-RoBERTa Model transformer outputting raw hidden-states without any specific head on top.</p>
+<p>This model inherits from <code class="xref py py-class docutils literal notranslate"><span class="pre">PreTrainedModel</span></code>. Check the superclass documentation for the generic
+methods the library implements for all its model (such as downloading or saving, resizing the input embeddings,
+pruning heads etc.)</p>
+<p>This model is also a PyTorch <a class="reference external" href="https://pytorch.org/docs/stable/nn.html#torch.nn.Module">torch.nn.Module</a>
+subclass. Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to
+general usage and behavior.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>config</strong> (<a class="reference internal" href="#transformers.XLMRobertaConfig" title="transformers.XLMRobertaConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">XLMRobertaConfig</span></code></a>) – Model configuration class with all the parameters of the
+model. Initializing with a config file does not load the weights associated with the model, only the
+configuration. Check out the <code class="xref py py-meth docutils literal notranslate"><span class="pre">from_pretrained()</span></code> method to load the model
+weights.</p>
+</dd>
+</dl>
+<p>This class overrides <a class="reference internal" href="roberta.html#transformers.RobertaModel" title="transformers.RobertaModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">RobertaModel</span></code></a>. Please check the superclass for the appropriate
+documentation alongside usage examples.</p>
+<dl class="py attribute">
+<dt id="transformers.XLMRobertaModel.config_class">
+<code class="sig-name descname">config_class</code><a class="headerlink" href="#transformers.XLMRobertaModel.config_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">transformers.configuration_xlm_roberta.XLMRobertaConfig</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="xlmrobertamodelwithheads">
+<h2>XLMRobertaModelWithHeads<a class="headerlink" href="#xlmrobertamodelwithheads" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="transformers.XLMRobertaModelWithHeads">
+<em class="property">class </em><code class="sig-prename descclassname">transformers.</code><code class="sig-name descname">XLMRobertaModelWithHeads</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.XLMRobertaModelWithHeads" title="Permalink to this definition">¶</a></dt>
+<dd><p>XLM-RoBERTa Model with the option to add multiple flexible heads on top.</p>
+<p>This model inherits from <code class="xref py py-class docutils literal notranslate"><span class="pre">PreTrainedModel</span></code>. Check the superclass documentation for the generic
+methods the library implements for all its model (such as downloading or saving, resizing the input embeddings,
+pruning heads etc.)</p>
+<p>This model is also a PyTorch <a class="reference external" href="https://pytorch.org/docs/stable/nn.html#torch.nn.Module">torch.nn.Module</a>
+subclass. Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to
+general usage and behavior.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>config</strong> (<a class="reference internal" href="#transformers.XLMRobertaConfig" title="transformers.XLMRobertaConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">XLMRobertaConfig</span></code></a>) – Model configuration class with all the parameters of the
+model. Initializing with a config file does not load the weights associated with the model, only the
+configuration. Check out the <code class="xref py py-meth docutils literal notranslate"><span class="pre">from_pretrained()</span></code> method to load the model
+weights.</p>
+</dd>
+</dl>
+<p>This class overrides <a class="reference internal" href="roberta.html#transformers.RobertaModelWithHeads" title="transformers.RobertaModelWithHeads"><code class="xref py py-class docutils literal notranslate"><span class="pre">RobertaModelWithHeads</span></code></a>. Please check the superclass for the appropriate
+documentation alongside usage examples.</p>
+<dl class="py attribute">
+<dt id="transformers.XLMRobertaModelWithHeads.config_class">
+<code class="sig-name descname">config_class</code><a class="headerlink" href="#transformers.XLMRobertaModelWithHeads.config_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">transformers.configuration_xlm_roberta.XLMRobertaConfig</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="xlmrobertaformaskedlm">
+<h2>XLMRobertaForMaskedLM<a class="headerlink" href="#xlmrobertaformaskedlm" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="transformers.XLMRobertaForMaskedLM">
+<em class="property">class </em><code class="sig-prename descclassname">transformers.</code><code class="sig-name descname">XLMRobertaForMaskedLM</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.XLMRobertaForMaskedLM" title="Permalink to this definition">¶</a></dt>
+<dd><p>XLM-RoBERTa Model with a <cite>language modeling</cite> head on top.</p>
+<p>This model inherits from <code class="xref py py-class docutils literal notranslate"><span class="pre">PreTrainedModel</span></code>. Check the superclass documentation for the generic
+methods the library implements for all its model (such as downloading or saving, resizing the input embeddings,
+pruning heads etc.)</p>
+<p>This model is also a PyTorch <a class="reference external" href="https://pytorch.org/docs/stable/nn.html#torch.nn.Module">torch.nn.Module</a>
+subclass. Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to
+general usage and behavior.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>config</strong> (<a class="reference internal" href="#transformers.XLMRobertaConfig" title="transformers.XLMRobertaConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">XLMRobertaConfig</span></code></a>) – Model configuration class with all the parameters of the
+model. Initializing with a config file does not load the weights associated with the model, only the
+configuration. Check out the <code class="xref py py-meth docutils literal notranslate"><span class="pre">from_pretrained()</span></code> method to load the model
+weights.</p>
+</dd>
+</dl>
+<p>This class overrides <a class="reference internal" href="roberta.html#transformers.RobertaForMaskedLM" title="transformers.RobertaForMaskedLM"><code class="xref py py-class docutils literal notranslate"><span class="pre">RobertaForMaskedLM</span></code></a>. Please check the superclass for the appropriate
+documentation alongside usage examples.</p>
+<dl class="py attribute">
+<dt id="transformers.XLMRobertaForMaskedLM.config_class">
+<code class="sig-name descname">config_class</code><a class="headerlink" href="#transformers.XLMRobertaForMaskedLM.config_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">transformers.configuration_xlm_roberta.XLMRobertaConfig</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="xlmrobertaforsequenceclassification">
+<h2>XLMRobertaForSequenceClassification<a class="headerlink" href="#xlmrobertaforsequenceclassification" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="transformers.XLMRobertaForSequenceClassification">
+<em class="property">class </em><code class="sig-prename descclassname">transformers.</code><code class="sig-name descname">XLMRobertaForSequenceClassification</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.XLMRobertaForSequenceClassification" title="Permalink to this definition">¶</a></dt>
+<dd><p>XLM-RoBERTa Model transformer with a sequence classification/regression head on top (a linear layer on top of the
+pooled output) e.g. for GLUE tasks.</p>
+<p>This model inherits from <code class="xref py py-class docutils literal notranslate"><span class="pre">PreTrainedModel</span></code>. Check the superclass documentation for the generic
+methods the library implements for all its model (such as downloading or saving, resizing the input embeddings,
+pruning heads etc.)</p>
+<p>This model is also a PyTorch <a class="reference external" href="https://pytorch.org/docs/stable/nn.html#torch.nn.Module">torch.nn.Module</a>
+subclass. Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to
+general usage and behavior.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>config</strong> (<a class="reference internal" href="#transformers.XLMRobertaConfig" title="transformers.XLMRobertaConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">XLMRobertaConfig</span></code></a>) – Model configuration class with all the parameters of the
+model. Initializing with a config file does not load the weights associated with the model, only the
+configuration. Check out the <code class="xref py py-meth docutils literal notranslate"><span class="pre">from_pretrained()</span></code> method to load the model
+weights.</p>
+</dd>
+</dl>
+<p>This class overrides <a class="reference internal" href="roberta.html#transformers.RobertaForSequenceClassification" title="transformers.RobertaForSequenceClassification"><code class="xref py py-class docutils literal notranslate"><span class="pre">RobertaForSequenceClassification</span></code></a>. Please check the superclass for the
+appropriate documentation alongside usage examples.</p>
+<dl class="py attribute">
+<dt id="transformers.XLMRobertaForSequenceClassification.config_class">
+<code class="sig-name descname">config_class</code><a class="headerlink" href="#transformers.XLMRobertaForSequenceClassification.config_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">transformers.configuration_xlm_roberta.XLMRobertaConfig</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="xlmrobertaformultiplechoice">
+<h2>XLMRobertaForMultipleChoice<a class="headerlink" href="#xlmrobertaformultiplechoice" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="transformers.XLMRobertaForMultipleChoice">
+<em class="property">class </em><code class="sig-prename descclassname">transformers.</code><code class="sig-name descname">XLMRobertaForMultipleChoice</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.XLMRobertaForMultipleChoice" title="Permalink to this definition">¶</a></dt>
+<dd><p>XLM-RoBERTa Model with a multiple choice classification head on top (a linear layer on top of the pooled output and
+a softmax) e.g. for RocStories/SWAG tasks.</p>
+<p>This model inherits from <code class="xref py py-class docutils literal notranslate"><span class="pre">PreTrainedModel</span></code>. Check the superclass documentation for the generic
+methods the library implements for all its model (such as downloading or saving, resizing the input embeddings,
+pruning heads etc.)</p>
+<p>This model is also a PyTorch <a class="reference external" href="https://pytorch.org/docs/stable/nn.html#torch.nn.Module">torch.nn.Module</a>
+subclass. Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to
+general usage and behavior.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>config</strong> (<a class="reference internal" href="#transformers.XLMRobertaConfig" title="transformers.XLMRobertaConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">XLMRobertaConfig</span></code></a>) – Model configuration class with all the parameters of the
+model. Initializing with a config file does not load the weights associated with the model, only the
+configuration. Check out the <code class="xref py py-meth docutils literal notranslate"><span class="pre">from_pretrained()</span></code> method to load the model
+weights.</p>
+</dd>
+</dl>
+<p>This class overrides <code class="xref py py-class docutils literal notranslate"><span class="pre">RobertaForMultipleChoice</span></code>. Please check the superclass for the
+appropriate documentation alongside usage examples.</p>
+<dl class="py attribute">
+<dt id="transformers.XLMRobertaForMultipleChoice.config_class">
+<code class="sig-name descname">config_class</code><a class="headerlink" href="#transformers.XLMRobertaForMultipleChoice.config_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">transformers.configuration_xlm_roberta.XLMRobertaConfig</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="xlmrobertafortokenclassification">
+<h2>XLMRobertaForTokenClassification<a class="headerlink" href="#xlmrobertafortokenclassification" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="transformers.XLMRobertaForTokenClassification">
+<em class="property">class </em><code class="sig-prename descclassname">transformers.</code><code class="sig-name descname">XLMRobertaForTokenClassification</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.XLMRobertaForTokenClassification" title="Permalink to this definition">¶</a></dt>
+<dd><p>XLM-RoBERTa Model with a token classification head on top (a linear layer on top of the hidden-states output) e.g.
+for Named-Entity-Recognition (NER) tasks.</p>
+<p>This model inherits from <code class="xref py py-class docutils literal notranslate"><span class="pre">PreTrainedModel</span></code>. Check the superclass documentation for the generic
+methods the library implements for all its model (such as downloading or saving, resizing the input embeddings,
+pruning heads etc.)</p>
+<p>This model is also a PyTorch <a class="reference external" href="https://pytorch.org/docs/stable/nn.html#torch.nn.Module">torch.nn.Module</a>
+subclass. Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to
+general usage and behavior.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>config</strong> (<a class="reference internal" href="#transformers.XLMRobertaConfig" title="transformers.XLMRobertaConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">XLMRobertaConfig</span></code></a>) – Model configuration class with all the parameters of the
+model. Initializing with a config file does not load the weights associated with the model, only the
+configuration. Check out the <code class="xref py py-meth docutils literal notranslate"><span class="pre">from_pretrained()</span></code> method to load the model
+weights.</p>
+</dd>
+</dl>
+<p>This class overrides <a class="reference internal" href="roberta.html#transformers.RobertaForTokenClassification" title="transformers.RobertaForTokenClassification"><code class="xref py py-class docutils literal notranslate"><span class="pre">RobertaForTokenClassification</span></code></a>. Please check the superclass for the
+appropriate documentation alongside usage examples.</p>
+<dl class="py attribute">
+<dt id="transformers.XLMRobertaForTokenClassification.config_class">
+<code class="sig-name descname">config_class</code><a class="headerlink" href="#transformers.XLMRobertaForTokenClassification.config_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">transformers.configuration_xlm_roberta.XLMRobertaConfig</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="distilbert.html" class="btn btn-neutral float-right" title="DistilBERT" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="roberta.html" class="btn btn-neutral float-left" title="RoBERTa" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Adapter-Hub Team
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

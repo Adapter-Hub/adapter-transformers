@@ -1,0 +1,297 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Prediction Heads &mdash; adapter-transformers  documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Extending the Library" href="extending.html" />
+    <link rel="prev" title="Adapter Training" href="training.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> adapter-transformers
+          
+
+          
+            
+            <img src="_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">adapter-transformers</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adapters.html">Introduction to Adapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="training.html">Adapter Training</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Prediction Heads</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#models-with-flexible-heads">Models with flexible heads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#huggingface-heads">Huggingface heads</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="extending.html">Extending the Library</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Adapter-Hub</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="loading.html">Loading Pre-Trained Adapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to Adapter Hub</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Adapter-Related Classes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classes/adapter_config.html">Adapter Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/model_adapters_config.html">Model Adapters Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/adapter_modules.html">Adapter Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/model_mixins.html">Model Mixins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/bert_mixins.html">BERT Mixins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/adapter_utils.html">Adapter Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/weights_loaders.html">Weights Loaders</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Supported Models</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classes/bert.html">BERT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/roberta.html">RoBERTa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/xlmroberta.html">XLM-RoBERTa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/distilbert.html">DistilBERT</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">adapter-transformers</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Prediction Heads</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/prediction_heads.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="prediction-heads">
+<h1>Prediction Heads<a class="headerlink" href="#prediction-heads" title="Permalink to this headline">¶</a></h1>
+<p>This section gives an overview how different prediction heads can be used together with adapter modules and how pretrained adapters can be distributed side-by-side with matching prediction heads in Adapter Hub.
+We will take a look at our own implementation (e.g. <code class="docutils literal notranslate"><span class="pre">BertModelWithHeads</span></code>) as well as models with heads provided by Huggingface (e.g. <code class="docutils literal notranslate"><span class="pre">BertForSequenceClassification</span></code>).</p>
+<div class="section" id="models-with-flexible-heads">
+<h2>Models with flexible heads<a class="headerlink" href="#models-with-flexible-heads" title="Permalink to this headline">¶</a></h2>
+<p>To allow for prediction heads to be configured in a flexible way on top of a pretrained language model, <code class="docutils literal notranslate"><span class="pre">adapter-transformers</span></code> provides a new line of model classes.
+These classes follow the naming schema <code class="docutils literal notranslate"><span class="pre">&lt;model_class&gt;WithHeads</span></code> and are available for all model classes supporting adapters. Let’s see how they work:</p>
+<p>First, we load pretrained model from Huggingface:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">BertModelWithHeads</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;bert-base-uncased&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Although we use the class <code class="docutils literal notranslate"><span class="pre">BertModelWithHeads</span></code>, this model doesn’t have any heads yet. We add a new one in the next step:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">add_classification_head</span><span class="p">(</span><span class="s2">&quot;mrpc&quot;</span><span class="p">,</span> <span class="n">num_labels</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The line above adds a binary sequence classification head on top of our model.
+As this head is named, we could add multiple other heads with different names to the same model.
+This is especially useful if used together with matching adapter modules.
+For more about the different head types and the configuration options, refer to <a class="reference external" href="classes/bert_mixins.md#transformers.adapter_bert.BertModelHeadsMixin">the class reference</a>.</p>
+<p>Now, of course, we would like to train our classification head together with an adapter, so let’s add one:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">add_adapter</span><span class="p">(</span><span class="s2">&quot;mrpc&quot;</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="s2">&quot;pfeiffer&quot;</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">set_active_adapters</span><span class="p">(</span><span class="s2">&quot;mrpc&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Since we gave the task adapter the same name as our head, we can easily identify them as belonging together.
+The call to <code class="docutils literal notranslate"><span class="pre">set_active_adapters()</span></code> in the second line tells our model to use the adapter - head configuration we specified by default in a forward pass.
+At this point, we can start to <a class="reference internal" href="training.html"><span class="doc">train our setup</span></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">set_active_adapters()</span></code> will search for an adapter module and a prediction head with the given name to be activated.
+If this method is not used, you can still activate a specific adapter module or prediction head by providing the <cite>adapter_names</cite> or <cite>head</cite> parameter in the forward call.</p>
+</div>
+<p>After training has completed, we can save our whole setup (adapter module <em>and</em> prediction head), with a single call:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">save_adapter</span><span class="p">(</span><span class="s2">&quot;/path/to/dir&quot;</span><span class="p">,</span> <span class="s2">&quot;mrpc&quot;</span><span class="p">,</span> <span class="n">with_head</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now, we just have to <a class="reference external" href="contributing.md#add-your-pre-trained-adapter">share our work with the world</a>.
+After we published our adapter together with its head in the Hub, anyone else can load both adapter and head by using the same model class.</p>
+<p>Alternatively, we can also save and load the prediction head separately from an adapter module:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># save</span>
+<span class="n">model</span><span class="o">.</span><span class="n">save_head</span><span class="p">(</span><span class="s2">&quot;/path/to/dir&quot;</span><span class="p">,</span> <span class="s2">&quot;mrpc&quot;</span><span class="p">)</span>
+<span class="c1"># load</span>
+<span class="n">model</span><span class="o">.</span><span class="n">load_head</span><span class="p">(</span><span class="s2">&quot;/path/to/dir&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="huggingface-heads">
+<h2>Huggingface heads<a class="headerlink" href="#huggingface-heads" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">transformers</span></code> library provides strongly typed model classes with heads for various different tasks (e.g. <code class="docutils literal notranslate"><span class="pre">RobertaForSequenceClassification</span></code>, <code class="docutils literal notranslate"><span class="pre">AutoModelForMultipleChoice</span></code> …).
+If an adapter module is trained with one these out-of-the-box classes, it is encouraged to also distribute the prediction head weights together with the adapter weights.
+Therefore, we can also easily save the prediction head weights for these models together with an adapter:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">save_adapter</span><span class="p">(</span><span class="s2">&quot;/path/to/dir&quot;</span><span class="p">,</span> <span class="s2">&quot;mrpc&quot;</span><span class="p">,</span> <span class="n">with_head</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In the next step, we can provide both the adapter weights and the head weights to the Hub.
+If someone else then downloads our pretrained adapter, the resolving method will check if our prediction head matches the class of his model.
+In case the classes match, our prediction head weights will be automatically loaded too.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="extending.html" class="btn btn-neutral float-right" title="Extending the Library" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="training.html" class="btn btn-neutral float-left" title="Adapter Training" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Adapter-Hub Team
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

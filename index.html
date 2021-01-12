@@ -1,0 +1,359 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>AdapterHub Documentation &mdash; adapter-transformers  documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="#" class="icon icon-home"> adapter-transformers
+          
+
+          
+            
+            <img src="_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">adapter-transformers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adapters.html">Introduction to Adapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="training.html">Adapter Training</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prediction_heads.html">Prediction Heads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extending.html">Extending the Library</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Adapter-Hub</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="loading.html">Loading Pre-Trained Adapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to Adapter Hub</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Adapter-Related Classes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classes/adapter_config.html">Adapter Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/model_adapters_config.html">Model Adapters Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/adapter_modules.html">Adapter Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/model_mixins.html">Model Mixins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/bert_mixins.html">BERT Mixins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/adapter_utils.html">Adapter Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/weights_loaders.html">Weights Loaders</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Supported Models</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classes/bert.html">BERT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/roberta.html">RoBERTa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/xlmroberta.html">XLM-RoBERTa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/distilbert.html">DistilBERT</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">adapter-transformers</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>AdapterHub Documentation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="adapterhub-documentation">
+<h1>AdapterHub Documentation<a class="headerlink" href="#adapterhub-documentation" title="Permalink to this headline">¶</a></h1>
+<p><em>AdapterHub</em> is a framework simplifying the integration, training and usage of adapter modules for Transformer-based language models.
+It integrates adapters for downstream tasks (<a class="reference external" href="https://arxiv.org/pdf/1902.00751">Houlsby et al., 2019</a>), adapters for cross-lingual transfer (<a class="reference external" href="https://arxiv.org/pdf/2005.00052">Pfeiffer et al., 2020a</a>) and <em>AdapterFusion</em> (<a class="reference external" href="https://arxiv.org/pdf/2005.00247">Pfeiffer et al., 2020b</a>).</p>
+<p>The framework consists of two main components:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">adapter-transformers</span></code>, an extension of Huggingface’s <a class="reference external" href="https://huggingface.co/transformers/">Transformers</a> library that adds adapter components to transformer models</p></li>
+<li><p><a class="reference external" href="https://adapterhub.ml">The Hub</a>, a central repository collecting pre-trained adapter modules</p></li>
+</ul>
+<p>The <em>adapter-transformers</em> section documents the integration of adapters into the <code class="docutils literal notranslate"><span class="pre">transformers</span></code> library and how training adapters works.</p>
+<p>The section on <em>Adapter-Hub</em> describes the fundamentals of the pre-trained adapter repository and how to contribute new adapters.</p>
+<p>Currently, we support the PyTorch versions of all models listed in the <em>Supported Models</em> section.</p>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">adapter-transformers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#using-pip">Using pip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#from-repository">From repository</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#quick-tour-using-a-pre-trained-adapter-for-inference">Quick Tour: Using a pre-trained adapter for inference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#quick-tour-adapter-training">Quick Tour: Adapter training</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="adapters.html">Introduction to Adapters</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="adapters.html#adapter-types">Adapter types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adapters.html#adapter-architectures">Adapter architectures</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="training.html">Adapter Training</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="training.html#train-a-task-adapter">Train a Task Adapter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="training.html#train-a-language-adapter">Train a Language Adapter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="training.html#train-adapterfusion">Train AdapterFusion</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="prediction_heads.html">Prediction Heads</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="prediction_heads.html#models-with-flexible-heads">Models with flexible heads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prediction_heads.html#huggingface-heads">Huggingface heads</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="extending.html">Extending the Library</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="extending.html#integrating-new-transformer-models">Integrating new transformer models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extending.html#loading-custom-module-weights">Loading custom module weights</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Adapter-Hub</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="loading.html">Loading Pre-Trained Adapters</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="loading.html#using-adapters-from-adapter-hub">Using adapters from Adapter-Hub</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loading.html#how-adapter-resolving-works">How adapter resolving works</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to Adapter Hub</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#getting-started">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#add-your-pre-trained-adapter">Add your pre-trained adapter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#add-a-new-adapter-architecture">Add a new adapter architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#add-a-new-task-or-subtask">Add a new task or subtask</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Adapter-Related Classes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classes/adapter_config.html">Adapter Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classes/adapter_config.html#single-adapter">Single Adapter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classes/adapter_config.html#adapter-fusion">Adapter Fusion</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="classes/model_adapters_config.html">Model Adapters Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/adapter_modules.html">Adapter Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/model_mixins.html">Model Mixins</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classes/model_mixins.html#modeladaptersmixin">ModelAdaptersMixin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classes/model_mixins.html#modelwithheadsadaptersmixin">ModelWithHeadsAdaptersMixin</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="classes/bert_mixins.html">BERT Mixins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/adapter_utils.html">Adapter Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/weights_loaders.html">Weights Loaders</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classes/weights_loaders.html#weightsloader">WeightsLoader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classes/weights_loaders.html#adapterloader">AdapterLoader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classes/weights_loaders.html#adapterfusionloader">AdapterFusionLoader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classes/weights_loaders.html#predictionheadloader">PredictionHeadLoader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classes/weights_loaders.html#weightsloaderhelper">WeightsLoaderHelper</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Supported Models</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classes/bert.html">BERT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/roberta.html">RoBERTa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/xlmroberta.html">XLM-RoBERTa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/distilbert.html">DistilBERT</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="citation">
+<h1>Citation<a class="headerlink" href="#citation" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-bibtex notranslate"><div class="highlight"><pre><span></span><span class="nc">@article</span><span class="p">{</span><span class="nl">pfeiffer2020AdapterHub</span><span class="p">,</span>
+   <span class="na">title</span><span class="p">=</span><span class="s">{AdapterHub: A Framework for Adapting Transformers}</span><span class="p">,</span>
+   <span class="na">author</span><span class="p">=</span><span class="s">{Jonas Pfeiffer and</span>
+<span class="s">            Andreas R\&quot;uckl\&#39;{e} and</span>
+<span class="s">            Clifton Poth and</span>
+<span class="s">            Aishwarya Kamath and</span>
+<span class="s">            Ivan Vuli\&#39;{c} and</span>
+<span class="s">            Sebastian Ruder and</span>
+<span class="s">            Kyunghyun Cho and</span>
+<span class="s">            Iryna Gurevych}</span><span class="p">,</span>
+   <span class="na">journal</span><span class="p">=</span><span class="s">{arXiv preprint}</span><span class="p">,</span>
+   <span class="na">year</span><span class="p">=</span><span class="s">{2020}</span><span class="p">,</span>
+   <span class="na">url</span><span class="p">=</span><span class="s">{https://arxiv.org/abs/2007.07779}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+</ul>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="installation.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Adapter-Hub Team
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

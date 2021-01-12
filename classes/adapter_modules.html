@@ -1,0 +1,346 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Adapter Modules &mdash; adapter-transformers  documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Model Mixins" href="model_mixins.html" />
+    <link rel="prev" title="Model Adapters Config" href="model_adapters_config.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> adapter-transformers
+          
+
+          
+            
+            <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">adapter-transformers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../adapters.html">Introduction to Adapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training.html">Adapter Training</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prediction_heads.html">Prediction Heads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extending.html">Extending the Library</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Adapter-Hub</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../loading.html">Loading Pre-Trained Adapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to Adapter Hub</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Adapter-Related Classes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="adapter_config.html">Adapter Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_adapters_config.html">Model Adapters Config</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Adapter Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_mixins.html">Model Mixins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bert_mixins.html">BERT Mixins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adapter_utils.html">Adapter Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="weights_loaders.html">Weights Loaders</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Supported Models</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="bert.html">BERT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roberta.html">RoBERTa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xlmroberta.html">XLM-RoBERTa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="distilbert.html">DistilBERT</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">adapter-transformers</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Adapter Modules</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/classes/adapter_modules.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="adapter-modules">
+<h1>Adapter Modules<a class="headerlink" href="#adapter-modules" title="Permalink to this headline">¶</a></h1>
+<p>Classes implementing task and language adapters.</p>
+<span class="target" id="module-transformers.adapter_modeling"></span><dl class="py class">
+<dt id="transformers.adapter_modeling.Activation_Function_Class">
+<em class="property">class </em><code class="sig-prename descclassname">transformers.adapter_modeling.</code><code class="sig-name descname">Activation_Function_Class</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hidden_act</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.adapter_modeling.Activation_Function_Class" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implementation of various activation function.</p>
+<dl class="py method">
+<dt id="transformers.adapter_modeling.Activation_Function_Class.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.adapter_modeling.Activation_Function_Class.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="transformers.adapter_modeling.Adapter">
+<em class="property">class </em><code class="sig-prename descclassname">transformers.adapter_modeling.</code><code class="sig-name descname">Adapter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">input_size</span></em>, <em class="sig-param"><span class="n">down_sample</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">non_linearity</span><span class="o">=</span><span class="default_value">'relu'</span></em>, <em class="sig-param"><span class="n">init_bert_weights</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">add_layer_norm_before</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">add_layer_norm_after</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">residual_before_ln</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.adapter_modeling.Adapter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implementation of a single Adapter block.</p>
+<dl class="py method">
+<dt id="transformers.adapter_modeling.Adapter.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em>, <em class="sig-param"><span class="n">residual_input</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.adapter_modeling.Adapter.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.adapter_modeling.Adapter.init_bert_weights">
+<em class="property">static </em><code class="sig-name descname">init_bert_weights</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">module</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.adapter_modeling.Adapter.init_bert_weights" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize the weights.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="transformers.adapter_modeling.BertFusion">
+<em class="property">class </em><code class="sig-prename descclassname">transformers.adapter_modeling.</code><code class="sig-name descname">BertFusion</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.adapter_modeling.BertFusion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implementation of an AdapterFusion block.</p>
+<dl class="py method">
+<dt id="transformers.adapter_modeling.BertFusion.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">query</span></em>, <em class="sig-param"><span class="n">key</span></em>, <em class="sig-param"><span class="n">value</span></em>, <em class="sig-param"><span class="n">residual</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.adapter_modeling.BertFusion.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="transformers.adapter_modeling.GLOWCouplingBlock">
+<em class="property">class </em><code class="sig-prename descclassname">transformers.adapter_modeling.</code><code class="sig-name descname">GLOWCouplingBlock</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dims_in</span></em>, <em class="sig-param"><span class="n">dims_c</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">non_linearity</span><span class="o">=</span><span class="default_value">'relu'</span></em>, <em class="sig-param"><span class="n">reduction_factor</span><span class="o">=</span><span class="default_value">2</span></em>, <em class="sig-param"><span class="n">clamp</span><span class="o">=</span><span class="default_value">5.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.adapter_modeling.GLOWCouplingBlock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Coupling Block following the GLOW design. The only difference to the RealNVP coupling blocks, is the fact that it
+uses a single subnetwork to jointly predict [s_i, t_i], instead of two separate subnetworks. This reduces
+computational cost and speeds up learning. clamp: Soft clamping for the multiplicative component. The amplification
+or attenuation of each input dimension can be at most ±exp(clamp).</p>
+<dl class="py method">
+<dt id="transformers.adapter_modeling.GLOWCouplingBlock.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em>, <em class="sig-param"><span class="n">c</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">rev</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.adapter_modeling.GLOWCouplingBlock.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="transformers.adapter_modeling.NICECouplingBlock">
+<em class="property">class </em><code class="sig-prename descclassname">transformers.adapter_modeling.</code><code class="sig-name descname">NICECouplingBlock</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dims_in</span></em>, <em class="sig-param"><span class="n">dims_c</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">non_linearity</span><span class="o">=</span><span class="default_value">'relu'</span></em>, <em class="sig-param"><span class="n">reduction_factor</span><span class="o">=</span><span class="default_value">2</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.adapter_modeling.NICECouplingBlock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Coupling Block following the NICE design.</p>
+<dl class="py method">
+<dt id="transformers.adapter_modeling.NICECouplingBlock.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em>, <em class="sig-param"><span class="n">c</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">rev</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.adapter_modeling.NICECouplingBlock.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="model_mixins.html" class="btn btn-neutral float-right" title="Model Mixins" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="model_adapters_config.html" class="btn btn-neutral float-left" title="Model Adapters Config" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Adapter-Hub Team
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

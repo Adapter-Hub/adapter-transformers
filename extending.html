@@ -1,0 +1,275 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Extending the Library &mdash; adapter-transformers  documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Loading Pre-Trained Adapters" href="loading.html" />
+    <link rel="prev" title="Prediction Heads" href="prediction_heads.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> adapter-transformers
+          
+
+          
+            
+            <img src="_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">adapter-transformers</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adapters.html">Introduction to Adapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="training.html">Adapter Training</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prediction_heads.html">Prediction Heads</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Extending the Library</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#integrating-new-transformer-models">Integrating new transformer models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#loading-custom-module-weights">Loading custom module weights</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Adapter-Hub</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="loading.html">Loading Pre-Trained Adapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to Adapter Hub</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Adapter-Related Classes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classes/adapter_config.html">Adapter Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/model_adapters_config.html">Model Adapters Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/adapter_modules.html">Adapter Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/model_mixins.html">Model Mixins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/bert_mixins.html">BERT Mixins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/adapter_utils.html">Adapter Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/weights_loaders.html">Weights Loaders</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Supported Models</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classes/bert.html">BERT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/roberta.html">RoBERTa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/xlmroberta.html">XLM-RoBERTa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/distilbert.html">DistilBERT</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">adapter-transformers</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Extending the Library</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/extending.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="extending-the-library">
+<h1>Extending the Library<a class="headerlink" href="#extending-the-library" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="integrating-new-transformer-models">
+<h2>Integrating new transformer models<a class="headerlink" href="#integrating-new-transformer-models" title="Permalink to this headline">¶</a></h2>
+<p>Currently, the <code class="docutils literal notranslate"><span class="pre">adapter-transformers</span></code> library integrates adapter modules to language models base on <code class="docutils literal notranslate"><span class="pre">BERT</span></code>. However, the integration into new models is possible. <code class="docutils literal notranslate"><span class="pre">adapter-transformers</span></code> defines two abstract base classes that provide a generic adapter management setup:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="classes/model_mixins.md#modeladaptersmixin"><code class="docutils literal notranslate"><span class="pre">ModelAdaptersMixin</span></code></a></p></li>
+<li><p><a class="reference external" href="classes/model_mixins.md#modelwithheadsadaptersmixin"><code class="docutils literal notranslate"><span class="pre">ModelWithHeadsAdaptersMixin</span></code></a></p></li>
+</ul>
+<p>Depending on its type, every adapter-supporting model should derive from one of these mixin classes. <code class="docutils literal notranslate"><span class="pre">ModelAdaptersMixin</span></code> is intended for base model classes which do not provide task-specific prediction heads (e.g. <code class="docutils literal notranslate"><span class="pre">BertModel</span></code>, <code class="docutils literal notranslate"><span class="pre">RobertaModel</span></code>) whereas <code class="docutils literal notranslate"><span class="pre">ModelWithHeadsAdaptersMixin</span></code> should be used for models with prediction heads, such as <code class="docutils literal notranslate"><span class="pre">BertForSequenceClassification</span></code> or <code class="docutils literal notranslate"><span class="pre">BertModelWithHeads</span></code>.</p>
+<p>Both classes specify a minimal number of abstract methods, such as <code class="docutils literal notranslate"><span class="pre">add_adapter()</span></code>, which must be implemented by every deriving model class. For the implementation details, refer to the <a class="reference internal" href="classes/model_mixins.html"><span class="doc">class documentation of the base classes</span></a> or the <a class="reference internal" href="classes/bert_mixins.html"><span class="doc">reference BERT implementation</span></a>.</p>
+</div>
+<div class="section" id="loading-custom-module-weights">
+<h2>Loading custom module weights<a class="headerlink" href="#loading-custom-module-weights" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">adapter-transformers</span></code> provides support for saving and loading adapter and prediction head modules from the local file system or the Hub out of the box.
+However, countless additional module integrations into language models are thinkable.
+To provide a basis for such new custom model plugins, <code class="docutils literal notranslate"><span class="pre">adapter-transformers</span></code> integrates a basic mechanism to save and load custom weights.</p>
+<p>All adapter and head module weights are extracted, saved and loaded by implementations of the <a class="reference external" href="classes/weights_loaders.md#weightsloader"><code class="docutils literal notranslate"><span class="pre">WeightsLoader</span></code></a> class, the two preincluded being <a class="reference external" href="classes/weights_loaders.md#adapterloader"><code class="docutils literal notranslate"><span class="pre">AdapterLoader</span></code></a> and <a class="reference external" href="classes/weights_loaders.md#predictionheadloader"><code class="docutils literal notranslate"><span class="pre">PredictionHeadLoader</span></code></a>. To add basic saving and loading functionalities to your custom module weights, you can implement a new subclass of <code class="docutils literal notranslate"><span class="pre">WeightsLoader</span></code>. The two required abstract methods to be implemented are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">filter_func(self,</span> <span class="pre">name:</span> <span class="pre">str)</span> <span class="pre">-&gt;</span> <span class="pre">Callable[[str],</span> <span class="pre">bool]</span></code>: The callable returned by this method is used to extract the module weights to be saved or loaded based on their names.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rename_func(self,</span> <span class="pre">old_name:</span> <span class="pre">str,</span> <span class="pre">new_name:</span> <span class="pre">str)</span> <span class="pre">-&gt;</span> <span class="pre">Callable[[str],</span> <span class="pre">str]</span></code>: The callable returned by this method is used to optionally rename the module weights after loading.</p></li>
+</ul>
+<p>For more advanced functionalities, you may also want to override the <code class="docutils literal notranslate"><span class="pre">save()</span></code> and <code class="docutils literal notranslate"><span class="pre">load()</span></code> method.</p>
+<p>Using the custom loader class, weights can now be saved with:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">loader</span> <span class="o">=</span> <span class="n">MyCustomWeightsLoader</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+<span class="n">loader</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;path/to/save/dir&quot;</span><span class="p">,</span> <span class="s2">&quot;custom_weights_name&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can also upload these weights to the Hub and then load them from there together with an adapter:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">load_adapter</span><span class="p">(</span>
+    <span class="s2">&quot;adapter_name&quot;</span><span class="p">,</span>
+    <span class="n">adapter_type</span><span class="o">=</span><span class="s2">&quot;text_task&quot;</span><span class="p">,</span>
+    <span class="n">custom_weights_loaders</span><span class="o">=</span><span class="p">[</span><span class="n">MyCustomWeightsLoader</span><span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="loading.html" class="btn btn-neutral float-right" title="Loading Pre-Trained Adapters" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="prediction_heads.html" class="btn btn-neutral float-left" title="Prediction Heads" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Adapter-Hub Team
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

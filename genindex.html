@@ -1,0 +1,834 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Index &mdash; adapter-transformers  documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="#" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> adapter-transformers
+          
+
+          
+            
+            <img src="_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">adapter-transformers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adapters.html">Introduction to Adapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="training.html">Adapter Training</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prediction_heads.html">Prediction Heads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extending.html">Extending the Library</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Adapter-Hub</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="loading.html">Loading Pre-Trained Adapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to Adapter Hub</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Adapter-Related Classes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classes/adapter_config.html">Adapter Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/model_adapters_config.html">Model Adapters Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/adapter_modules.html">Adapter Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/model_mixins.html">Model Mixins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/bert_mixins.html">BERT Mixins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/adapter_utils.html">Adapter Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/weights_loaders.html">Weights Loaders</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Supported Models</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classes/bert.html">BERT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/roberta.html">RoBERTa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/xlmroberta.html">XLM-RoBERTa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/distilbert.html">DistilBERT</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">adapter-transformers</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Index</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+
+<h1 id="index">Index</h1>
+
+<div class="genindex-jumpbox">
+ <a href="#A"><strong>A</strong></a>
+ | <a href="#B"><strong>B</strong></a>
+ | <a href="#C"><strong>C</strong></a>
+ | <a href="#D"><strong>D</strong></a>
+ | <a href="#E"><strong>E</strong></a>
+ | <a href="#F"><strong>F</strong></a>
+ | <a href="#G"><strong>G</strong></a>
+ | <a href="#H"><strong>H</strong></a>
+ | <a href="#I"><strong>I</strong></a>
+ | <a href="#L"><strong>L</strong></a>
+ | <a href="#M"><strong>M</strong></a>
+ | <a href="#N"><strong>N</strong></a>
+ | <a href="#P"><strong>P</strong></a>
+ | <a href="#R"><strong>R</strong></a>
+ | <a href="#S"><strong>S</strong></a>
+ | <a href="#T"><strong>T</strong></a>
+ | <a href="#W"><strong>W</strong></a>
+ | <a href="#X"><strong>X</strong></a>
+ 
+</div>
+<h2 id="A">A</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="classes/adapter_modules.html#transformers.adapter_modeling.Activation_Function_Class">Activation_Function_Class (class in transformers.adapter_modeling)</a>
+</li>
+      <li><a href="classes/adapter_modules.html#transformers.adapter_modeling.Adapter">Adapter (class in transformers.adapter_modeling)</a>
+</li>
+      <li><a href="classes/bert_mixins.html#transformers.adapter_bert.BertOutputAdaptersMixin.adapter_fusion">adapter_fusion() (transformers.adapter_bert.BertOutputAdaptersMixin method)</a>
+
+      <ul>
+        <li><a href="classes/bert_mixins.html#transformers.adapter_bert.BertSelfOutputAdaptersMixin.adapter_fusion">(transformers.adapter_bert.BertSelfOutputAdaptersMixin method)</a>
+</li>
+      </ul></li>
+      <li><a href="classes/bert_mixins.html#transformers.adapter_bert.BertOutputAdaptersMixin.adapter_stack_layer">adapter_stack_layer() (transformers.adapter_bert.BertOutputAdaptersMixin method)</a>
+
+      <ul>
+        <li><a href="classes/bert_mixins.html#transformers.adapter_bert.BertSelfOutputAdaptersMixin.adapter_stack_layer">(transformers.adapter_bert.BertSelfOutputAdaptersMixin method)</a>
+</li>
+      </ul></li>
+      <li><a href="classes/adapter_config.html#transformers.AdapterConfig">AdapterConfig (class in transformers)</a>
+</li>
+      <li><a href="classes/adapter_config.html#transformers.AdapterFusionConfig">AdapterFusionConfig (class in transformers)</a>
+</li>
+      <li><a href="classes/weights_loaders.html#transformers.AdapterFusionLoader">AdapterFusionLoader (class in transformers)</a>
+</li>
+      <li><a href="classes/weights_loaders.html#transformers.AdapterLoader">AdapterLoader (class in transformers)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="classes/adapter_utils.html#transformers.adapter_utils.AdapterType">AdapterType (class in transformers.adapter_utils)</a>
+</li>
+      <li><a href="classes/model_adapters_config.html#transformers.ModelAdaptersConfig.add">add() (transformers.ModelAdaptersConfig method)</a>
+</li>
+      <li><a href="classes/model_mixins.html#transformers.ModelAdaptersMixin.add_adapter">add_adapter() (transformers.ModelAdaptersMixin method)</a>
+
+      <ul>
+        <li><a href="classes/model_mixins.html#transformers.ModelWithHeadsAdaptersMixin.add_adapter">(transformers.ModelWithHeadsAdaptersMixin method)</a>
+</li>
+      </ul></li>
+      <li><a href="classes/bert_mixins.html#transformers.adapter_bert.BertModelHeadsMixin.add_classification_head">add_classification_head() (transformers.adapter_bert.BertModelHeadsMixin method)</a>
+</li>
+      <li><a href="classes/model_mixins.html#transformers.ModelAdaptersMixin.add_fusion">add_fusion() (transformers.ModelAdaptersMixin method)</a>
+</li>
+      <li><a href="classes/bert_mixins.html#transformers.adapter_bert.BertOutputAdaptersMixin.add_fusion_layer">add_fusion_layer() (transformers.adapter_bert.BertOutputAdaptersMixin method)</a>
+
+      <ul>
+        <li><a href="classes/bert_mixins.html#transformers.adapter_bert.BertSelfOutputAdaptersMixin.add_fusion_layer">(transformers.adapter_bert.BertSelfOutputAdaptersMixin method)</a>
+</li>
+      </ul></li>
+      <li><a href="classes/bert_mixins.html#transformers.adapter_bert.BertModelHeadsMixin.add_multiple_choice_head">add_multiple_choice_head() (transformers.adapter_bert.BertModelHeadsMixin method)</a>
+</li>
+      <li><a href="classes/bert_mixins.html#transformers.adapter_bert.BertModelHeadsMixin.add_tagging_head">add_tagging_head() (transformers.adapter_bert.BertModelHeadsMixin method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="B">B</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="classes/bert.html#transformers.BertConfig">BertConfig (class in transformers)</a>
+</li>
+      <li><a href="classes/bert_mixins.html#transformers.adapter_bert.BertEncoderAdaptersMixin">BertEncoderAdaptersMixin (class in transformers.adapter_bert)</a>
+</li>
+      <li><a href="classes/bert.html#transformers.BertForMaskedLM">BertForMaskedLM (class in transformers)</a>
+</li>
+      <li><a href="classes/bert.html#transformers.BertForMultipleChoice">BertForMultipleChoice (class in transformers)</a>
+</li>
+      <li><a href="classes/bert.html#transformers.BertForNextSentencePrediction">BertForNextSentencePrediction (class in transformers)</a>
+</li>
+      <li><a href="classes/bert.html#transformers.BertForPreTraining">BertForPreTraining (class in transformers)</a>
+</li>
+      <li><a href="classes/bert.html#transformers.BertForQuestionAnswering">BertForQuestionAnswering (class in transformers)</a>
+</li>
+      <li><a href="classes/bert.html#transformers.BertForSequenceClassification">BertForSequenceClassification (class in transformers)</a>
+</li>
+      <li><a href="classes/bert.html#transformers.BertForTokenClassification">BertForTokenClassification (class in transformers)</a>
+</li>
+      <li><a href="classes/adapter_modules.html#transformers.adapter_modeling.BertFusion">BertFusion (class in transformers.adapter_modeling)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="classes/bert_mixins.html#transformers.adapter_bert.BertLayerAdaptersMixin">BertLayerAdaptersMixin (class in transformers.adapter_bert)</a>
+</li>
+      <li><a href="classes/bert.html#transformers.BertModel">BertModel (class in transformers)</a>
+</li>
+      <li><a href="classes/bert_mixins.html#transformers.adapter_bert.BertModelAdaptersMixin">BertModelAdaptersMixin (class in transformers.adapter_bert)</a>
+</li>
+      <li><a href="classes/bert_mixins.html#transformers.adapter_bert.BertModelHeadsMixin">BertModelHeadsMixin (class in transformers.adapter_bert)</a>
+</li>
+      <li><a href="classes/bert.html#transformers.BertModelWithHeads">BertModelWithHeads (class in transformers)</a>
+</li>
+      <li><a href="classes/bert_mixins.html#transformers.adapter_bert.BertOutputAdaptersMixin">BertOutputAdaptersMixin (class in transformers.adapter_bert)</a>
+</li>
+      <li><a href="classes/bert_mixins.html#transformers.adapter_bert.BertSelfOutputAdaptersMixin">BertSelfOutputAdaptersMixin (class in transformers.adapter_bert)</a>
+</li>
+      <li><a href="classes/bert.html#transformers.BertTokenizer">BertTokenizer (class in transformers)</a>
+</li>
+      <li><a href="classes/bert.html#transformers.BertTokenizer.build_inputs_with_special_tokens">build_inputs_with_special_tokens() (transformers.BertTokenizer method)</a>
+
+      <ul>
+        <li><a href="classes/roberta.html#transformers.RobertaTokenizer.build_inputs_with_special_tokens">(transformers.RobertaTokenizer method)</a>
+</li>
+        <li><a href="classes/xlmroberta.html#transformers.XLMRobertaTokenizer.build_inputs_with_special_tokens">(transformers.XLMRobertaTokenizer method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="C">C</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="classes/model_adapters_config.html#transformers.ModelAdaptersConfig.common_config_value">common_config_value() (transformers.ModelAdaptersConfig method)</a>
+</li>
+      <li><a href="classes/xlmroberta.html#transformers.XLMRobertaForMaskedLM.config_class">config_class (transformers.XLMRobertaForMaskedLM attribute)</a>
+
+      <ul>
+        <li><a href="classes/xlmroberta.html#transformers.XLMRobertaForMultipleChoice.config_class">(transformers.XLMRobertaForMultipleChoice attribute)</a>
+</li>
+        <li><a href="classes/xlmroberta.html#transformers.XLMRobertaForSequenceClassification.config_class">(transformers.XLMRobertaForSequenceClassification attribute)</a>
+</li>
+        <li><a href="classes/xlmroberta.html#transformers.XLMRobertaForTokenClassification.config_class">(transformers.XLMRobertaForTokenClassification attribute)</a>
+</li>
+        <li><a href="classes/xlmroberta.html#transformers.XLMRobertaModel.config_class">(transformers.XLMRobertaModel attribute)</a>
+</li>
+        <li><a href="classes/xlmroberta.html#transformers.XLMRobertaModelWithHeads.config_class">(transformers.XLMRobertaModelWithHeads attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="classes/bert.html#transformers.BertTokenizer.create_token_type_ids_from_sequences">create_token_type_ids_from_sequences() (transformers.BertTokenizer method)</a>
+
+      <ul>
+        <li><a href="classes/roberta.html#transformers.RobertaTokenizer.create_token_type_ids_from_sequences">(transformers.RobertaTokenizer method)</a>
+</li>
+        <li><a href="classes/xlmroberta.html#transformers.XLMRobertaTokenizer.create_token_type_ids_from_sequences">(transformers.XLMRobertaTokenizer method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="D">D</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="classes/adapter_utils.html#transformers.adapter_utils.DataclassJSONEncoder">DataclassJSONEncoder (class in transformers.adapter_utils)</a>
+</li>
+      <li><a href="classes/adapter_utils.html#transformers.adapter_utils.DataclassJSONEncoder.default">default() (transformers.adapter_utils.DataclassJSONEncoder method)</a>
+</li>
+      <li><a href="classes/distilbert.html#transformers.DistilBertConfig">DistilBertConfig (class in transformers)</a>
+</li>
+      <li><a href="classes/distilbert.html#transformers.DistilBertForMaskedLM">DistilBertForMaskedLM (class in transformers)</a>
+</li>
+      <li><a href="classes/distilbert.html#transformers.DistilBertForQuestionAnswering">DistilBertForQuestionAnswering (class in transformers)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="classes/distilbert.html#transformers.DistilBertForSequenceClassification">DistilBertForSequenceClassification (class in transformers)</a>
+</li>
+      <li><a href="classes/distilbert.html#transformers.DistilBertModel">DistilBertModel (class in transformers)</a>
+</li>
+      <li><a href="classes/distilbert.html#transformers.DistilBertModelWithHeads">DistilBertModelWithHeads (class in transformers)</a>
+</li>
+      <li><a href="classes/distilbert.html#transformers.DistilBertTokenizer">DistilBertTokenizer (class in transformers)</a>
+</li>
+      <li><a href="classes/distilbert.html#transformers.DistilBertTokenizerFast">DistilBertTokenizerFast (class in transformers)</a>
+</li>
+      <li><a href="classes/adapter_config.html#transformers.DynamicAdapterFusionConfig">DynamicAdapterFusionConfig (class in transformers)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="E">E</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="classes/bert_mixins.html#transformers.adapter_bert.BertSelfOutputAdaptersMixin.enable_adapters">enable_adapters() (transformers.adapter_bert.BertSelfOutputAdaptersMixin method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="F">F</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="classes/weights_loaders.html#transformers.AdapterFusionLoader.filter_func">filter_func() (transformers.AdapterFusionLoader method)</a>
+
+      <ul>
+        <li><a href="classes/weights_loaders.html#transformers.AdapterLoader.filter_func">(transformers.AdapterLoader method)</a>
+</li>
+        <li><a href="classes/weights_loaders.html#transformers.PredictionHeadLoader.filter_func">(transformers.PredictionHeadLoader method)</a>
+</li>
+        <li><a href="classes/weights_loaders.html#transformers.WeightsLoader.filter_func">(transformers.WeightsLoader method)</a>
+</li>
+      </ul></li>
+      <li><a href="classes/adapter_modules.html#transformers.adapter_modeling.Activation_Function_Class.forward">forward() (transformers.adapter_modeling.Activation_Function_Class method)</a>
+
+      <ul>
+        <li><a href="classes/adapter_modules.html#transformers.adapter_modeling.Adapter.forward">(transformers.adapter_modeling.Adapter method)</a>
+</li>
+        <li><a href="classes/adapter_modules.html#transformers.adapter_modeling.BertFusion.forward">(transformers.adapter_modeling.BertFusion method)</a>
+</li>
+        <li><a href="classes/adapter_modules.html#transformers.adapter_modeling.GLOWCouplingBlock.forward">(transformers.adapter_modeling.GLOWCouplingBlock method)</a>
+</li>
+        <li><a href="classes/adapter_modules.html#transformers.adapter_modeling.NICECouplingBlock.forward">(transformers.adapter_modeling.NICECouplingBlock method)</a>
+</li>
+        <li><a href="classes/bert.html#transformers.BertForMaskedLM.forward">(transformers.BertForMaskedLM method)</a>
+</li>
+        <li><a href="classes/bert.html#transformers.BertForMultipleChoice.forward">(transformers.BertForMultipleChoice method)</a>
+</li>
+        <li><a href="classes/bert.html#transformers.BertForNextSentencePrediction.forward">(transformers.BertForNextSentencePrediction method)</a>
+</li>
+        <li><a href="classes/bert.html#transformers.BertForPreTraining.forward">(transformers.BertForPreTraining method)</a>
+</li>
+        <li><a href="classes/bert.html#transformers.BertForQuestionAnswering.forward">(transformers.BertForQuestionAnswering method)</a>
+</li>
+        <li><a href="classes/bert.html#transformers.BertForSequenceClassification.forward">(transformers.BertForSequenceClassification method)</a>
+</li>
+        <li><a href="classes/bert.html#transformers.BertForTokenClassification.forward">(transformers.BertForTokenClassification method)</a>
+</li>
+        <li><a href="classes/bert.html#transformers.BertModel.forward">(transformers.BertModel method)</a>
+</li>
+        <li><a href="classes/bert.html#transformers.BertModelWithHeads.forward">(transformers.BertModelWithHeads method)</a>
+</li>
+        <li><a href="classes/distilbert.html#transformers.DistilBertForMaskedLM.forward">(transformers.DistilBertForMaskedLM method)</a>
+</li>
+        <li><a href="classes/distilbert.html#transformers.DistilBertForQuestionAnswering.forward">(transformers.DistilBertForQuestionAnswering method)</a>
+</li>
+        <li><a href="classes/distilbert.html#transformers.DistilBertForSequenceClassification.forward">(transformers.DistilBertForSequenceClassification method)</a>
+</li>
+        <li><a href="classes/distilbert.html#transformers.DistilBertModel.forward">(transformers.DistilBertModel method)</a>
+</li>
+        <li><a href="classes/distilbert.html#transformers.DistilBertModelWithHeads.forward">(transformers.DistilBertModelWithHeads method)</a>
+</li>
+        <li><a href="classes/roberta.html#transformers.RobertaForMaskedLM.forward">(transformers.RobertaForMaskedLM method)</a>
+</li>
+        <li><a href="classes/roberta.html#transformers.RobertaForSequenceClassification.forward">(transformers.RobertaForSequenceClassification method)</a>
+</li>
+        <li><a href="classes/roberta.html#transformers.RobertaForTokenClassification.forward">(transformers.RobertaForTokenClassification method)</a>
+</li>
+        <li><a href="classes/roberta.html#transformers.RobertaModel.forward">(transformers.RobertaModel method)</a>
+</li>
+        <li><a href="classes/roberta.html#transformers.RobertaModelWithHeads.forward">(transformers.RobertaModelWithHeads method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="classes/model_mixins.html#transformers.ModelAdaptersMixin.freeze_model">freeze_model() (transformers.ModelAdaptersMixin method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="G">G</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="classes/model_adapters_config.html#transformers.ModelAdaptersConfig.get">get() (transformers.ModelAdaptersConfig method)</a>
+</li>
+      <li><a href="classes/adapter_utils.html#transformers.adapter_utils.get_adapter_config_hash">get_adapter_config_hash() (in module transformers.adapter_utils)</a>
+</li>
+      <li><a href="classes/bert_mixins.html#transformers.adapter_bert.BertOutputAdaptersMixin.get_adapter_layer">get_adapter_layer() (transformers.adapter_bert.BertOutputAdaptersMixin method)</a>
+
+      <ul>
+        <li><a href="classes/bert_mixins.html#transformers.adapter_bert.BertSelfOutputAdaptersMixin.get_adapter_layer">(transformers.adapter_bert.BertSelfOutputAdaptersMixin method)</a>
+</li>
+      </ul></li>
+      <li><a href="classes/bert_mixins.html#transformers.adapter_bert.BertOutputAdaptersMixin.get_adapter_preparams">get_adapter_preparams() (transformers.adapter_bert.BertOutputAdaptersMixin method)</a>
+
+      <ul>
+        <li><a href="classes/bert_mixins.html#transformers.adapter_bert.BertSelfOutputAdaptersMixin.get_adapter_preparams">(transformers.adapter_bert.BertSelfOutputAdaptersMixin method)</a>
+</li>
+      </ul></li>
+      <li><a href="classes/model_adapters_config.html#transformers.ModelAdaptersConfig.get_config">get_config() (transformers.ModelAdaptersConfig method)</a>
+</li>
+      <li><a href="classes/bert.html#transformers.BertModel.get_input_embeddings">get_input_embeddings() (transformers.BertModel method)</a>
+
+      <ul>
+        <li><a href="classes/distilbert.html#transformers.DistilBertModel.get_input_embeddings">(transformers.DistilBertModel method)</a>
+</li>
+        <li><a href="classes/roberta.html#transformers.RobertaModel.get_input_embeddings">(transformers.RobertaModel method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="classes/bert_mixins.html#transformers.adapter_bert.BertModelHeadsMixin.get_labels">get_labels() (transformers.adapter_bert.BertModelHeadsMixin method)</a>
+</li>
+      <li><a href="classes/bert_mixins.html#transformers.adapter_bert.BertModelHeadsMixin.get_labels_dict">get_labels_dict() (transformers.adapter_bert.BertModelHeadsMixin method)</a>
+</li>
+      <li><a href="classes/bert.html#transformers.BertForMaskedLM.get_output_embeddings">get_output_embeddings() (transformers.BertForMaskedLM method)</a>
+
+      <ul>
+        <li><a href="classes/bert.html#transformers.BertForPreTraining.get_output_embeddings">(transformers.BertForPreTraining method)</a>
+</li>
+        <li><a href="classes/distilbert.html#transformers.DistilBertForMaskedLM.get_output_embeddings">(transformers.DistilBertForMaskedLM method)</a>
+</li>
+        <li><a href="classes/roberta.html#transformers.RobertaForMaskedLM.get_output_embeddings">(transformers.RobertaForMaskedLM method)</a>
+</li>
+      </ul></li>
+      <li><a href="classes/bert.html#transformers.BertTokenizer.get_special_tokens_mask">get_special_tokens_mask() (transformers.BertTokenizer method)</a>
+
+      <ul>
+        <li><a href="classes/roberta.html#transformers.RobertaTokenizer.get_special_tokens_mask">(transformers.RobertaTokenizer method)</a>
+</li>
+        <li><a href="classes/xlmroberta.html#transformers.XLMRobertaTokenizer.get_special_tokens_mask">(transformers.XLMRobertaTokenizer method)</a>
+</li>
+      </ul></li>
+      <li><a href="classes/model_adapters_config.html#transformers.ModelAdaptersConfig.get_type">get_type() (transformers.ModelAdaptersConfig method)</a>
+</li>
+      <li><a href="classes/adapter_modules.html#transformers.adapter_modeling.GLOWCouplingBlock">GLOWCouplingBlock (class in transformers.adapter_modeling)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="H">H</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="classes/adapter_config.html#transformers.HoulsbyConfig">HoulsbyConfig (class in transformers)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="I">I</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="classes/adapter_modules.html#transformers.adapter_modeling.Adapter.init_bert_weights">init_bert_weights() (transformers.adapter_modeling.Adapter static method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="classes/adapter_config.html#transformers.InvertibleAdapterConfig">InvertibleAdapterConfig (class in transformers)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="L">L</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="classes/adapter_config.html#transformers.AdapterConfig.load">load() (transformers.AdapterConfig class method)</a>
+
+      <ul>
+        <li><a href="classes/adapter_config.html#transformers.AdapterFusionConfig.load">(transformers.AdapterFusionConfig class method)</a>
+</li>
+        <li><a href="classes/weights_loaders.html#transformers.AdapterFusionLoader.load">(transformers.AdapterFusionLoader method)</a>
+</li>
+        <li><a href="classes/weights_loaders.html#transformers.AdapterLoader.load">(transformers.AdapterLoader method)</a>
+</li>
+        <li><a href="classes/weights_loaders.html#transformers.PredictionHeadLoader.load">(transformers.PredictionHeadLoader method)</a>
+</li>
+        <li><a href="classes/weights_loaders.html#transformers.WeightsLoader.load">(transformers.WeightsLoader method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="classes/model_mixins.html#transformers.ModelAdaptersMixin.load_adapter">load_adapter() (transformers.ModelAdaptersMixin method)</a>
+
+      <ul>
+        <li><a href="classes/model_mixins.html#transformers.ModelWithHeadsAdaptersMixin.load_adapter">(transformers.ModelWithHeadsAdaptersMixin method)</a>
+</li>
+      </ul></li>
+      <li><a href="classes/model_mixins.html#transformers.ModelAdaptersMixin.load_adapter_fusion">load_adapter_fusion() (transformers.ModelAdaptersMixin method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="M">M</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="classes/model_adapters_config.html#transformers.ModelAdaptersConfig">ModelAdaptersConfig (class in transformers)</a>
+</li>
+      <li><a href="classes/model_mixins.html#transformers.ModelAdaptersMixin">ModelAdaptersMixin (class in transformers)</a>
+</li>
+      <li><a href="classes/model_mixins.html#transformers.ModelWithHeadsAdaptersMixin">ModelWithHeadsAdaptersMixin (class in transformers)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    module
+
+      <ul>
+        <li><a href="classes/bert_mixins.html#module-transformers.adapter_bert">transformers.adapter_bert</a>
+</li>
+        <li><a href="classes/adapter_modules.html#module-transformers.adapter_modeling">transformers.adapter_modeling</a>
+</li>
+        <li><a href="classes/adapter_utils.html#module-transformers.adapter_utils">transformers.adapter_utils</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="N">N</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="classes/adapter_modules.html#transformers.adapter_modeling.NICECouplingBlock">NICECouplingBlock (class in transformers.adapter_modeling)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="P">P</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="classes/adapter_config.html#transformers.PfeifferConfig">PfeifferConfig (class in transformers)</a>
+</li>
+      <li><a href="classes/weights_loaders.html#transformers.PredictionHeadLoader">PredictionHeadLoader (class in transformers)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="classes/bert.html#transformers.BertForMaskedLM.prepare_inputs_for_generation">prepare_inputs_for_generation() (transformers.BertForMaskedLM method)</a>
+</li>
+      <li><a href="classes/adapter_utils.html#transformers.adapter_utils.pull_from_hub">pull_from_hub() (in module transformers.adapter_utils)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="R">R</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="classes/weights_loaders.html#transformers.AdapterFusionLoader.rename_func">rename_func() (transformers.AdapterFusionLoader method)</a>
+
+      <ul>
+        <li><a href="classes/weights_loaders.html#transformers.AdapterLoader.rename_func">(transformers.AdapterLoader method)</a>
+</li>
+        <li><a href="classes/weights_loaders.html#transformers.PredictionHeadLoader.rename_func">(transformers.PredictionHeadLoader method)</a>
+</li>
+        <li><a href="classes/weights_loaders.html#transformers.WeightsLoader.rename_func">(transformers.WeightsLoader method)</a>
+</li>
+      </ul></li>
+      <li><a href="classes/adapter_utils.html#transformers.adapter_utils.resolve_adapter_config">resolve_adapter_config() (in module transformers.adapter_utils)</a>
+</li>
+      <li><a href="classes/adapter_utils.html#transformers.adapter_utils.resolve_adapter_path">resolve_adapter_path() (in module transformers.adapter_utils)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="classes/roberta.html#transformers.RobertaConfig">RobertaConfig (class in transformers)</a>
+</li>
+      <li><a href="classes/roberta.html#transformers.RobertaForMaskedLM">RobertaForMaskedLM (class in transformers)</a>
+</li>
+      <li><a href="classes/roberta.html#transformers.RobertaForSequenceClassification">RobertaForSequenceClassification (class in transformers)</a>
+</li>
+      <li><a href="classes/roberta.html#transformers.RobertaForTokenClassification">RobertaForTokenClassification (class in transformers)</a>
+</li>
+      <li><a href="classes/roberta.html#transformers.RobertaModel">RobertaModel (class in transformers)</a>
+</li>
+      <li><a href="classes/roberta.html#transformers.RobertaModelWithHeads">RobertaModelWithHeads (class in transformers)</a>
+</li>
+      <li><a href="classes/roberta.html#transformers.RobertaTokenizer">RobertaTokenizer (class in transformers)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="S">S</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="classes/weights_loaders.html#transformers.AdapterFusionLoader.save">save() (transformers.AdapterFusionLoader method)</a>
+
+      <ul>
+        <li><a href="classes/weights_loaders.html#transformers.AdapterLoader.save">(transformers.AdapterLoader method)</a>
+</li>
+        <li><a href="classes/weights_loaders.html#transformers.PredictionHeadLoader.save">(transformers.PredictionHeadLoader method)</a>
+</li>
+        <li><a href="classes/weights_loaders.html#transformers.WeightsLoader.save">(transformers.WeightsLoader method)</a>
+</li>
+      </ul></li>
+      <li><a href="classes/model_mixins.html#transformers.ModelAdaptersMixin.save_adapter">save_adapter() (transformers.ModelAdaptersMixin method)</a>
+
+      <ul>
+        <li><a href="classes/model_mixins.html#transformers.ModelWithHeadsAdaptersMixin.save_adapter">(transformers.ModelWithHeadsAdaptersMixin method)</a>
+</li>
+      </ul></li>
+      <li><a href="classes/model_mixins.html#transformers.ModelAdaptersMixin.save_adapter_fusion">save_adapter_fusion() (transformers.ModelAdaptersMixin method)</a>
+</li>
+      <li><a href="classes/model_mixins.html#transformers.ModelAdaptersMixin.save_all_adapter_fusions">save_all_adapter_fusions() (transformers.ModelAdaptersMixin method)</a>
+</li>
+      <li><a href="classes/model_mixins.html#transformers.ModelAdaptersMixin.save_all_adapters">save_all_adapters() (transformers.ModelAdaptersMixin method)</a>
+
+      <ul>
+        <li><a href="classes/model_mixins.html#transformers.ModelWithHeadsAdaptersMixin.save_all_adapters">(transformers.ModelWithHeadsAdaptersMixin method)</a>
+</li>
+      </ul></li>
+      <li><a href="classes/bert.html#transformers.BertTokenizer.save_vocabulary">save_vocabulary() (transformers.BertTokenizer method)</a>
+
+      <ul>
+        <li><a href="classes/roberta.html#transformers.RobertaTokenizer.save_vocabulary">(transformers.RobertaTokenizer method)</a>
+</li>
+        <li><a href="classes/xlmroberta.html#transformers.XLMRobertaTokenizer.save_vocabulary">(transformers.XLMRobertaTokenizer method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="classes/bert_mixins.html#transformers.adapter_bert.BertModelHeadsMixin.set_active_adapters">set_active_adapters() (transformers.adapter_bert.BertModelHeadsMixin method)</a>
+
+      <ul>
+        <li><a href="classes/model_mixins.html#transformers.ModelAdaptersMixin.set_active_adapters">(transformers.ModelAdaptersMixin method)</a>
+</li>
+      </ul></li>
+      <li><a href="classes/model_mixins.html#transformers.ModelAdaptersMixin.set_adapter_config">set_adapter_config() (transformers.ModelAdaptersMixin method)</a>
+</li>
+      <li><a href="classes/model_mixins.html#transformers.ModelAdaptersMixin.set_adapter_fusion_config">set_adapter_fusion_config() (transformers.ModelAdaptersMixin method)</a>
+</li>
+      <li><a href="classes/model_adapters_config.html#transformers.ModelAdaptersConfig.set_config">set_config() (transformers.ModelAdaptersConfig method)</a>
+</li>
+      <li><a href="classes/bert.html#transformers.BertModel.set_input_embeddings">set_input_embeddings() (transformers.BertModel method)</a>
+
+      <ul>
+        <li><a href="classes/distilbert.html#transformers.DistilBertModel.set_input_embeddings">(transformers.DistilBertModel method)</a>
+</li>
+        <li><a href="classes/roberta.html#transformers.RobertaModel.set_input_embeddings">(transformers.RobertaModel method)</a>
+</li>
+      </ul></li>
+      <li><a href="classes/distilbert.html#transformers.DistilBertTokenizerFast.slow_tokenizer_class">slow_tokenizer_class (transformers.DistilBertTokenizerFast attribute)</a>
+</li>
+      <li><a href="classes/adapter_config.html#transformers.StaticAdapterFusionConfig">StaticAdapterFusionConfig (class in transformers)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="T">T</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="classes/bert_mixins.html#transformers.adapter_bert.BertModelAdaptersMixin.train_adapter">train_adapter() (transformers.adapter_bert.BertModelAdaptersMixin method)</a>
+
+      <ul>
+        <li><a href="classes/model_mixins.html#transformers.ModelAdaptersMixin.train_adapter">(transformers.ModelAdaptersMixin method)</a>
+</li>
+        <li><a href="classes/model_mixins.html#transformers.ModelWithHeadsAdaptersMixin.train_adapter">(transformers.ModelWithHeadsAdaptersMixin method)</a>
+</li>
+      </ul></li>
+      <li><a href="classes/bert_mixins.html#transformers.adapter_bert.BertModelAdaptersMixin.train_fusion">train_fusion() (transformers.adapter_bert.BertModelAdaptersMixin method)</a>
+
+      <ul>
+        <li><a href="classes/model_mixins.html#transformers.ModelAdaptersMixin.train_fusion">(transformers.ModelAdaptersMixin method)</a>
+</li>
+        <li><a href="classes/model_mixins.html#transformers.ModelWithHeadsAdaptersMixin.train_fusion">(transformers.ModelWithHeadsAdaptersMixin method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    transformers.adapter_bert
+
+      <ul>
+        <li><a href="classes/bert_mixins.html#module-transformers.adapter_bert">module</a>
+</li>
+      </ul></li>
+      <li>
+    transformers.adapter_modeling
+
+      <ul>
+        <li><a href="classes/adapter_modules.html#module-transformers.adapter_modeling">module</a>
+</li>
+      </ul></li>
+      <li>
+    transformers.adapter_utils
+
+      <ul>
+        <li><a href="classes/adapter_utils.html#module-transformers.adapter_utils">module</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="W">W</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="classes/weights_loaders.html#transformers.WeightsLoader">WeightsLoader (class in transformers)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="classes/weights_loaders.html#transformers.WeightsLoaderHelper">WeightsLoaderHelper (class in transformers)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="X">X</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="classes/xlmroberta.html#transformers.XLMRobertaConfig">XLMRobertaConfig (class in transformers)</a>
+</li>
+      <li><a href="classes/xlmroberta.html#transformers.XLMRobertaForMaskedLM">XLMRobertaForMaskedLM (class in transformers)</a>
+</li>
+      <li><a href="classes/xlmroberta.html#transformers.XLMRobertaForMultipleChoice">XLMRobertaForMultipleChoice (class in transformers)</a>
+</li>
+      <li><a href="classes/xlmroberta.html#transformers.XLMRobertaForSequenceClassification">XLMRobertaForSequenceClassification (class in transformers)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="classes/xlmroberta.html#transformers.XLMRobertaForTokenClassification">XLMRobertaForTokenClassification (class in transformers)</a>
+</li>
+      <li><a href="classes/xlmroberta.html#transformers.XLMRobertaModel">XLMRobertaModel (class in transformers)</a>
+</li>
+      <li><a href="classes/xlmroberta.html#transformers.XLMRobertaModelWithHeads">XLMRobertaModelWithHeads (class in transformers)</a>
+</li>
+      <li><a href="classes/xlmroberta.html#transformers.XLMRobertaTokenizer">XLMRobertaTokenizer (class in transformers)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Adapter-Hub Team
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

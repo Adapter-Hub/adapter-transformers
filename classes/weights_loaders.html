@@ -1,0 +1,645 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Weights Loaders &mdash; adapter-transformers  documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="BERT" href="bert.html" />
+    <link rel="prev" title="Adapter Utilities" href="adapter_utils.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> adapter-transformers
+          
+
+          
+            
+            <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">adapter-transformers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../adapters.html">Introduction to Adapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training.html">Adapter Training</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prediction_heads.html">Prediction Heads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extending.html">Extending the Library</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Adapter-Hub</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../loading.html">Loading Pre-Trained Adapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to Adapter Hub</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Adapter-Related Classes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="adapter_config.html">Adapter Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_adapters_config.html">Model Adapters Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adapter_modules.html">Adapter Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_mixins.html">Model Mixins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bert_mixins.html">BERT Mixins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adapter_utils.html">Adapter Utilities</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Weights Loaders</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#weightsloader">WeightsLoader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#adapterloader">AdapterLoader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#adapterfusionloader">AdapterFusionLoader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#predictionheadloader">PredictionHeadLoader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weightsloaderhelper">WeightsLoaderHelper</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Supported Models</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="bert.html">BERT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roberta.html">RoBERTa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xlmroberta.html">XLM-RoBERTa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="distilbert.html">DistilBERT</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">adapter-transformers</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Weights Loaders</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/classes/weights_loaders.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="weights-loaders">
+<h1>Weights Loaders<a class="headerlink" href="#weights-loaders" title="Permalink to this headline">¶</a></h1>
+<p>These classes perform the extraction, saving and loading of module weights to and from the file system.
+All type-specific loader classes inherit from the common <code class="docutils literal notranslate"><span class="pre">WeightsLoader</span></code> base class which can also be extended
+to add support for additional custom modules.</p>
+<p>These classes provide the basis of adapter module integration into model classes such as adapter saving and loading.
+Depending on the model, one of these mixins should be implemented by every adapter-supporting model class.</p>
+<div class="section" id="weightsloader">
+<h2>WeightsLoader<a class="headerlink" href="#weightsloader" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="transformers.WeightsLoader">
+<em class="property">class </em><code class="sig-prename descclassname">transformers.</code><code class="sig-name descname">WeightsLoader</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model</span></em>, <em class="sig-param"><span class="n">weights_name</span></em>, <em class="sig-param"><span class="n">config_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.WeightsLoader" title="Permalink to this definition">¶</a></dt>
+<dd><p>An abstract class providing basic methods for saving and loading weights of a model.
+Extend this class to build custom module weight loaders.</p>
+<dl class="py method">
+<dt id="transformers.WeightsLoader.filter_func">
+<em class="property">abstract </em><code class="sig-name descname">filter_func</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; Callable<span class="p">[</span>str<span class="p">, </span>bool<span class="p">]</span><a class="headerlink" href="#transformers.WeightsLoader.filter_func" title="Permalink to this definition">¶</a></dt>
+<dd><p>The callable returned by this method is used to extract the module weights to be saved or loaded
+based on their names.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – An identifier of the weights to be saved.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A function that takes the fully qualified name of a module parameter and returns</dt><dd><p>a boolean value that specifies whether this parameter should be extracted.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Callable[str, bool]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.WeightsLoader.load">
+<code class="sig-name descname">load</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">save_directory</span></em>, <em class="sig-param"><span class="n">load_as</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">loading_info</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span> &#x2192; Tuple<span class="p">[</span>str<span class="p">, </span>str<span class="p">]</span><a class="headerlink" href="#transformers.WeightsLoader.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads the module weights from the given directory.
+Override this method for additional loading actions. If adding the loaded weights
+to the model passed to the loader class requires adding additional modules, this method should also perform the
+architectural changes to the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>save_directory</strong> (<em>str</em>) – The directory from where to load the weights.</p></li>
+<li><p><strong>load_as</strong> (<em>str</em><em>, </em><em>optional</em>) – Load the weights with this name. Defaults to None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A tuple consisting of the local file system directory from which the weights where loaded</dt><dd><p>and the name of the loaded weights.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Tuple[str, str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.WeightsLoader.rename_func">
+<em class="property">abstract </em><code class="sig-name descname">rename_func</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">old_name</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">new_name</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; Callable<span class="p">[</span>str<span class="p">, </span>str<span class="p">]</span><a class="headerlink" href="#transformers.WeightsLoader.rename_func" title="Permalink to this definition">¶</a></dt>
+<dd><p>The callable returned by this method is used to optionally rename the module weights after loading.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>old_name</strong> (<em>str</em>) – The string identifier of the weights as loaded from file.</p></li>
+<li><p><strong>new_name</strong> (<em>str</em>) – The new string identifier to which the weights should be renamed.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A function that takes the fully qualified name of a module parameter and returns</dt><dd><p>a new fully qualified name.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Callable[str, str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.WeightsLoader.save">
+<code class="sig-name descname">save</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">save_directory</span></em>, <em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.WeightsLoader.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves the module config and weights into the given directory.
+Override this method for additional saving actions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>save_directory</strong> (<em>str</em>) – The directory to save the weights in.</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – An identifier of the weights to be saved. The details are specified by the implementor.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="adapterloader">
+<h2>AdapterLoader<a class="headerlink" href="#adapterloader" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="transformers.AdapterLoader">
+<em class="property">class </em><code class="sig-prename descclassname">transformers.</code><code class="sig-name descname">AdapterLoader</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model</span></em>, <em class="sig-param"><span class="n">adapter_type</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.AdapterLoader" title="Permalink to this definition">¶</a></dt>
+<dd><p>A class providing methods for saving and loading adapter modules from the Hub, the filesystem or a remote url.</p>
+<p>Model classes passed to this loader must implement the <cite>ModelAdaptersMixin</cite> class.</p>
+<dl class="py method">
+<dt id="transformers.AdapterLoader.filter_func">
+<code class="sig-name descname">filter_func</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">adapter_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.AdapterLoader.filter_func" title="Permalink to this definition">¶</a></dt>
+<dd><p>The callable returned by this method is used to extract the module weights to be saved or loaded
+based on their names.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – An identifier of the weights to be saved.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A function that takes the fully qualified name of a module parameter and returns</dt><dd><p>a boolean value that specifies whether this parameter should be extracted.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Callable[str, bool]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.AdapterLoader.load">
+<code class="sig-name descname">load</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">adapter_name_or_path</span></em>, <em class="sig-param"><span class="n">config</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">version</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">model_name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">load_as</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">loading_info</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.AdapterLoader.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads a pre-trained pytorch adapter module from the local file system or a remote location.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>adapter_name_or_path</strong> (<em>str</em>) – can be either:
+- the identifier of a pre-trained task adapter to be loaded from Adapter Hub
+- a path to a directory containing adapter weights saved using <cite>model.saved_adapter()</cite>
+- a URL pointing to a zip folder containing a saved adapter module</p></li>
+<li><p><strong>config</strong> (<em>str</em><em>, </em><em>optional</em>) – The requested configuration of the adapter.</p></li>
+<li><p><strong>version</strong> (<em>str</em><em>, </em><em>optional</em>) – The version of the adapter to be loaded.</p></li>
+<li><p><strong>model_name</strong> (<em>str</em><em>, </em><em>optional</em>) – The string identifier of the pre-trained model.</p></li>
+<li><p><strong>load_as</strong> (<em>str</em><em>, </em><em>optional</em>) – Load the adapter using this name. By default, the name with which the adapter was
+saved will be used.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A tuple consisting of the local file system directory from which the weights where loaded</dt><dd><p>and the name of the loaded weights.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Tuple[str, str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.AdapterLoader.rename_func">
+<code class="sig-name descname">rename_func</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">old_name</span></em>, <em class="sig-param"><span class="n">new_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.AdapterLoader.rename_func" title="Permalink to this definition">¶</a></dt>
+<dd><p>The callable returned by this method is used to optionally rename the module weights after loading.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>old_name</strong> (<em>str</em>) – The string identifier of the weights as loaded from file.</p></li>
+<li><p><strong>new_name</strong> (<em>str</em>) – The new string identifier to which the weights should be renamed.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A function that takes the fully qualified name of a module parameter and returns</dt><dd><p>a new fully qualified name.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Callable[str, str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.AdapterLoader.save">
+<code class="sig-name descname">save</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">save_directory</span></em>, <em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">meta_dict</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.AdapterLoader.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves an adapter and its configuration file to a directory, so that it can be reloaded
+using the <cite>load()</cite> method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>save_directory</strong> (<em>str</em>) – a path to a directory where the adapter will be saved</p></li>
+<li><p><strong>task_name</strong> (<em>str</em>) – the name of the adapter to be saved</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="adapterfusionloader">
+<h2>AdapterFusionLoader<a class="headerlink" href="#adapterfusionloader" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="transformers.AdapterFusionLoader">
+<em class="property">class </em><code class="sig-prename descclassname">transformers.</code><code class="sig-name descname">AdapterFusionLoader</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model</span></em>, <em class="sig-param"><span class="n">error_on_missing</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.AdapterFusionLoader" title="Permalink to this definition">¶</a></dt>
+<dd><p>A class providing methods for saving and loading AdapterFusion modules from the file system.</p>
+<dl class="py method">
+<dt id="transformers.AdapterFusionLoader.filter_func">
+<code class="sig-name descname">filter_func</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">adapter_fusion_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.AdapterFusionLoader.filter_func" title="Permalink to this definition">¶</a></dt>
+<dd><p>The callable returned by this method is used to extract the module weights to be saved or loaded
+based on their names.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – An identifier of the weights to be saved.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A function that takes the fully qualified name of a module parameter and returns</dt><dd><p>a boolean value that specifies whether this parameter should be extracted.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Callable[str, bool]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.AdapterFusionLoader.load">
+<code class="sig-name descname">load</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">save_directory</span></em>, <em class="sig-param"><span class="n">load_as</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">loading_info</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.AdapterFusionLoader.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads a AdapterFusion module from the given directory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>save_directory</strong> (<em>str</em>) – The directory from where to load the weights.</p></li>
+<li><p><strong>load_as</strong> (<em>str</em><em>, </em><em>optional</em>) – Load the weights with this name. Defaults to None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A tuple consisting of the local file system directory from which the weights where loaded</dt><dd><p>and the name of the loaded weights.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Tuple[str, str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.AdapterFusionLoader.rename_func">
+<code class="sig-name descname">rename_func</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">old_name</span></em>, <em class="sig-param"><span class="n">new_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.AdapterFusionLoader.rename_func" title="Permalink to this definition">¶</a></dt>
+<dd><p>The callable returned by this method is used to optionally rename the module weights after loading.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>old_name</strong> (<em>str</em>) – The string identifier of the weights as loaded from file.</p></li>
+<li><p><strong>new_name</strong> (<em>str</em>) – The new string identifier to which the weights should be renamed.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A function that takes the fully qualified name of a module parameter and returns</dt><dd><p>a new fully qualified name.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Callable[str, str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.AdapterFusionLoader.save">
+<code class="sig-name descname">save</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">save_directory</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.AdapterFusionLoader.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves a AdapterFusion module into the given directory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>save_directory</strong> (<em>str</em>) – The directory to save the weights in.</p></li>
+<li><p><strong>name</strong> (<em>str</em><em>, </em><em>optional</em>) – The AdapterFusion name.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="predictionheadloader">
+<h2>PredictionHeadLoader<a class="headerlink" href="#predictionheadloader" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="transformers.PredictionHeadLoader">
+<em class="property">class </em><code class="sig-prename descclassname">transformers.</code><code class="sig-name descname">PredictionHeadLoader</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model</span></em>, <em class="sig-param"><span class="n">error_on_missing</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.PredictionHeadLoader" title="Permalink to this definition">¶</a></dt>
+<dd><p>A class providing methods for saving and loading prediction head modules from the file system.</p>
+<p>Model classes supporting configurable head modules via config files should provide
+a prediction head dict at <cite>model.heads</cite> and a method <cite>add_prediction_head(head_name, config)</cite>.</p>
+<dl class="py method">
+<dt id="transformers.PredictionHeadLoader.filter_func">
+<code class="sig-name descname">filter_func</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">head_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.PredictionHeadLoader.filter_func" title="Permalink to this definition">¶</a></dt>
+<dd><p>The callable returned by this method is used to extract the module weights to be saved or loaded
+based on their names.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – An identifier of the weights to be saved.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A function that takes the fully qualified name of a module parameter and returns</dt><dd><p>a boolean value that specifies whether this parameter should be extracted.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Callable[str, bool]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.PredictionHeadLoader.load">
+<code class="sig-name descname">load</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">save_directory</span></em>, <em class="sig-param"><span class="n">load_as</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">loading_info</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.PredictionHeadLoader.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads a prediction head module from the given directory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>save_directory</strong> (<em>str</em>) – The directory from where to load the weights.</p></li>
+<li><p><strong>load_as</strong> (<em>str</em><em>, </em><em>optional</em>) – Load the weights with this name. Defaults to None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A tuple consisting of the local file system directory from which the weights where loaded</dt><dd><p>and the name of the loaded weights.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Tuple[str, str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.PredictionHeadLoader.rename_func">
+<code class="sig-name descname">rename_func</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">old_name</span></em>, <em class="sig-param"><span class="n">new_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.PredictionHeadLoader.rename_func" title="Permalink to this definition">¶</a></dt>
+<dd><p>The callable returned by this method is used to optionally rename the module weights after loading.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>old_name</strong> (<em>str</em>) – The string identifier of the weights as loaded from file.</p></li>
+<li><p><strong>new_name</strong> (<em>str</em>) – The new string identifier to which the weights should be renamed.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A function that takes the fully qualified name of a module parameter and returns</dt><dd><p>a new fully qualified name.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Callable[str, str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.PredictionHeadLoader.save">
+<code class="sig-name descname">save</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">save_directory</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.PredictionHeadLoader.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves a prediction head module into the given directory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>save_directory</strong> (<em>str</em>) – The directory to save the weights in.</p></li>
+<li><p><strong>name</strong> (<em>str</em><em>, </em><em>optional</em>) – The prediction head name.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="weightsloaderhelper">
+<h2>WeightsLoaderHelper<a class="headerlink" href="#weightsloaderhelper" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="transformers.WeightsLoaderHelper">
+<em class="property">class </em><code class="sig-prename descclassname">transformers.</code><code class="sig-name descname">WeightsLoaderHelper</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model</span></em>, <em class="sig-param"><span class="n">weights_name</span></em>, <em class="sig-param"><span class="n">config_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.WeightsLoaderHelper" title="Permalink to this definition">¶</a></dt>
+<dd><p>A class providing helper methods for saving and loading module weights.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="bert.html" class="btn btn-neutral float-right" title="BERT" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="adapter_utils.html" class="btn btn-neutral float-left" title="Adapter Utilities" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Adapter-Hub Team
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

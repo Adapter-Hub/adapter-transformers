@@ -1,0 +1,571 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Model Mixins &mdash; adapter-transformers  documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="BERT Mixins" href="bert_mixins.html" />
+    <link rel="prev" title="Adapter Modules" href="adapter_modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> adapter-transformers
+          
+
+          
+            
+            <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">adapter-transformers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../adapters.html">Introduction to Adapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training.html">Adapter Training</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prediction_heads.html">Prediction Heads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extending.html">Extending the Library</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Adapter-Hub</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../loading.html">Loading Pre-Trained Adapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to Adapter Hub</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Adapter-Related Classes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="adapter_config.html">Adapter Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_adapters_config.html">Model Adapters Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adapter_modules.html">Adapter Modules</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Model Mixins</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#modeladaptersmixin">ModelAdaptersMixin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#modelwithheadsadaptersmixin">ModelWithHeadsAdaptersMixin</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="bert_mixins.html">BERT Mixins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adapter_utils.html">Adapter Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="weights_loaders.html">Weights Loaders</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Supported Models</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="bert.html">BERT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roberta.html">RoBERTa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xlmroberta.html">XLM-RoBERTa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="distilbert.html">DistilBERT</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">adapter-transformers</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Model Mixins</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/classes/model_mixins.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="model-mixins">
+<h1>Model Mixins<a class="headerlink" href="#model-mixins" title="Permalink to this headline">¶</a></h1>
+<p>These classes provide the basis of adapter module integration into model classes such as adapter saving and loading.
+Depending on the model, one of these mixins should be implemented by every adapter-supporting model class.</p>
+<div class="section" id="modeladaptersmixin">
+<h2>ModelAdaptersMixin<a class="headerlink" href="#modeladaptersmixin" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="transformers.ModelAdaptersMixin">
+<em class="property">class </em><code class="sig-prename descclassname">transformers.</code><code class="sig-name descname">ModelAdaptersMixin</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.ModelAdaptersMixin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mixin for transformer models adding support for loading/ saving adapters.</p>
+<dl class="py method">
+<dt id="transformers.ModelAdaptersMixin.add_adapter">
+<code class="sig-name descname">add_adapter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">adapter_name</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">adapter_type</span><span class="p">:</span> <span class="n"><a class="reference internal" href="adapter_utils.html#transformers.adapter_utils.AdapterType" title="transformers.adapter_utils.AdapterType">transformers.adapter_utils.AdapterType</a></span></em>, <em class="sig-param"><span class="n">config</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.ModelAdaptersMixin.add_adapter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a new adapter module of the specified type to the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>adapter_name</strong> (<em>str</em>) – The name of the adapter module to be added.</p></li>
+<li><p><strong>adapter_type</strong> (<a class="reference internal" href="adapter_utils.html#transformers.adapter_utils.AdapterType" title="transformers.adapter_utils.AdapterType"><em>AdapterType</em></a>) – The adapter type.</p></li>
+<li><p><strong>config</strong> (<em>str</em><em> or </em><em>dict</em><em> or </em><a class="reference internal" href="adapter_config.html#transformers.AdapterConfig" title="transformers.AdapterConfig"><em>AdapterConfig</em></a><em>, </em><em>optional</em>) – The adapter configuration, can be either:
+- the string identifier of a pre-defined configuration dictionary
+- a configuration dictionary specifying the full config
+- if not given, the default configuration for this adapter type will be used</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.ModelAdaptersMixin.add_fusion">
+<code class="sig-name descname">add_fusion</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">adapter_names</span></em>, <em class="sig-param"><span class="n">adapter_fusion_config</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">override_kwargs</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.ModelAdaptersMixin.add_fusion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds AdapterFusion to the model with alll the necessary configurations and weight initializations</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>adapter_names</strong> – a list of adapter names which should be fused</p></li>
+<li><p><strong>adapter_fusion_config</strong> (<em>str</em><em> or </em><em>dict</em>) – adapter fusion configuration, can be either:
+- a string identifying a pre-defined adapter fusion configuration
+- a dictionary representing the adapter fusion configuration
+- the path to a file containing the adapter fusion configuration</p></li>
+<li><p><strong>override_kwargs</strong> – dictionary items for values which should be overwritten in the default AdapterFusion configuration</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.ModelAdaptersMixin.freeze_model">
+<code class="sig-name descname">freeze_model</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">freeze</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.ModelAdaptersMixin.freeze_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Freezes all weights of the model.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.ModelAdaptersMixin.load_adapter">
+<code class="sig-name descname">load_adapter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">adapter_name_or_path</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">adapter_type</span><span class="p">:</span> <span class="n"><a class="reference internal" href="adapter_utils.html#transformers.adapter_utils.AdapterType" title="transformers.adapter_utils.AdapterType">transformers.adapter_utils.AdapterType</a></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">config</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>dict<span class="p">, </span>str<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">version</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">model_name</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">load_as</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">custom_weights_loaders</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>List<span class="p">[</span>transformers.adapter_model_mixin.WeightsLoader<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#transformers.ModelAdaptersMixin.load_adapter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads a pre-trained pytorch adapter module from the local file system or a remote location.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>adapter_name_or_path</strong> (<em>str</em>) – can be either:
+- the identifier of a pre-trained task adapter to be loaded from Adapter Hub
+- a path to a directory containing adapter weights saved using <cite>model.saved_adapter()</cite>
+- a URL pointing to a zip folder containing a saved adapter module</p></li>
+<li><p><strong>adapter_type</strong> (<a class="reference internal" href="adapter_utils.html#transformers.adapter_utils.AdapterType" title="transformers.adapter_utils.AdapterType"><em>AdapterType</em></a><em>, </em><em>optional</em>) – The type of adapter to be loaded. If not specified, text_task will be
+used for adapters loaded from the Hub.</p></li>
+<li><p><strong>config</strong> (<em>dict</em><em> or </em><em>str</em><em>, </em><em>optional</em>) – The requested configuration of the adapter.
+If not specified, will be either:
+- the default adapter config for the requested adapter if specified
+- the global default adapter config</p></li>
+<li><p><strong>version</strong> (<em>str</em><em>, </em><em>optional</em>) – The version of the adapter to be loaded.</p></li>
+<li><p><strong>model_name</strong> (<em>str</em><em>, </em><em>optional</em>) – The string identifier of the pre-trained model.</p></li>
+<li><p><strong>load_as</strong> (<em>str</em><em>, </em><em>optional</em>) – Load the adapter using this name. By default, the name with which the adapter was
+saved will be used.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The name with which the adapter was added to the model.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.ModelAdaptersMixin.load_adapter_fusion">
+<code class="sig-name descname">load_adapter_fusion</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">adapter_fusion_name_or_path</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">load_as</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">custom_weights_loaders</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>List<span class="p">[</span>transformers.adapter_model_mixin.WeightsLoader<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#transformers.ModelAdaptersMixin.load_adapter_fusion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads a pre-trained pytorch adapter module from the local file system or a remote location.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>adapter_fusion_name_or_path</strong> (<em>str</em>) – can be either:
+- the identifier of a pre-trained task adapter fusion module to be loaded from Adapter Hub
+- a path to a directory containing adapter weights saved using <cite>model.saved_adapter()</cite>
+- a URL pointing to a zip folder containing a saved adapter module</p></li>
+<li><p><strong>config</strong> (<em>dict</em><em> or </em><em>str</em><em>, </em><em>optional</em>) – The requested configuration of the adapter fusion.
+If not specified, will be either:
+- the default adapter config for the requested adapter fusion if specified
+- the global default adapter fusion config</p></li>
+<li><p><strong>model_name</strong> (<em>str</em><em>, </em><em>optional</em>) – The string identifier of the pre-trained model.</p></li>
+<li><p><strong>load_as</strong> (<em>str</em><em>, </em><em>optional</em>) – Load the adapter using this name. By default, the name with which the adapter was
+saved will be used.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The name with which the adapter was added to the model.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.ModelAdaptersMixin.save_adapter">
+<code class="sig-name descname">save_adapter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">save_directory</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">adapter_name</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">meta_dict</span><span class="p">:</span> <span class="n">dict</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">custom_weights_loaders</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>List<span class="p">[</span>transformers.adapter_model_mixin.WeightsLoader<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.ModelAdaptersMixin.save_adapter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves an adapter and its configuration file to a directory so that it can be shared
+or reloaded using <cite>load_adapter()</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>save_directory</strong> (<em>str</em>) – Path to a directory where the adapter should be saved.</p></li>
+<li><p><strong>adapter_name</strong> (<em>str</em>) – Name of the adapter to be saved.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the given adapter name is invalid.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.ModelAdaptersMixin.save_adapter_fusion">
+<code class="sig-name descname">save_adapter_fusion</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">save_directory</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">adapter_names</span><span class="p">:</span> <span class="n">list</span></em>, <em class="sig-param"><span class="n">custom_weights_loaders</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>List<span class="p">[</span>transformers.adapter_model_mixin.WeightsLoader<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.ModelAdaptersMixin.save_adapter_fusion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves an adapter and its configuration file to a directory so that it can be shared
+or reloaded using <cite>load_adapter()</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>save_directory</strong> (<em>str</em>) – Path to a directory where the adapter should be saved.</p></li>
+<li><p><strong>adapter_name</strong> (<em>str</em>) – Name of the adapter to be saved.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the given adapter name is invalid.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.ModelAdaptersMixin.save_all_adapter_fusions">
+<code class="sig-name descname">save_all_adapter_fusions</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">save_directory</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">meta_dict</span><span class="p">:</span> <span class="n">dict</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">custom_weights_loaders</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>List<span class="p">[</span>transformers.adapter_model_mixin.WeightsLoader<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.ModelAdaptersMixin.save_all_adapter_fusions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves all adapters of this model together with their configuration
+to subfolders of the given location.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>save_directory</strong> (<em>str</em>) – Path to a directory where the adapters should be saved.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.ModelAdaptersMixin.save_all_adapters">
+<code class="sig-name descname">save_all_adapters</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">save_directory</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">meta_dict</span><span class="p">:</span> <span class="n">dict</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">custom_weights_loaders</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>List<span class="p">[</span>transformers.adapter_model_mixin.WeightsLoader<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.ModelAdaptersMixin.save_all_adapters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves all adapters of this model together with their configuration
+to subfolders of the given location.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>save_directory</strong> (<em>str</em>) – Path to a directory where the adapters should be saved.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.ModelAdaptersMixin.set_active_adapters">
+<code class="sig-name descname">set_active_adapters</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">adapter_names</span><span class="p">:</span> <span class="n">list</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.ModelAdaptersMixin.set_active_adapters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the adapter modules to be used by default in every forward pass.
+This setting can be overriden by passing the <cite>adapter_names</cite> parameter in the <cite>foward()</cite> pass.
+If no adapter with the given name is found, no module of the respective type will be activated.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>adapter_names</strong> (<em>list</em>) – The list of adapters to be activated by default. Can be a fusion or stacking configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.ModelAdaptersMixin.set_adapter_config">
+<code class="sig-name descname">set_adapter_config</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">adapter_type</span><span class="p">:</span> <span class="n"><a class="reference internal" href="adapter_utils.html#transformers.adapter_utils.AdapterType" title="transformers.adapter_utils.AdapterType">transformers.adapter_utils.AdapterType</a></span></em>, <em class="sig-param"><span class="n">adapter_config</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.ModelAdaptersMixin.set_adapter_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the adapter configuration of the specified adapter type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>adapter_type</strong> (<a class="reference internal" href="adapter_utils.html#transformers.adapter_utils.AdapterType" title="transformers.adapter_utils.AdapterType"><em>AdapterType</em></a>) – The adapter type.</p></li>
+<li><p><strong>adapter_config</strong> (<em>str</em><em> or </em><em>dict</em>) – adapter configuration, can be either:
+- a string identifying a pre-defined adapter configuration
+- a dictionary representing the adapter configuration
+- the path to a file containing the adapter configuration</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.ModelAdaptersMixin.set_adapter_fusion_config">
+<code class="sig-name descname">set_adapter_fusion_config</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">adapter_fusion_config</span></em>, <em class="sig-param"><span class="n">override_kwargs</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.ModelAdaptersMixin.set_adapter_fusion_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the adapter fusion configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>adapter_fusion_config</strong> (<em>str</em><em> or </em><em>dict</em>) – adapter fusion configuration, can be either:
+- a string identifying a pre-defined adapter fusion configuration
+- a dictionary representing the adapter fusion configuration
+- the path to a file containing the adapter fusion configuration</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.ModelAdaptersMixin.train_adapter">
+<em class="property">abstract </em><code class="sig-name descname">train_adapter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">adapter_names</span><span class="p">:</span> <span class="n">list</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.ModelAdaptersMixin.train_adapter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the model into mode for training the given adapters.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.ModelAdaptersMixin.train_fusion">
+<em class="property">abstract </em><code class="sig-name descname">train_fusion</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">adapter_names</span><span class="p">:</span> <span class="n">list</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.ModelAdaptersMixin.train_fusion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the model into mode for training of adapter fusion determined by a list of adapter names.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="modelwithheadsadaptersmixin">
+<h2>ModelWithHeadsAdaptersMixin<a class="headerlink" href="#modelwithheadsadaptersmixin" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="transformers.ModelWithHeadsAdaptersMixin">
+<em class="property">class </em><code class="sig-prename descclassname">transformers.</code><code class="sig-name descname">ModelWithHeadsAdaptersMixin</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.ModelWithHeadsAdaptersMixin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mixin adding support for loading/ saving adapters to transformer models with head(s).</p>
+<dl class="py method">
+<dt id="transformers.ModelWithHeadsAdaptersMixin.add_adapter">
+<code class="sig-name descname">add_adapter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">adapter_name</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">adapter_type</span><span class="p">:</span> <span class="n"><a class="reference internal" href="adapter_utils.html#transformers.adapter_utils.AdapterType" title="transformers.adapter_utils.AdapterType">transformers.adapter_utils.AdapterType</a></span></em>, <em class="sig-param"><span class="n">config</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.ModelWithHeadsAdaptersMixin.add_adapter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a new adapter module of the specified type to the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>adapter_name</strong> (<em>str</em>) – The name of the adapter module to be added.</p></li>
+<li><p><strong>adapter_type</strong> (<a class="reference internal" href="adapter_utils.html#transformers.adapter_utils.AdapterType" title="transformers.adapter_utils.AdapterType"><em>AdapterType</em></a>) – The adapter type.</p></li>
+<li><p><strong>config</strong> (<em>str</em><em> or </em><em>dict</em><em>, </em><em>optional</em>) – The adapter configuration, can be either:
+- the string identifier of a pre-defined configuration dictionary
+- a configuration dictionary specifying the full config
+- if not given, the default configuration for this adapter type will be used</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.ModelWithHeadsAdaptersMixin.load_adapter">
+<code class="sig-name descname">load_adapter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">adapter_name_or_path</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">adapter_type</span><span class="p">:</span> <span class="n"><a class="reference internal" href="adapter_utils.html#transformers.adapter_utils.AdapterType" title="transformers.adapter_utils.AdapterType">transformers.adapter_utils.AdapterType</a></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">config</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>dict<span class="p">, </span>str<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">version</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">model_name</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">load_as</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">with_head</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">True</span></em>, <em class="sig-param"><span class="n">custom_weights_loaders</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>List<span class="p">[</span>transformers.adapter_model_mixin.WeightsLoader<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#transformers.ModelWithHeadsAdaptersMixin.load_adapter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads a pre-trained pytorch adapter module from the local file system or a remote location.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>adapter_name_or_path</strong> (<em>str</em>) – can be either:
+- the identifier of a pre-trained task adapter to be loaded from Adapter Hub
+- a path to a directory containing adapter weights saved using <cite>model.saved_adapter()</cite>
+- a URL pointing to a zip folder containing a saved adapter module</p></li>
+<li><p><strong>adapter_type</strong> (<a class="reference internal" href="adapter_utils.html#transformers.adapter_utils.AdapterType" title="transformers.adapter_utils.AdapterType"><em>AdapterType</em></a><em>, </em><em>optional</em>) – The type of adapter to be loaded. If not specified, text_task will be
+used for adapters loaded from the Hub.</p></li>
+<li><p><strong>config</strong> (<em>dict</em><em> or </em><em>str</em><em>, </em><em>optional</em>) – The requested configuration of the adapter.
+If not specified, will be either:
+- the default adapter config for the requested adapter if specified
+- the global default adapter config</p></li>
+<li><p><strong>version</strong> (<em>str</em><em>, </em><em>optional</em>) – The version of the adapter to be loaded.</p></li>
+<li><p><strong>model_name</strong> (<em>str</em><em>, </em><em>optional</em>) – The string identifier of the pre-trained model.</p></li>
+<li><p><strong>load_as</strong> (<em>str</em><em>, </em><em>optional</em>) – Load the adapter using this name. By default, the name with which the adapter was
+saved will be used.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The name with which the adapter was added to the model.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.ModelWithHeadsAdaptersMixin.save_adapter">
+<code class="sig-name descname">save_adapter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">save_directory</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">adapter_name</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">with_head</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">True</span></em>, <em class="sig-param"><span class="n">meta_dict</span><span class="p">:</span> <span class="n">dict</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">custom_weights_loaders</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>List<span class="p">[</span>transformers.adapter_model_mixin.WeightsLoader<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.ModelWithHeadsAdaptersMixin.save_adapter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves an adapter and its configuration file to a directory so that it can be shared
+or reloaded using <cite>load_adapter()</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>save_directory</strong> (<em>str</em>) – Path to a directory where the adapter should be saved.</p></li>
+<li><p><strong>adapter_name</strong> (<em>str</em>) – Name of the adapter to be saved.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the given adapter name is invalid.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.ModelWithHeadsAdaptersMixin.save_all_adapters">
+<code class="sig-name descname">save_all_adapters</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">save_directory</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">with_head</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">True</span></em>, <em class="sig-param"><span class="n">meta_dict</span><span class="p">:</span> <span class="n">dict</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">custom_weights_loaders</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>List<span class="p">[</span>transformers.adapter_model_mixin.WeightsLoader<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.ModelWithHeadsAdaptersMixin.save_all_adapters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves all adapters of this model together with their configuration
+to subfolders of the given location.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>save_directory</strong> (<em>str</em>) – Path to a directory where the adapters should be saved.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.ModelWithHeadsAdaptersMixin.train_adapter">
+<code class="sig-name descname">train_adapter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">adapter_names</span><span class="p">:</span> <span class="n">list</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.ModelWithHeadsAdaptersMixin.train_adapter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the model into mode for training the given adapters.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.ModelWithHeadsAdaptersMixin.train_fusion">
+<code class="sig-name descname">train_fusion</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">adapter_names</span><span class="p">:</span> <span class="n">list</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.ModelWithHeadsAdaptersMixin.train_fusion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the model in mode for training of adapter fusion determined by a list of adapter names.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="bert_mixins.html" class="btn btn-neutral float-right" title="BERT Mixins" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="adapter_modules.html" class="btn btn-neutral float-left" title="Adapter Modules" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Adapter-Hub Team
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

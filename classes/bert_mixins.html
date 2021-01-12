@@ -1,0 +1,512 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>BERT Mixins &mdash; adapter-transformers  documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Adapter Utilities" href="adapter_utils.html" />
+    <link rel="prev" title="Model Mixins" href="model_mixins.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> adapter-transformers
+          
+
+          
+            
+            <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">adapter-transformers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../adapters.html">Introduction to Adapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training.html">Adapter Training</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prediction_heads.html">Prediction Heads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extending.html">Extending the Library</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Adapter-Hub</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../loading.html">Loading Pre-Trained Adapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to Adapter Hub</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Adapter-Related Classes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="adapter_config.html">Adapter Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_adapters_config.html">Model Adapters Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adapter_modules.html">Adapter Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_mixins.html">Model Mixins</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">BERT Mixins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adapter_utils.html">Adapter Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="weights_loaders.html">Weights Loaders</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Supported Models</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="bert.html">BERT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roberta.html">RoBERTa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xlmroberta.html">XLM-RoBERTa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="distilbert.html">DistilBERT</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">adapter-transformers</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>BERT Mixins</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/classes/bert_mixins.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="bert-mixins">
+<h1>BERT Mixins<a class="headerlink" href="#bert-mixins" title="Permalink to this headline">¶</a></h1>
+<p>These classes added to the BERT module classes add support for adapters to all BERT-based transformer models.</p>
+<span class="target" id="module-transformers.adapter_bert"></span><dl class="py class">
+<dt id="transformers.adapter_bert.BertEncoderAdaptersMixin">
+<em class="property">class </em><code class="sig-prename descclassname">transformers.adapter_bert.</code><code class="sig-name descname">BertEncoderAdaptersMixin</code><a class="headerlink" href="#transformers.adapter_bert.BertEncoderAdaptersMixin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds adapters to the BertEncoder module.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="transformers.adapter_bert.BertLayerAdaptersMixin">
+<em class="property">class </em><code class="sig-prename descclassname">transformers.adapter_bert.</code><code class="sig-name descname">BertLayerAdaptersMixin</code><a class="headerlink" href="#transformers.adapter_bert.BertLayerAdaptersMixin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds adapters to the BertLayer module.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="transformers.adapter_bert.BertModelAdaptersMixin">
+<em class="property">class </em><code class="sig-prename descclassname">transformers.adapter_bert.</code><code class="sig-name descname">BertModelAdaptersMixin</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.adapter_bert.BertModelAdaptersMixin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds adapters to the BertModel module.</p>
+<dl class="py method">
+<dt id="transformers.adapter_bert.BertModelAdaptersMixin.train_adapter">
+<code class="sig-name descname">train_adapter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">adapter_names</span><span class="p">:</span> <span class="n">list</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.adapter_bert.BertModelAdaptersMixin.train_adapter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the model into mode for training the given adapters.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.adapter_bert.BertModelAdaptersMixin.train_fusion">
+<code class="sig-name descname">train_fusion</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">adapter_names</span><span class="p">:</span> <span class="n">list</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.adapter_bert.BertModelAdaptersMixin.train_fusion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the model into mode for training of adapter fusion determined by a list of adapter names.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="transformers.adapter_bert.BertModelHeadsMixin">
+<em class="property">class </em><code class="sig-prename descclassname">transformers.adapter_bert.</code><code class="sig-name descname">BertModelHeadsMixin</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.adapter_bert.BertModelHeadsMixin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds heads to a Bert-based module.</p>
+<dl class="py method">
+<dt id="transformers.adapter_bert.BertModelHeadsMixin.add_classification_head">
+<code class="sig-name descname">add_classification_head</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">head_name</span></em>, <em class="sig-param"><span class="n">num_labels</span><span class="o">=</span><span class="default_value">2</span></em>, <em class="sig-param"><span class="n">layers</span><span class="o">=</span><span class="default_value">2</span></em>, <em class="sig-param"><span class="n">activation_function</span><span class="o">=</span><span class="default_value">'tanh'</span></em>, <em class="sig-param"><span class="n">overwrite_ok</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">multilabel</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">id2label</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.adapter_bert.BertModelHeadsMixin.add_classification_head" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a sequence classification head on top of the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>head_name</strong> (<em>str</em>) – The name of the head.</p></li>
+<li><p><strong>num_labels</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of classification labels. Defaults to 2.</p></li>
+<li><p><strong>layers</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of layers. Defaults to 2.</p></li>
+<li><p><strong>activation_function</strong> (<em>str</em><em>, </em><em>optional</em>) – Activation function. Defaults to ‘tanh’.</p></li>
+<li><p><strong>overwrite_ok</strong> (<em>bool</em><em>, </em><em>optional</em>) – Force overwrite if a head with the same name exists. Defaults to False.</p></li>
+<li><p><strong>multilabel</strong> (<em>bool</em><em>, </em><em>optional</em>) – Enable multilabel classification setup. Defaults to False.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.adapter_bert.BertModelHeadsMixin.add_multiple_choice_head">
+<code class="sig-name descname">add_multiple_choice_head</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">head_name</span></em>, <em class="sig-param"><span class="n">num_choices</span><span class="o">=</span><span class="default_value">2</span></em>, <em class="sig-param"><span class="n">layers</span><span class="o">=</span><span class="default_value">2</span></em>, <em class="sig-param"><span class="n">activation_function</span><span class="o">=</span><span class="default_value">'tanh'</span></em>, <em class="sig-param"><span class="n">overwrite_ok</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">id2label</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.adapter_bert.BertModelHeadsMixin.add_multiple_choice_head" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a multiple choice head on top of the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>head_name</strong> (<em>str</em>) – The name of the head.</p></li>
+<li><p><strong>num_choices</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of choices. Defaults to 2.</p></li>
+<li><p><strong>layers</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of layers. Defaults to 2.</p></li>
+<li><p><strong>activation_function</strong> (<em>str</em><em>, </em><em>optional</em>) – Activation function. Defaults to ‘tanh’.</p></li>
+<li><p><strong>overwrite_ok</strong> (<em>bool</em><em>, </em><em>optional</em>) – Force overwrite if a head with the same name exists. Defaults to False.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.adapter_bert.BertModelHeadsMixin.add_tagging_head">
+<code class="sig-name descname">add_tagging_head</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">head_name</span></em>, <em class="sig-param"><span class="n">num_labels</span><span class="o">=</span><span class="default_value">2</span></em>, <em class="sig-param"><span class="n">layers</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">activation_function</span><span class="o">=</span><span class="default_value">'tanh'</span></em>, <em class="sig-param"><span class="n">overwrite_ok</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">id2label</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.adapter_bert.BertModelHeadsMixin.add_tagging_head" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a token classification head on top of the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>head_name</strong> (<em>str</em>) – The name of the head.</p></li>
+<li><p><strong>num_labels</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of classification labels. Defaults to 2.</p></li>
+<li><p><strong>layers</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of layers. Defaults to 1.</p></li>
+<li><p><strong>activation_function</strong> (<em>str</em><em>, </em><em>optional</em>) – Activation function. Defaults to ‘tanh’.</p></li>
+<li><p><strong>overwrite_ok</strong> (<em>bool</em><em>, </em><em>optional</em>) – Force overwrite if a head with the same name exists. Defaults to False.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.adapter_bert.BertModelHeadsMixin.get_labels">
+<code class="sig-name descname">get_labels</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">head_name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.adapter_bert.BertModelHeadsMixin.get_labels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the labels the given head is assigning/predicting
+:param head_name: (str, optional) the name of the head which labels should be returned. Default is None.
+:param If the name is None the labels of the active head are returned:</p>
+<p>Returns: labels</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.adapter_bert.BertModelHeadsMixin.get_labels_dict">
+<code class="sig-name descname">get_labels_dict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">head_name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.adapter_bert.BertModelHeadsMixin.get_labels_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the id2label dict for the given head
+:param head_name: (str, optional) the name of the head which labels should be returned. Default is None.
+:param If the name is None the labels of the active head are returned:</p>
+<p>Returns: id2label</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.adapter_bert.BertModelHeadsMixin.set_active_adapters">
+<code class="sig-name descname">set_active_adapters</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">adapter_names</span><span class="p">:</span> <span class="n">list</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.adapter_bert.BertModelHeadsMixin.set_active_adapters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the adapter modules to be used by default in every forward pass.
+This setting can be overriden by passing the <cite>adapter_names</cite> parameter in the <cite>foward()</cite> pass.
+If no adapter with the given name is found, no module of the respective type will be activated.
+In case the calling model class supports named prediction heads, this method will attempt to activate a prediction head with the name of the last adapter in the list of passed adapter names.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>adapter_names</strong> (<em>list</em>) – The list of adapters to be activated by default. Can be a fusion or stacking configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="transformers.adapter_bert.BertOutputAdaptersMixin">
+<em class="property">class </em><code class="sig-prename descclassname">transformers.adapter_bert.</code><code class="sig-name descname">BertOutputAdaptersMixin</code><a class="headerlink" href="#transformers.adapter_bert.BertOutputAdaptersMixin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds adapters to the BertOutput module.</p>
+<dl class="py method">
+<dt id="transformers.adapter_bert.BertOutputAdaptersMixin.adapter_fusion">
+<code class="sig-name descname">adapter_fusion</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hidden_states</span></em>, <em class="sig-param"><span class="n">adapter_stack</span></em>, <em class="sig-param"><span class="n">residual</span></em>, <em class="sig-param"><span class="n">query</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.adapter_bert.BertOutputAdaptersMixin.adapter_fusion" title="Permalink to this definition">¶</a></dt>
+<dd><p>If more than one adapter name is set for a stack layer, we fuse the adapters.
+For this, we pass through every adapter and learn an attention-like weighting of each adapter.
+The information stored in each of the adapters is thus fused together wrt the current example.
+:param hidden_states: output of the previous transformer layer or adapter
+:param adapter_stack: names of adapters for the current stack. Iff len(adapter_stack) == 1, we pass through a</p>
+<blockquote>
+<div><p>single adapter. iff len(adapter_stack) &gt; 1 we fuse the adapters</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>residual</strong> – residual of the previous layer</p></li>
+<li><p><strong>query</strong> – query by which we attend over the adapters</p></li>
+</ul>
+</dd>
+</dl>
+<p>Returns: hidden_states</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.adapter_bert.BertOutputAdaptersMixin.adapter_stack_layer">
+<code class="sig-name descname">adapter_stack_layer</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hidden_states</span></em>, <em class="sig-param"><span class="n">input_tensor</span></em>, <em class="sig-param"><span class="n">adapter_stack</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.adapter_bert.BertOutputAdaptersMixin.adapter_stack_layer" title="Permalink to this definition">¶</a></dt>
+<dd><p>One layer of stacked adapters. This either passes through a single adapter and prepares the data to be passed
+into a subsequent adapter, or the next transformer layer
+OR
+IFF more than one adapter names is set for one stack layer, we assume that fusion is activated. Thus, the
+adapters are fused together.
+:param hidden_states: output of the previous transformer layer or adapter
+:param input_tensor: residual connection of transformer
+:param adapter_stack: names of adapters for the current stack. Iff len(adapter_stack) == 1, we pass through a</p>
+<blockquote>
+<div><p>single adapter. iff len(adapter_stack) &gt; 1 we fuse the adapters</p>
+</div></blockquote>
+<p>Returns: hidden_states</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.adapter_bert.BertOutputAdaptersMixin.add_fusion_layer">
+<code class="sig-name descname">add_fusion_layer</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">adapter_names</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.adapter_bert.BertOutputAdaptersMixin.add_fusion_layer" title="Permalink to this definition">¶</a></dt>
+<dd><p>See BertModel.add_fusion_layer</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.adapter_bert.BertOutputAdaptersMixin.get_adapter_layer">
+<code class="sig-name descname">get_adapter_layer</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">adapter_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.adapter_bert.BertOutputAdaptersMixin.get_adapter_layer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Depending on the adapter type we retrieve the correct layer. If no adapter for that name was set at that layer
+we return None
+:param adapter_name: string name of the adapter</p>
+<p>Returns: layer | None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.adapter_bert.BertOutputAdaptersMixin.get_adapter_preparams">
+<code class="sig-name descname">get_adapter_preparams</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">adapter_config</span></em>, <em class="sig-param"><span class="n">hidden_states</span></em>, <em class="sig-param"><span class="n">input_tensor</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.adapter_bert.BertOutputAdaptersMixin.get_adapter_preparams" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves the hidden_states, query (for Fusion), and residual connection according to the set configuration
+:param adapter_config: config file according to what the parameters are passed
+:param hidden_states: output of previous layer
+:param input_tensor: residual connection before FFN</p>
+<p>Returns: hidden_states, query, residual</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="transformers.adapter_bert.BertSelfOutputAdaptersMixin">
+<em class="property">class </em><code class="sig-prename descclassname">transformers.adapter_bert.</code><code class="sig-name descname">BertSelfOutputAdaptersMixin</code><a class="headerlink" href="#transformers.adapter_bert.BertSelfOutputAdaptersMixin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds adapters to the BertSelfOutput module.</p>
+<dl class="py method">
+<dt id="transformers.adapter_bert.BertSelfOutputAdaptersMixin.adapter_fusion">
+<code class="sig-name descname">adapter_fusion</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hidden_states</span></em>, <em class="sig-param"><span class="n">adapter_stack</span></em>, <em class="sig-param"><span class="n">residual</span></em>, <em class="sig-param"><span class="n">query</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.adapter_bert.BertSelfOutputAdaptersMixin.adapter_fusion" title="Permalink to this definition">¶</a></dt>
+<dd><p>If more than one adapter name is set for a stack layer, we fuse the adapters.
+For this, we pass through every adapter and learn an attention-like weighting of each adapter.
+The information stored in each of the adapters is thus fused together wrt the current example.
+:param hidden_states: output of the previous transformer layer or adapter
+:param adapter_stack: names of adapters for the current stack. Iff len(adapter_stack) == 1, we pass through a</p>
+<blockquote>
+<div><p>single adapter. iff len(adapter_stack) &gt; 1 we fuse the adapters</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>residual</strong> – residual of the previous layer</p></li>
+<li><p><strong>query</strong> – query by which we attend over the adapters</p></li>
+</ul>
+</dd>
+</dl>
+<p>Returns: hidden_states</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.adapter_bert.BertSelfOutputAdaptersMixin.adapter_stack_layer">
+<code class="sig-name descname">adapter_stack_layer</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hidden_states</span></em>, <em class="sig-param"><span class="n">input_tensor</span></em>, <em class="sig-param"><span class="n">adapter_stack</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.adapter_bert.BertSelfOutputAdaptersMixin.adapter_stack_layer" title="Permalink to this definition">¶</a></dt>
+<dd><p>One layer of stacked adapters. This either passes through a single adapter and prepares the data to be passed
+into a subsequent adapter, or the next transformer layer
+OR
+IFF more than one adapter names is set for one stack layer, we assume that fusion is activated. Thus, the
+adapters are fused together.
+:param hidden_states: output of the previous transformer layer or adapter
+:param input_tensor: residual connection of transformer
+:param adapter_stack: names of adapters for the current stack. Iff len(adapter_stack) == 1, we pass through a</p>
+<blockquote>
+<div><p>single adapter. iff len(adapter_stack) &gt; 1 we fuse the adapters</p>
+</div></blockquote>
+<p>Returns: hidden_states</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.adapter_bert.BertSelfOutputAdaptersMixin.add_fusion_layer">
+<code class="sig-name descname">add_fusion_layer</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">adapter_names</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.adapter_bert.BertSelfOutputAdaptersMixin.add_fusion_layer" title="Permalink to this definition">¶</a></dt>
+<dd><p>See BertModel.add_attention_layer</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.adapter_bert.BertSelfOutputAdaptersMixin.enable_adapters">
+<code class="sig-name descname">enable_adapters</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">adapter_names</span><span class="p">:</span> <span class="n">list</span></em>, <em class="sig-param"><span class="n">unfreeze_adapters</span><span class="p">:</span> <span class="n">bool</span></em>, <em class="sig-param"><span class="n">unfreeze_fusion</span><span class="p">:</span> <span class="n">bool</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.adapter_bert.BertSelfOutputAdaptersMixin.enable_adapters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unfreezes a given list of adapters, the adapter fusion layer, or both</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>adapter_names</strong> – names of adapters to unfreeze (or names of adapters part of the fusion layer to unfreeze)</p></li>
+<li><p><strong>unfreeze_adapters</strong> – whether the adapters themselves should be unfreezed</p></li>
+<li><p><strong>unfreeze_fusion</strong> – whether the adapter attention layer for the given adapters should be unfreezed</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.adapter_bert.BertSelfOutputAdaptersMixin.get_adapter_layer">
+<code class="sig-name descname">get_adapter_layer</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">adapter_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.adapter_bert.BertSelfOutputAdaptersMixin.get_adapter_layer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Depending on the adapter type we retrieve the correct layer. If no adapter for that name was set at that layer
+we return None
+:param adapter_name: string name of the adapter</p>
+<p>Returns: layer | None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.adapter_bert.BertSelfOutputAdaptersMixin.get_adapter_preparams">
+<code class="sig-name descname">get_adapter_preparams</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">adapter_config</span></em>, <em class="sig-param"><span class="n">hidden_states</span></em>, <em class="sig-param"><span class="n">input_tensor</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.adapter_bert.BertSelfOutputAdaptersMixin.get_adapter_preparams" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves the hidden_states, query (for Fusion), and residual connection according to the set configuration
+:param adapter_config: config file according to what the parameters are passed
+:param hidden_states: output of previous layer
+:param input_tensor: residual connection before FFN</p>
+<p>Returns: hidden_states, query, residual</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="adapter_utils.html" class="btn btn-neutral float-right" title="Adapter Utilities" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="model_mixins.html" class="btn btn-neutral float-left" title="Model Mixins" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Adapter-Hub Team
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,299 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Loading Pre-Trained Adapters &mdash; adapter-transformers  documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Contributing to Adapter Hub" href="contributing.html" />
+    <link rel="prev" title="Extending the Library" href="extending.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> adapter-transformers
+          
+
+          
+            
+            <img src="_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">adapter-transformers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adapters.html">Introduction to Adapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="training.html">Adapter Training</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prediction_heads.html">Prediction Heads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extending.html">Extending the Library</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Adapter-Hub</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Loading Pre-Trained Adapters</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#using-adapters-from-adapter-hub">Using adapters from Adapter-Hub</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-adapter-resolving-works">How adapter resolving works</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to Adapter Hub</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Adapter-Related Classes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classes/adapter_config.html">Adapter Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/model_adapters_config.html">Model Adapters Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/adapter_modules.html">Adapter Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/model_mixins.html">Model Mixins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/bert_mixins.html">BERT Mixins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/adapter_utils.html">Adapter Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/weights_loaders.html">Weights Loaders</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Supported Models</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classes/bert.html">BERT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/roberta.html">RoBERTa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/xlmroberta.html">XLM-RoBERTa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/distilbert.html">DistilBERT</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">adapter-transformers</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Loading Pre-Trained Adapters</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/loading.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="loading-pre-trained-adapters">
+<h1>Loading Pre-Trained Adapters<a class="headerlink" href="#loading-pre-trained-adapters" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="using-adapters-from-adapter-hub">
+<h2>Using adapters from Adapter-Hub<a class="headerlink" href="#using-adapters-from-adapter-hub" title="Permalink to this headline">¶</a></h2>
+<p>Suppose we have loaded a pre-trained transformer model from HuggingFace, e.g. BERT:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">BertModel</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">BertModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s1">&#39;bert-base-uncased&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We can now easily load a pre-trained adapter module from Adapter Hub by its identifier:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">load_adapter</span><span class="p">(</span><span class="s1">&#39;sst-2&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In the minimal case, that’s everything we need to specify to load a pre-trained task adapter for sentiment analysis, trained on the <code class="docutils literal notranslate"><span class="pre">sst-2</span></code> dataset using BERT base and a suitable adapter configuration.
+To examine what’s happening underneath in a bit more detail, let’s first write out the full method call with all relevant arguments explicitly stated:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">load_adapter</span><span class="p">(</span><span class="s1">&#39;sst-2&#39;</span><span class="p">,</span> <span class="n">AdapterType</span><span class="o">.</span><span class="n">text_task</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="s1">&#39;pfeiffer&#39;</span><span class="p">,</span> <span class="n">model_name</span><span class="o">=</span><span class="s1">&#39;bert-base-uncased&#39;</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">load_as</span><span class="o">=</span><span class="s1">&#39;sst&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We will go through the different arguments and their meaning one by one:</p>
+<ul class="simple">
+<li><p>The first argument passed to the method specifies the name of the adapter we want to load from Adapter-Hub. The library will search for an available adapter module with this name that matches the model architecture as well as the adapter type and configuration we requested. As the identifier <code class="docutils literal notranslate"><span class="pre">sst-2</span></code> resolves to a unique entry in the Hub, the corresponding adapter can be successfully loaded based on this information. To get an overview of all available adapter identifiers, please refer to <a class="reference external" href="https://adapterhub.ml/explore">the Adapter-Hub website</a>. The different format options of the identifier string are further described in <a class="reference external" href="#how-adapter-resolving-works">How adapter resolving works</a>.</p></li>
+<li><p>The second argument specifies the type of adapter we want to load. In this case, we load a <em>task</em> adapter which is the default setting if we don’t explicitly state this argument. All other possible adapter types are defined in the <code class="docutils literal notranslate"><span class="pre">AdapterType</span></code> (e.g. we could load a language adapter using <code class="docutils literal notranslate"><span class="pre">AdapterType.text_lang</span></code>) enumeration and explained in more detail on the <a class="reference internal" href="adapters.html"><span class="doc">Introduction to Adapters</span></a> page.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">config</span></code> argument defines the adapter architecture the loaded adapter should have.
+The value of this parameter can be either a string identifier for one of the predefined architectures, the identifier of an architecture available in the Hub or a dictionary representing a full adapter configuration.
+Based on this information, the library will only search for pre-trained adapter modules having the same configuration.</p></li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If the config parameter is not specified, the loading method will fall back to default adapter architectures, first for the requested adapter type and then to a global default. To set the default architecture for an adapter type, you can use <code class="docutils literal notranslate"><span class="pre">model.set_adapter_config()</span></code>, e.g. <code class="docutils literal notranslate"><span class="pre">model.set_adapter_config(AdapterType.text_task,</span> <span class="pre">'houlsby')</span></code>. Now, <code class="docutils literal notranslate"><span class="pre">load_adapter()</span></code> would always search for adapters in <code class="docutils literal notranslate"><span class="pre">houlsby</span></code> architecture by default.</p>
+</div>
+<ul class="simple">
+<li><p>Adapter modules trained on different pre-trained language models in general can not be used interchangeably.
+Therefore, we need to make sure to load an adapter matching the language model we are using.
+If possible, the library will infer the name of the pre-trained model automatically (e.g. when we use <code class="docutils literal notranslate"><span class="pre">from_pretrained('identifier')</span></code> to load a model from Huggingface). However, if this is not the case, we must specify the name of the host model in the <code class="docutils literal notranslate"><span class="pre">model_name</span></code> parameter.</p></li>
+<li><p>There could be multiple versions of the same adapter available. To load a specific version, use the <code class="docutils literal notranslate"><span class="pre">version</span></code> parameter.</p></li>
+<li><p>By default, the <code class="docutils literal notranslate"><span class="pre">load_adapter()</span></code> method will add the loaded adapter using the identifier string given as the first argument.
+To load the adapter using a custom name, we can use the <code class="docutils literal notranslate"><span class="pre">load_as</span></code> parameter.</p></li>
+</ul>
+</div>
+<div class="section" id="how-adapter-resolving-works">
+<h2>How adapter resolving works<a class="headerlink" href="#how-adapter-resolving-works" title="Permalink to this headline">¶</a></h2>
+<p>As described in the previous section, the methods for loading adapters are able to resolve the correct adapter weights
+based on the given identifier string, the model name and the adapter configuration.
+Using this information, the <code class="docutils literal notranslate"><span class="pre">adapter-transformers</span></code> library searches for a matching entry in the index of the <a class="reference external" href="https://github.com/adapter-hub/hub">Hub GitHub repo</a>.</p>
+<p>The identifier string used to find a matching adapter follows a format consisting of three components:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">task</span><span class="o">&gt;/&lt;</span><span class="n">subtask</span><span class="o">&gt;@&lt;</span><span class="n">username</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;task&gt;</span></code>: A generic task identifier referring to a category of similar tasked (e.g. <code class="docutils literal notranslate"><span class="pre">sentiment</span></code>, <code class="docutils literal notranslate"><span class="pre">nli</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;subtask&gt;</span></code>: A dataset or domain, on which the adapter was trained (e.g. <code class="docutils literal notranslate"><span class="pre">multinli</span></code>, <code class="docutils literal notranslate"><span class="pre">wiki</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;username&gt;</span></code>: The name of the user or organization that uploaded the pre-trained adapter</p></li>
+</ul>
+<p>An example of a full identifier following this format might look like <code class="docutils literal notranslate"><span class="pre">qa/squad1.1&#64;example-org</span></code>.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>In many cases, you don’t have to give the full string identifier with all three components to successfully load an adapter from the Hub. You can drop the <cite>&lt;username&gt;</cite> you don’t care about the uploader of the adapter.  Also, if the resulting identifier is still unique, you can drop the <code class="docutils literal notranslate"><span class="pre">&lt;task&gt;</span></code> or the <code class="docutils literal notranslate"><span class="pre">&lt;subtask&gt;</span></code>. So, <code class="docutils literal notranslate"><span class="pre">qa/squad1.1</span></code>, <code class="docutils literal notranslate"><span class="pre">squad1.1</span></code> or <code class="docutils literal notranslate"><span class="pre">squad1.1&#64;example-org</span></code> all may be valid identifiers.</p>
+</div>
+<p>For more background information on the identifier string format and the Hub index structure, you can also refer to the <a class="reference external" href="https://github.com/adapter-hub/hub/blob/master/spec.md">specification document</a> on GitHub.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="contributing.html" class="btn btn-neutral float-right" title="Contributing to Adapter Hub" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="extending.html" class="btn btn-neutral float-left" title="Extending the Library" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Adapter-Hub Team
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

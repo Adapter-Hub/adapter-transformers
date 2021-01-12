@@ -1,0 +1,315 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Contributing to Adapter Hub &mdash; adapter-transformers  documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Adapter Configuration" href="classes/adapter_config.html" />
+    <link rel="prev" title="Loading Pre-Trained Adapters" href="loading.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> adapter-transformers
+          
+
+          
+            
+            <img src="_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">adapter-transformers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adapters.html">Introduction to Adapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="training.html">Adapter Training</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prediction_heads.html">Prediction Heads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extending.html">Extending the Library</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Adapter-Hub</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="loading.html">Loading Pre-Trained Adapters</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Contributing to Adapter Hub</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#add-your-pre-trained-adapter">Add your pre-trained adapter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#add-a-new-adapter-architecture">Add a new adapter architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#add-a-new-task-or-subtask">Add a new task or subtask</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Adapter-Related Classes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classes/adapter_config.html">Adapter Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/model_adapters_config.html">Model Adapters Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/adapter_modules.html">Adapter Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/model_mixins.html">Model Mixins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/bert_mixins.html">BERT Mixins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/adapter_utils.html">Adapter Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/weights_loaders.html">Weights Loaders</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Supported Models</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classes/bert.html">BERT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/roberta.html">RoBERTa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/xlmroberta.html">XLM-RoBERTa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/distilbert.html">DistilBERT</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">adapter-transformers</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Contributing to Adapter Hub</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/contributing.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="contributing-to-adapter-hub">
+<h1>Contributing to Adapter Hub<a class="headerlink" href="#contributing-to-adapter-hub" title="Permalink to this headline">¶</a></h1>
+<p>You can easily add your own pre-trained adapter modules or architectures to Adapter Hub via our <a class="reference external" href="https://github.com/adapter-hub/hub">Hub GitHub repo</a>. Please make sure to follow the steps below corresponding to the type of contribution you would like to make.</p>
+<div class="section" id="getting-started">
+<h2>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<p>Before making any kind of contribution to <em>Adapter-Hub</em>, you will first need to set up your own fork of the <em>Hub</em> repository to be able to open a pull request later on:</p>
+<ol class="simple">
+<li><p>Fork <a class="reference external" href="https://github.com/adapter-hub/hub">the Hub repository</a> by clicking the ‘Fork’ button on the repository’s page. This creates a clone of the repository under your GitHub user.</p></li>
+<li><p>Clone your fork to your local file system:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone git@github.com:&lt;YOUR_GITHUB_USER&gt;/Hub.git
+<span class="nb">cd</span> Hub
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>(optional) Set up the Python environment. This is useful to be able to perform some validation checks before submitting your contributions back to our repository:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install -r scripts/requirements.txt
+</pre></div>
+</div>
+<p>As you’re fully set up now, you can proceed on the specific steps if your contribution:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="#add-your-pre-trained-adapter">Add your pre-trained adapter</a></p></li>
+<li><p><a class="reference external" href="#add-a-new-adapter-architecture">Add a new adapter architecture</a></p></li>
+<li><p><a class="reference external" href="#add-a-new-task-or-subtask">Add a new task or subtask</a></p></li>
+</ul>
+</div>
+<div class="section" id="add-your-pre-trained-adapter">
+<h2>Add your pre-trained adapter<a class="headerlink" href="#add-your-pre-trained-adapter" title="Permalink to this headline">¶</a></h2>
+<p>You can add your pre-trained adapter modules to the Hub so others can load them via <code class="docutils literal notranslate"><span class="pre">model.load_adapter()</span></code>.</p>
+<p><em>Note that we currently do not provide an option to host your module weights. Make sure you find an appropriate place to host them yourself!</em></p>
+<p>Let’s go through the upload process step by step:</p>
+<ol>
+<li><p>After the training of your adapter has finished, we first would want to save its weights to the local file system:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">save_adapter</span><span class="p">(</span><span class="s2">&quot;/path/to/save/folder&quot;</span><span class="p">,</span> <span class="s2">&quot;your-adapter-name&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Zip the files in the created folder and upload the zip folder to your server space.</p></li>
+<li><p>Now, we start the submission of your adapter to the Hub: After setting up your repository as described in the <a class="reference external" href="#getting-started">Getting started section</a>, create a subfolder for your user/ organization in the <code class="docutils literal notranslate"><span class="pre">adapters</span></code> folder.</p>
+<p>In your subfolder, create a YAML file describing your new adapter. You can start by copying the content of our <a class="reference external" href="https://github.com/adapter-hub/hub/blob/master/TEMPLATES/adapter.template.yaml">template YAML</a>. Only a few fields in the template are required for every submission but the more you fill, the better others can find your adapter. Especially make sure to set a download URL pointing to your uploaded weights folder.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The configuration of the adapter is specified by an identifier string in the YAML file. This string should refer to an adapter architecture available in the Hub. If you use a new or custom architecture, make sure to also <a class="reference external" href="#add-a-new-adapter-architecture">add an entry for your architecture</a> to the repo.</p>
+</div>
+</li>
+<li><p>(optional) After you completed filling the YAML adapter card, you can perform some validation checks to make sure your info card is correct (make sure to have the Python requirements set up as described in <a class="reference external" href="#getting-started">Getting started</a>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">scripts</span><span class="o">/</span><span class="n">check</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">f</span> <span class="n">adapters</span><span class="o">/&lt;</span><span class="n">your_subfolder</span><span class="o">&gt;/&lt;</span><span class="n">your_adapter_card</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Almost finished: Now create <a class="reference external" href="https://github.com/Adapter-Hub/Hub/pulls">a pull request</a> from your fork back to our repository.</p>
+<p><em>We will perform some automatic checks on your PR to make sure the files you added are correct and the provided download links are valid. Keep an eye on the results of these checks!</em></p>
+</li>
+<li><p>That’s it! Your adapter will become available via our website as soon as your pull request is accepted! 🎉🚀</p></li>
+</ol>
+</div>
+<div class="section" id="add-a-new-adapter-architecture">
+<h2>Add a new adapter architecture<a class="headerlink" href="#add-a-new-adapter-architecture" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">adapter-transformers</span></code> libraries has some common adapter configurations preincluded. However, if you want to add a new adapter using a different architecture, you can easily do this by adding the architecture configuration to the Hub repo:</p>
+<ol class="simple">
+<li><p>After setting up your repository as described in the <a class="reference external" href="#getting-started">Getting started section</a>, create a new YAML file for your architecture in the <code class="docutils literal notranslate"><span class="pre">architectures</span></code> folder.</p></li>
+<li><p>Fill in the full configuration dictionary of your architecture and some additional details. You can use <a class="reference external" href="https://github.com/adapter-hub/hub/blob/master/TEMPLATES/adapter.template.yaml">our template for architecture files</a>.</p></li>
+<li><p>Create <a class="reference external" href="https://github.com/Adapter-Hub/Hub/pulls">a pull request</a> from your fork back to our repository. 🚀</p></li>
+</ol>
+</div>
+<div class="section" id="add-a-new-task-or-subtask">
+<h2>Add a new task or subtask<a class="headerlink" href="#add-a-new-task-or-subtask" title="Permalink to this headline">¶</a></h2>
+<p>Every adapter submitted to the Hub is identified by the task and the dataset (subtask) it was trained on. You’re very encouraged to add additional information on the task and dataset of your adapter if they are not available yet. You can explore all currently available tasks at <a class="reference external" href="https://adapterhub.ml/explore">https://adapterhub.ml/explore</a>. To add a new task or subtask:</p>
+<ol class="simple">
+<li><p>After setting up your repository as described in the <a class="reference external" href="#getting-started">Getting started section</a>, create a new YAML file for the task or subtask you would like to add in the <code class="docutils literal notranslate"><span class="pre">tasks</span></code> or <code class="docutils literal notranslate"><span class="pre">subtasks</span></code> folder.</p></li>
+<li><p>Based on <a class="reference external" href="https://github.com/adapter-hub/hub/blob/master/TEMPLATES/task.template.yaml">our template for task files</a> or <a class="reference external" href="https://github.com/adapter-hub/hub/blob/master/TEMPLATES/task.template.yaml">subtask files</a>, fill in some description and details on the task.</p></li>
+<li><p>Create <a class="reference external" href="https://github.com/Adapter-Hub/Hub/pulls">a pull request</a> from your fork back to our repository. 🚀</p></li>
+</ol>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="classes/adapter_config.html" class="btn btn-neutral float-right" title="Adapter Configuration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="loading.html" class="btn btn-neutral float-left" title="Loading Pre-Trained Adapters" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Adapter-Hub Team
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

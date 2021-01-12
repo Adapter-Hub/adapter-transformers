@@ -1,0 +1,334 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Adapter Configuration &mdash; adapter-transformers  documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Model Adapters Config" href="model_adapters_config.html" />
+    <link rel="prev" title="Contributing to Adapter Hub" href="../contributing.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> adapter-transformers
+          
+
+          
+            
+            <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">adapter-transformers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../adapters.html">Introduction to Adapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training.html">Adapter Training</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prediction_heads.html">Prediction Heads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extending.html">Extending the Library</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Adapter-Hub</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../loading.html">Loading Pre-Trained Adapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to Adapter Hub</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Adapter-Related Classes</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Adapter Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#single-adapter">Single Adapter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#adapter-fusion">Adapter Fusion</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="model_adapters_config.html">Model Adapters Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adapter_modules.html">Adapter Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_mixins.html">Model Mixins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bert_mixins.html">BERT Mixins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adapter_utils.html">Adapter Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="weights_loaders.html">Weights Loaders</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Supported Models</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="bert.html">BERT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roberta.html">RoBERTa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xlmroberta.html">XLM-RoBERTa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="distilbert.html">DistilBERT</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">adapter-transformers</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Adapter Configuration</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/classes/adapter_config.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="adapter-configuration">
+<h1>Adapter Configuration<a class="headerlink" href="#adapter-configuration" title="Permalink to this headline">¶</a></h1>
+<p>Classes representing the architectures of adapter modules and fusion layers.</p>
+<div class="section" id="single-adapter">
+<h2>Single Adapter<a class="headerlink" href="#single-adapter" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="transformers.AdapterConfig">
+<em class="property">class </em><code class="sig-prename descclassname">transformers.</code><code class="sig-name descname">AdapterConfig</code><span class="sig-paren">(</span><em class="sig-param">original_ln_before: bool</em>, <em class="sig-param">original_ln_after: bool</em>, <em class="sig-param">residual_before_ln: bool</em>, <em class="sig-param">adapter_residual_before_ln: bool</em>, <em class="sig-param">ln_before: bool</em>, <em class="sig-param">ln_after: bool</em>, <em class="sig-param">mh_adapter: bool</em>, <em class="sig-param">output_adapter: bool</em>, <em class="sig-param">non_linearity: str</em>, <em class="sig-param">reduction_factor: int</em>, <em class="sig-param">invertible_adapter: Optional[transformers.adapter_config.InvertibleAdapterConfig] = None</em>, <em class="sig-param">leave_out: List[int] = &lt;factory&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.AdapterConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class that models the architecture of an adapter.</p>
+<dl class="py method">
+<dt id="transformers.AdapterConfig.load">
+<em class="property">classmethod </em><code class="sig-name descname">load</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>dict<span class="p">, </span>str<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">download_kwargs</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.AdapterConfig.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads a given adapter configuration specifier into a full AdapterConfig instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>config</strong> (<em>Union</em><em>[</em><em>dict</em><em>, </em><em>str</em><em>]</em>) – The configuration to load. Can be either:
+- a dictionary representing the full config
+- an identifier string available in ADAPTER_CONFIG_MAP
+- the path to a file containing a full adapter configuration
+- an identifier string available in Adapter-Hub</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The resolved adapter configuration dictionary.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="transformers.PfeifferConfig">
+<em class="property">class </em><code class="sig-prename descclassname">transformers.</code><code class="sig-name descname">PfeifferConfig</code><span class="sig-paren">(</span><em class="sig-param">original_ln_before: bool = True</em>, <em class="sig-param">original_ln_after: bool = True</em>, <em class="sig-param">residual_before_ln: bool = True</em>, <em class="sig-param">adapter_residual_before_ln: bool = False</em>, <em class="sig-param">ln_before: bool = False</em>, <em class="sig-param">ln_after: bool = False</em>, <em class="sig-param">mh_adapter: bool = False</em>, <em class="sig-param">output_adapter: bool = True</em>, <em class="sig-param">non_linearity: str = 'relu'</em>, <em class="sig-param">reduction_factor: int = 16</em>, <em class="sig-param">invertible_adapter: Optional[dict] = InvertibleAdapterConfig(block_type='nice'</em>, <em class="sig-param">non_linearity='relu'</em>, <em class="sig-param">reduction_factor=2)</em>, <em class="sig-param">leave_out: List[int] = &lt;factory&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.PfeifferConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>The adapter architecture proposed by Pfeiffer et. al., 2020.
+Described in <a class="reference external" href="https://arxiv.org/pdf/2005.00247.pdf">https://arxiv.org/pdf/2005.00247.pdf</a>.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="transformers.HoulsbyConfig">
+<em class="property">class </em><code class="sig-prename descclassname">transformers.</code><code class="sig-name descname">HoulsbyConfig</code><span class="sig-paren">(</span><em class="sig-param">original_ln_before: bool = False</em>, <em class="sig-param">original_ln_after: bool = True</em>, <em class="sig-param">residual_before_ln: bool = True</em>, <em class="sig-param">adapter_residual_before_ln: bool = False</em>, <em class="sig-param">ln_before: bool = False</em>, <em class="sig-param">ln_after: bool = False</em>, <em class="sig-param">mh_adapter: bool = True</em>, <em class="sig-param">output_adapter: bool = True</em>, <em class="sig-param">non_linearity: str = 'swish'</em>, <em class="sig-param">reduction_factor: int = 16</em>, <em class="sig-param">invertible_adapter: Optional[transformers.adapter_config.InvertibleAdapterConfig] = None</em>, <em class="sig-param">leave_out: List[int] = &lt;factory&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.HoulsbyConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>The adapter architecture proposed by Houlsby et. al., 2019.
+Described in <a class="reference external" href="https://arxiv.org/pdf/1902.00751.pdf">https://arxiv.org/pdf/1902.00751.pdf</a>.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="transformers.InvertibleAdapterConfig">
+<em class="property">class </em><code class="sig-prename descclassname">transformers.</code><code class="sig-name descname">InvertibleAdapterConfig</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">block_type</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">non_linearity</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">reduction_factor</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.InvertibleAdapterConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class that models the architecture of an invertible adapter module.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="adapter-fusion">
+<h2>Adapter Fusion<a class="headerlink" href="#adapter-fusion" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="transformers.AdapterFusionConfig">
+<em class="property">class </em><code class="sig-prename descclassname">transformers.</code><code class="sig-name descname">AdapterFusionConfig</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span><span class="p">:</span> <span class="n">bool</span></em>, <em class="sig-param"><span class="n">query</span><span class="p">:</span> <span class="n">bool</span></em>, <em class="sig-param"><span class="n">value</span><span class="p">:</span> <span class="n">bool</span></em>, <em class="sig-param"><span class="n">query_before_ln</span><span class="p">:</span> <span class="n">bool</span></em>, <em class="sig-param"><span class="n">regularization</span><span class="p">:</span> <span class="n">bool</span></em>, <em class="sig-param"><span class="n">residual_before</span><span class="p">:</span> <span class="n">bool</span></em>, <em class="sig-param"><span class="n">temperature</span><span class="p">:</span> <span class="n">bool</span></em>, <em class="sig-param"><span class="n">value_before_softmax</span><span class="p">:</span> <span class="n">bool</span></em>, <em class="sig-param"><span class="n">value_initialized</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.AdapterFusionConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class that models the architecture of an adapter fusion layer.</p>
+<dl class="py method">
+<dt id="transformers.AdapterFusionConfig.load">
+<em class="property">classmethod </em><code class="sig-name descname">load</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>dict<span class="p">, </span>str<span class="p">]</span></span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.AdapterFusionConfig.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads a given adapter fusion configuration specifier into a full AdapterFusionConfig instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>config</strong> (<em>Union</em><em>[</em><em>dict</em><em>, </em><em>str</em><em>]</em>) – The configuration to load. Can be either:
+- a dictionary representing the full config
+- an identifier string available in ADAPTERFUSION_CONFIG_MAP
+- the path to a file containing a full adapter fusion configuration</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The resolved adapter fusion configuration dictionary.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="transformers.StaticAdapterFusionConfig">
+<em class="property">class </em><code class="sig-prename descclassname">transformers.</code><code class="sig-name descname">StaticAdapterFusionConfig</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">True</span></em>, <em class="sig-param"><span class="n">query</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">True</span></em>, <em class="sig-param"><span class="n">value</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">query_before_ln</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">regularization</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">residual_before</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">temperature</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">value_before_softmax</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">True</span></em>, <em class="sig-param"><span class="n">value_initialized</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.StaticAdapterFusionConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Static version of adapter fusion without a value matrix.
+Described in <a class="reference external" href="https://arxiv.org/pdf/2005.00247.pdf">https://arxiv.org/pdf/2005.00247.pdf</a>.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="transformers.DynamicAdapterFusionConfig">
+<em class="property">class </em><code class="sig-prename descclassname">transformers.</code><code class="sig-name descname">DynamicAdapterFusionConfig</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">True</span></em>, <em class="sig-param"><span class="n">query</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">True</span></em>, <em class="sig-param"><span class="n">value</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">True</span></em>, <em class="sig-param"><span class="n">query_before_ln</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">regularization</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">True</span></em>, <em class="sig-param"><span class="n">residual_before</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">temperature</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">value_before_softmax</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">True</span></em>, <em class="sig-param"><span class="n">value_initialized</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.DynamicAdapterFusionConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dynamic version of adapter fusion with a value matrix and regularization.
+Described in <a class="reference external" href="https://arxiv.org/pdf/2005.00247.pdf">https://arxiv.org/pdf/2005.00247.pdf</a>.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="model_adapters_config.html" class="btn btn-neutral float-right" title="Model Adapters Config" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../contributing.html" class="btn btn-neutral float-left" title="Contributing to Adapter Hub" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Adapter-Hub Team
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
